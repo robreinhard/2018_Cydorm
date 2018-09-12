@@ -1,4 +1,4 @@
-package experimental_server.demo;
+package experiment;
 import org.springframework.*;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.context.annotation.Configuration;

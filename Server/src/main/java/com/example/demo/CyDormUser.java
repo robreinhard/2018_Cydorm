@@ -4,6 +4,8 @@ public class CyDormUser {
 	private String userName;
     private String password;
     private boolean isAdmin;
+    //TODO isLoggedIn needs set
+    private boolean isLoggedIn;
     
     public CyDormUser(String userName, String password, boolean isAdmin) {
     		this.userName = userName;
@@ -13,6 +15,16 @@ public class CyDormUser {
     
     public String getUserName() {
         return userName;
+    }
+    
+    public boolean isLoggedIn() {
+    		return isLoggedIn;
+    }
+    
+    //TODO
+    public void userAuth(String database, String username) {
+    		//isLoggedIn=true;
+    		isLoggedIn = false;
     }
     
     public void setUserName(String userName) {

@@ -32,6 +32,11 @@ public class CyDormUser {
     			this.password = password;
     }
     
+    /***
+     * This method verifies the password before the user can reset/set password.
+     * @param password
+     * @return true if password fits requirements, or false if not.
+     */
     public boolean verifyPassword(String password) {
     		if (password.isEmpty()) return false;
     		else if (password.length() < 8) return false;

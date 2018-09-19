@@ -8,9 +8,4 @@ public class RestControl {
 	public String sayHi() {
 		return "Hi";
 	}
-	
-	@RequestMapping("/derp")
-	public String howdy() {
-		return "Howdy";
-	}
 }

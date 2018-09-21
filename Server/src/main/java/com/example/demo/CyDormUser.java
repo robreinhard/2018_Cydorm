@@ -7,10 +7,11 @@ public class CyDormUser {
     //TODO isLoggedIn needs set
     private boolean isLoggedIn;
     
-    public CyDormUser(String userName, String password, boolean isAdmin) {
+    public CyDormUser(String userName, String password, boolean isAdmin, boolean isLoggedIn) {
     		this.userName = userName;
     		this.password = password;
-    		this.isAdmin = isAdmin;
+    		this.isAdmin = isAdmin;	//Look into security best practices
+    		this.isLoggedIn = false;
     }
     
     public String getUserName() {
@@ -24,7 +25,7 @@ public class CyDormUser {
     //TODO
     public void userAuth(String database, String username) {
     		//isLoggedIn=true;
-    		isLoggedIn = false;
+    		isLoggedIn = false;	//Hacker no hacking!
     }
     
     public void setUserName(String userName) {

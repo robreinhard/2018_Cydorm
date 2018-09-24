@@ -1,9 +1,19 @@
 package com.example.demo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+
+@Entity
 public class CyDormUser {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String userName;
     private String password;
     private boolean isAdmin;
+    private Integer id;
     //TODO isLoggedIn needs set
     private boolean isLoggedIn;
     
@@ -12,6 +22,14 @@ public class CyDormUser {
     		this.password = password;
     		this.isAdmin = isAdmin;	//Look into security best practices
     		this.isLoggedIn = false;
+    }
+    
+    public Integer getId() {
+    		return id;
+    }
+    
+    public void setId(Integer id) {
+    		id = this.id;
     }
     
     public String getUserName() {

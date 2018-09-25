@@ -4,24 +4,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="cyDormUsers")
 public class CyDormUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String userName;
     private String password;
-    private boolean isAdmin;
+    private int permLevel;
     private Integer id;
     //TODO isLoggedIn needs set
     private boolean isLoggedIn;
+    private String email;
+    private String firstName;
+    private String lastName;
     
-    public CyDormUser(String userName, String password, boolean isAdmin, boolean isLoggedIn) {
+    public CyDormUser(String firstName, String lastName, String email) {
+    		this.firstName = firstName;
+    		this.lastName = lastName;
+    		this.email = email;
+    }
+    
+    public CyDormUser(String userName, String password, int permLevel, boolean isLoggedIn, Integer id) {
     		this.userName = userName;
     		this.password = password;
-    		this.isAdmin = isAdmin;	//Look into security best practices
+    		this.permLevel = permLevel;	//Look into security best practices
     		this.isLoggedIn = false;
+    		this.id = id;
     }
     
     public Integer getId() {
@@ -40,18 +52,42 @@ public class CyDormUser {
     		return isLoggedIn;
     }
     
+    public String getFirstName() {
+    		return firstName;
+    }
+    
+    public String getLastName() {
+    		return lastName;
+    }
+    
+    public void setFirstName(String firstName){
+    		this.firstName = firstName;
+    }
+    
+    public void setLastName(String lastName) {
+    		this.lastName = lastName;
+    }
+    
     //TODO
     public void userAuth(String database, String username) {
     		//isLoggedIn=true;
     		isLoggedIn = false;	//Hacker no hacking!
     }
     
+    public String getEmail() {
+    		return email;
+    }
+    
+    public void setEmail(String email) {
+    		this.email = email;
+    }
+    
     public void setUserName(String userName) {
         this.userName = userName;
     }
     
-    public boolean getAdminStatus() {
-    		return isAdmin;
+    public int getPermLevel() {
+    		return permLevel;
     }
     
     public String getPassword() {

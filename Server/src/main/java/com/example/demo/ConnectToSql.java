@@ -1,4 +1,4 @@
-package com.example.demo;
+/**package com.example.demo;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -23,6 +23,8 @@ public class ConnectToSql {
 			input.close();
 			System.out.println();
 			
+			//postman
+			
 			//statement.executeUpdate("CREATE DATABASE Names;");
 			//statement.executeUpdate("CREATE TABLE first_name (Name VARCHAR(30));");
 			statement.executeUpdate("INSERT INTO "+table+" (Name) VALUES ('"+name+"');");
@@ -41,4 +43,4 @@ public class ConnectToSql {
 		}
 	}
 
-}
+}*/

@@ -6,11 +6,11 @@ import java.util.Scanner;
 public class ConnectToSql {
 
 	public static void main(String[] args) {
-		String url = "jdbc:mysql://localhost:8889/Names";
-		String user = "root";
-		String pass = "VerrySecurPasswrd";
-		String database = "Names";
-		String table = "first_name";
+		String url = "jdbc:mysql://proj309-vc-05.misc.iastate.edu:3306/CyDorm";
+		String user = "cyAdmin";
+		String pass = "VC5_309Group#!";
+		String database = "CyDorm";
+		String table = "";
 		
 		try {
 			System.out.println("Connecting to " + url);

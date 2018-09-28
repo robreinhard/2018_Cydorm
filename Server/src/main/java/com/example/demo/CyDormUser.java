@@ -5,36 +5,50 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 
 @Entity
-@Table(name="cyDormUsers")
+@Table(name="cyDormUsers") //cyDormUsers
 public class CyDormUser {
+	
+	public CyDormUser() {
+		
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String userName;
+	
     private String password;
     private int permLevel;
     private Integer id;
     //TODO isLoggedIn needs set
-    private boolean isLoggedIn;
+
+    
+    @Column
     private String email;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
     
-    public CyDormUser(String firstName, String lastName, String email) {
+    /*public CyDormUser(String firstName, String lastName, String email, int permLevel) {
     		this.firstName = firstName;
     		this.lastName = lastName;
     		this.email = email;
+    		this.permLevel = permLevel;
+    }
+    */
+    
+    
+    public CyDormUser(String firstName, String lastName, String email, String password, int permLevel) {
+    		this.firstName = firstName;
+    		this.lastName=lastName;
+    		this.email = email;
+   
+    		this.password = password;
+    		this.permLevel = permLevel;
     }
     
-    public CyDormUser(String userName, String password, int permLevel, boolean isLoggedIn, Integer id) {
-    		this.userName = userName;
-    		this.password = password;
-    		this.permLevel = permLevel;	//Look into security best practices
-    		this.isLoggedIn = false;
-    		this.id = id;
-    }
     
     public Integer getId() {
     		return id;
@@ -43,14 +57,14 @@ public class CyDormUser {
     public void setId(Integer id) {
     		id = this.id;
     }
+    /*
+    public String getuser_name() {
+        return user_name;
+    }*/
     
-    public String getUserName() {
-        return userName;
-    }
-    
-    public boolean isLoggedIn() {
-    		return isLoggedIn;
-    }
+    //public boolean isLoggedIn() {
+    	//	return isLoggedIn;
+    //}
     
     public String getFirstName() {
     		return firstName;
@@ -69,9 +83,13 @@ public class CyDormUser {
     }
     
     //TODO
-    public void userAuth(String database, String username) {
+    //public void userAuth(String database, String user_name) {
     		//isLoggedIn=true;
-    		isLoggedIn = false;	//Hacker no hacking!
+    	//	isLoggedIn = false;	//Hacker no hacking!
+    //}
+    
+    public void setTempPass() {
+    		password = "SetMeLater";
     }
     
     public String getEmail() {
@@ -82,13 +100,17 @@ public class CyDormUser {
     		this.email = email;
     }
     
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setuser_name() {
+        user_name = firstName+lastName.charAt(0);
     }
     
     public int getPermLevel() {
     		return permLevel;
     }
+    
+    public void setPermLevel(int num) {
+		permLevel = num;
+}
     
     public String getPassword() {
         return password;
@@ -107,8 +129,14 @@ public class CyDormUser {
     public boolean verifyPassword(String password) {
     		if (password.isEmpty()) return false;
     		else if (password.length() < 8) return false;
-    		else if (password.contains(userName)) return false;
+    		else if (password.contains(user_name)) return false;
     		else if (password.toLowerCase().contains("password")) return false;
     		else return true;	//Check for upper/lower/special chars combo
+    }
+    
+    @Override
+    public String toString() {
+        return "CyDormUser [id=" + id + ", firstName=" + firstName
+                + ", lastName=" + lastName + ", email=" + email + "]";
     }
 }

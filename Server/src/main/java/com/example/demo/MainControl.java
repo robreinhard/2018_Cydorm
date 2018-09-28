@@ -22,10 +22,14 @@ public class MainControl {
 	// Only get requests
 	@GetMapping("/add")
 	public @ResponseBody String addNewUser(@RequestParam String firstName, @RequestParam String lastName,
-			@RequestParam String email, @RequestParam String password, @RequestParam int permLevel) {
-		CyDormUser user = new CyDormUser(firstName, lastName, email, password, permLevel);
+			@RequestParam String email, @RequestParam int permLevel) {
+		CyDormUser user = new CyDormUser(firstName, lastName, email, permLevel);
 		userRepository.save(user);
-		return "Saved.";
+		return "User created with the following information: \n"+
+				"Firstname: "+firstName+ "\n"+
+				"Lastname: "+lastName+"\n"+
+				"Email Address: "+email+"\n"+
+				"Permissions Level: "+ String.valueOf(permLevel) + "\n";
 	}
 
 	@GetMapping("/all")

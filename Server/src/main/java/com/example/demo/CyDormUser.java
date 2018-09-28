@@ -18,7 +18,6 @@ public class CyDormUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
-    private String password;
     private int permLevel;
     private Integer id;
     //TODO isLoggedIn needs set
@@ -40,12 +39,11 @@ public class CyDormUser {
     */
     
     
-    public CyDormUser(String firstName, String lastName, String email, String password, int permLevel) {
+    public CyDormUser(String firstName, String lastName, String email, int permLevel) {
     		this.firstName = firstName;
     		this.lastName=lastName;
     		this.email = email;
-   
-    		this.password = password;
+    		//this.user_password = user_password;
     		this.permLevel = permLevel;
     }
     
@@ -88,9 +86,9 @@ public class CyDormUser {
     	//	isLoggedIn = false;	//Hacker no hacking!
     //}
     
-    public void setTempPass() {
-    		password = "SetMeLater";
-    }
+    /*public void setTempPass() {
+    		user_password = "SetMeLater";
+    }*/
     
     public String getEmail() {
     		return email;
@@ -100,9 +98,9 @@ public class CyDormUser {
     		this.email = email;
     }
     
-    public void setuser_name() {
+    /*public void setuser_name() {
         user_name = firstName+lastName.charAt(0);
-    }
+    }*/
     
     public int getPermLevel() {
     		return permLevel;
@@ -112,25 +110,25 @@ public class CyDormUser {
 		permLevel = num;
 }
     
-    public String getPassword() {
-        return password;
+    /*public String getuser_password() {
+        return user_password;
     }
     
-    public void setPassword(String password) {
-    		if(verifyPassword(password))
-    			this.password = password;
-    }
+    public void setuser_password(String user_password) {
+    		if(verifyuser_password(user_password))
+    			this.user_password = user_password;
+    }*/
     
     /***
-     * This method verifies the password before the user can reset/set password.
-     * @param password
-     * @return true if password fits requirements, or false if not.
+     * This method verifies the user_password before the user can reset/set user_password.
+     * @param user_password
+     * @return true if user_password fits requirements, or false if not.
      */
-    public boolean verifyPassword(String password) {
-    		if (password.isEmpty()) return false;
-    		else if (password.length() < 8) return false;
-    		else if (password.contains(user_name)) return false;
-    		else if (password.toLowerCase().contains("password")) return false;
+    public boolean verifyuser_password(String user_password) {
+    		if (user_password.isEmpty()) return false;
+    		else if (user_password.length() < 8) return false;
+    		//else if (user_password.contains(user_name)) return false;
+    		else if (user_password.toLowerCase().contains("user_password")) return false;
     		else return true;	//Check for upper/lower/special chars combo
     }
     

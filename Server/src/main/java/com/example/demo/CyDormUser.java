@@ -17,26 +17,19 @@ public class CyDormUser {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
-    private int permLevel;
     private Integer id;
-    //TODO isLoggedIn needs set
 
-    
+	
+	@Column
+    private int permLevel;
+	
+    //TODO isLoggedIn needs set   
     @Column
     private String email;
     @Column
     private String firstName;
     @Column
     private String lastName;
-    
-    /*public CyDormUser(String firstName, String lastName, String email, int permLevel) {
-    		this.firstName = firstName;
-    		this.lastName = lastName;
-    		this.email = email;
-    		this.permLevel = permLevel;
-    }
-    */
     
     
     public CyDormUser(String firstName, String lastName, String email, int permLevel) {

@@ -99,7 +99,7 @@ body {
 	border-radius: 5px;
 	margin-right: 1.5%;
 	margin-bottom: 1.5%;
-  
+	overflow: auto;
 }
 
 .noRightMarginColumn{
@@ -109,22 +109,72 @@ body {
 
 .colHeader {
 
-	width: 100%;
+	width: 32%;
 	height: 60px;
 	background-color: #3066BE;
+	position:fixed;
+	
+}
+
+.colDeclaration {
+
+	width: 100%;
+	height: 30px;
+	background-color: #174DA5;
 }
 
 .colHeaderTxt {
 
 	color: white;
 	text-decoration: none;
-	
-	display: block;
 	vertical-align: middle;
 	line-height: 60px;
 	font-family: Roboto;
 	font-size: 24px;
 	padding-left: 10px;
+	float: left;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+	display: block;
+
+}
+
+.colSubHeaderTxt {
+
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 30px;
+	font-family: Roboto;
+	font-size: 16px;
+	padding-left: 10px;
+	float: left;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+
+}
+
+.add {
+
+	color: white;
+	text-decoration: none;
+	display: block;
+	vertical-align: middle;
+	height: 60px;
+	font-family: Roboto;
+	padding-right: 10px;
+	font-size: 24px;
+	float: right;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+	
 }
 
 .col100 {
@@ -133,5 +183,96 @@ body {
 	height: 90%;
 	border: 2px solid #3066BE;
 	border-radius: 5px;
+	
+}
+
+.listContent {
+	
+	overflow: hidden;
+	width: 100%;
+	
+}
+
+.disputeItemContainer {
+	
+	height: 120px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+}
+
+.groceryItemContainer {
+	
+	height: 50px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+ 	
+	 
+}
+
+.choresItemContainer {
+	
+	height: 75px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+ 	
+}
+/*This is for groceries. Needs to be refactored.*/
+.containerComponents {
+	
+	display: inline-block;
+	font-family: Roboto;
+	font-size: 20px;
+	padding-left: 10px;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+	line-height:0px;
+ 	vertical-align: middle;	    
+}
+
+.theLists {
+	
+	margin-top: 60px;
+	
+}
+.floatRight {
+	
+	float: right;
+	padding-right: 20px;
+}
+
+
+.choresLeftText {
+	
+	padding-left: 10px;
+	font-family: Roboto;
+	width: 33%;
+	float: left;
+	verticle-align: middle;
+}
+
+.lastDone {
+	
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.choresHeader {
+	
+	font-size: 20px;
+	margin-bottom: 0px;
+	
+}
+
+.choresRightText {
+	
+	padding-right: 10px;
+	verticle-align: middle;
+	font-family: Roboto;
+	float: right;
+	
+}
+.dueDate {
+	
 	
 }

@@ -6,7 +6,8 @@
 	
   	<title>CyDorm Log In</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+	<script src="/javascript/navbar.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -52,66 +53,33 @@
 			<div class="col33">
 				<div class="colHeader">
 					<a href="/grocery" class="colHeaderTxt">Grocery</a>
-					<button onclick="" class="add">+</button>
+					<button onclick="theTest()" class="add">+</button>
 
 				</div>
 				<div class="theLists">	
-				<div class="listContent"> 
+				<div class="listContent" id='toPurchase'> 
 					<div class="colDeclaration">
 						<a href="/disputes" class="colSubHeaderTxt"><i>To Purchases</i></a>
 					</div>
 					<div class="groceryItemContainer">
-						<h4 class="containerComponents">Eggs</h4>
-					  	<input type="checkbox" checked="checked" class="containerComponents floatRight">
-
-
+					  <h4 class="containerComponents">Turkey Eggs</h4>
+					  <input type="checkbox" class="containerComponents floatRight">
 					</div>
 					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
+					  <h4 class="containerComponents">Kindle Eggs</h4>
+					  <input type="checkbox" class="containerComponents floatRight">
 					</div>
 				</div>
 				
-				<div class="listContent">
+				<div class="listContent" id='pendingPurchase'>
 					<div class="colDeclaration">
 						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Purchases</i></a>
 					</div>
 					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
+					  <h4 class="containerComponents">Duck Eggs</h4>
+					  <input type="checkbox" class="containerComponents floatRight">
 					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
-					<div class="groceryItemContainer">
-					  <h4 class="containerComponents">Eggs</h4>
-					  <input type="checkbox" checked="checked" class="containerComponents floatRight">
-					</div>
+					
 				</div>
 				</div>
 			</div>
@@ -165,5 +133,31 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="myModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Add Purchases:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem1" placeholder="Item 1">
+			  <input type="checkbox" id="gCheck1" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem2" placeholder="Item 2">
+			  <input type="checkbox" id="gCheck2" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem3" placeholder="Item 3">
+			  <input type="checkbox" id="gCheck3" class=" addGroceryCheckbox">
+	      </div>
+	     
+	    </div>
+	    <button onclick="addGroceryItems()" class="button-footer">Add Items</button>
+	  </div>
+	
+	</div>
 </body>

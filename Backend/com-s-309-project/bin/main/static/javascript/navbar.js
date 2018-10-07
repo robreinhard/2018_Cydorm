@@ -15,6 +15,16 @@ function theTest() {
 	btn = document.getElementById("myBtn");
 	document.getElementsByClassName("close")[0];
     modal.style.display = "block";
+    var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allUsers';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    var superHeroes;
+    request.onload = function() {
+    	  superHeroes = request.response;
+    	  console.log(superHeroes);
+	}
     
 }
 

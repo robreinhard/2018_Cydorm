@@ -24,19 +24,19 @@ public class Grocery {
     @Column
     private String groceryPrice;
     @Column
-    private Boolean approved;
+    private char approved;
     @Column
     private String firstName;
     @Column
     private String lastName;
     
     
-    public Grocery(String groceryItem, String groceryPrice, Boolean approved, String firstName, String lastName) {
+    public Grocery(String groceryItem, String groceryPrice, char approved, String firstName, String lastName) {
     		this.firstName = firstName;
     		this.lastName=lastName;
     		this.groceryItem = groceryItem;
     		this.groceryPrice = groceryPrice;
-    		this.approved = false;		//Newly created item needs approval for billing
+    		this.approved = 'F';		//Newly created item needs approval for billing
     }
     
     
@@ -73,11 +73,11 @@ public class Grocery {
     		return lastName;
     }
     
-    public void setApproval(Boolean approved){
+    public void setApproval(char approved){
     		this.approved = approved;
     }
     
-    public Boolean getApproval() {
+    public char getApproval() {
     		return approved;
     }
     

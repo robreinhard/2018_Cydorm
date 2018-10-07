@@ -19,11 +19,9 @@ public class MainControl {
 	}
 
 	@Autowired
-	@Qualifier(value ="userRepository")
 	private UserRepository userRepository;
 	
 	@Autowired
-	@Qualifier(value="groceryItem")
 	private GroceryInterface groceryItem;
 
 	// Only get requests
@@ -47,7 +45,7 @@ public class MainControl {
 	
 	@GetMapping("/addGroceryItem")
 	public @ResponseBody String addItem(@RequestParam String groceryItem, @RequestParam String groceryPrice,
-			@RequestParam Boolean approved, @RequestParam String firstName, @RequestParam String lastName) {
+			@RequestParam char approved, @RequestParam String firstName, @RequestParam String lastName) {
 		Grocery item = new Grocery(groceryItem, groceryPrice, approved, firstName, lastName);
 		//item.setApproval(false); //force approval to false
 		this.groceryItem.save(item);

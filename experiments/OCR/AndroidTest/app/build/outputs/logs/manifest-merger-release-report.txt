@@ -1,0 +1,151 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/75c43d9fccd05f8d2a6ff5abd27d6951/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/jack/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/9ce6fccc8252e1ee8269fa61dffd1de6/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0-rc02.aar/3e6a59373ca06fb14d541abf094798bf/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0-rc02.aar/658a80445ba2a7d8c628321b6aba25f3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0-rc02.aar/5d3def3a47bd822785c24570914dd300/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0-rc02.aar/b24d51ea1238990030792050b0000d5d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0-rc02.aar/1d45d25c184e0aea529e1f75d77642ff/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/loader-28.0.0-rc02.aar/39eef3789fa008aeea2af9810a14c81d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0-rc02.aar/50c30b934fb4348614b5f14f68c28a5d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0-rc02.aar/1c18f152a9b3b102d421575baf3b5083/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0-rc02.aar/553b17c117ff67fa4cbc5912ddc2ba0c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0-rc02.aar/c766f44cc9f7929926e32a1eef0ea506/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/customview-28.0.0-rc02.aar/3608cddcd75d529efc4c6eb4f3277dda/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0-rc02.aar/1c7cc8ec1878a4991b8272fb87c79459/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0-rc02.aar/2c5928ac26a20e80a4b74ca4f9da853b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0-rc02.aar/72ab5d077d847f26d4698cc8315e3bbc/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0-rc02.aar/cf6a0493cafa4f210bf755e836cbad94/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/880e3046a836e63eb52bad8324567852/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0-rc02.aar/d70455277f03532f777cbd2513dda630/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0-rc02.aar/5e142b6752a3a3ac5196f90d7f9404cc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/print-28.0.0-rc02.aar/87b89080b6558e7f18813f1759fcd7a7/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/1ef8c86189367571c0befea000c16c1e/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/107e486f06f408452d220910a0c2d1a2/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/cb5d96296498704118f8b48f50a81a63/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0-rc02.aar/60e6eabd81026846c2ad02747e3c7090/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:3:5-45
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:1-21:12
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:5:5-19:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/jack/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/9ce6fccc8252e1ee8269fa61dffd1de6/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/jack/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/9ce6fccc8252e1ee8269fa61dffd1de6/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0-rc02.aar/72ab5d077d847f26d4698cc8315e3bbc/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0-rc02.aar/72ab5d077d847f26d4698cc8315e3bbc/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:11:9-40
+activity#com.cs309.vc5cydorm.ocrtestapp.MainActivity
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:12:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml:16:27-74
+uses-sdk
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/75c43d9fccd05f8d2a6ff5abd27d6951/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/75c43d9fccd05f8d2a6ff5abd27d6951/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/jack/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/9ce6fccc8252e1ee8269fa61dffd1de6/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/jack/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/9ce6fccc8252e1ee8269fa61dffd1de6/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0-rc02.aar/3e6a59373ca06fb14d541abf094798bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0-rc02.aar/3e6a59373ca06fb14d541abf094798bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0-rc02.aar/658a80445ba2a7d8c628321b6aba25f3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0-rc02.aar/658a80445ba2a7d8c628321b6aba25f3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0-rc02.aar/5d3def3a47bd822785c24570914dd300/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0-rc02.aar/5d3def3a47bd822785c24570914dd300/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0-rc02.aar/b24d51ea1238990030792050b0000d5d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0-rc02.aar/b24d51ea1238990030792050b0000d5d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0-rc02.aar/1d45d25c184e0aea529e1f75d77642ff/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0-rc02.aar/1d45d25c184e0aea529e1f75d77642ff/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/loader-28.0.0-rc02.aar/39eef3789fa008aeea2af9810a14c81d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/loader-28.0.0-rc02.aar/39eef3789fa008aeea2af9810a14c81d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0-rc02.aar/50c30b934fb4348614b5f14f68c28a5d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0-rc02.aar/50c30b934fb4348614b5f14f68c28a5d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0-rc02.aar/1c18f152a9b3b102d421575baf3b5083/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0-rc02.aar/1c18f152a9b3b102d421575baf3b5083/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0-rc02.aar/553b17c117ff67fa4cbc5912ddc2ba0c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0-rc02.aar/553b17c117ff67fa4cbc5912ddc2ba0c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0-rc02.aar/c766f44cc9f7929926e32a1eef0ea506/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0-rc02.aar/c766f44cc9f7929926e32a1eef0ea506/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/customview-28.0.0-rc02.aar/3608cddcd75d529efc4c6eb4f3277dda/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/customview-28.0.0-rc02.aar/3608cddcd75d529efc4c6eb4f3277dda/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0-rc02.aar/1c7cc8ec1878a4991b8272fb87c79459/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0-rc02.aar/1c7cc8ec1878a4991b8272fb87c79459/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0-rc02.aar/2c5928ac26a20e80a4b74ca4f9da853b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0-rc02.aar/2c5928ac26a20e80a4b74ca4f9da853b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-rc02.aar/9051808b0fd2f09cf86145293aec7f2c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0-rc02.aar/72ab5d077d847f26d4698cc8315e3bbc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0-rc02.aar/72ab5d077d847f26d4698cc8315e3bbc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0-rc02.aar/cf6a0493cafa4f210bf755e836cbad94/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0-rc02.aar/cf6a0493cafa4f210bf755e836cbad94/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/880e3046a836e63eb52bad8324567852/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/880e3046a836e63eb52bad8324567852/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0-rc02.aar/d70455277f03532f777cbd2513dda630/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0-rc02.aar/d70455277f03532f777cbd2513dda630/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0-rc02.aar/5e142b6752a3a3ac5196f90d7f9404cc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0-rc02.aar/5e142b6752a3a3ac5196f90d7f9404cc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/print-28.0.0-rc02.aar/87b89080b6558e7f18813f1759fcd7a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/print-28.0.0-rc02.aar/87b89080b6558e7f18813f1759fcd7a7/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/1ef8c86189367571c0befea000c16c1e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/1ef8c86189367571c0befea000c16c1e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/107e486f06f408452d220910a0c2d1a2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/107e486f06f408452d220910a0c2d1a2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/cb5d96296498704118f8b48f50a81a63/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/jack/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/cb5d96296498704118f8b48f50a81a63/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0-rc02.aar/60e6eabd81026846c2ad02747e3c7090/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0-rc02] /home/jack/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0-rc02.aar/60e6eabd81026846c2ad02747e3c7090/AndroidManifest.xml:20:5-44
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		ADDED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml
+		INJECTED from /home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/AndroidManifest.xml

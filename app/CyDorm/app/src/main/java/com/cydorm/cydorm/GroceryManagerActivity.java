@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import java.util.List;
+
 public class GroceryManagerActivity extends AppCompatActivity {
 
     private ListView mGroceryList;
     private EditText mItemEdit;
     private Button mAddButton;
+    private GroceryListNetwork listNetwork;
 
     private ArrayAdapter<GroceryItem> mAdapter;
     protected int itemInd;
@@ -25,8 +28,15 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mAddButton = (Button) findViewById(R.id.add_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         mGroceryList.setAdapter(mAdapter);
+        this.listNetwork = new GroceryListNetwork();
+
 
         this.itemInd = -1;
+
+        List<GroceryItem> gList = this.listNetwork.getGroceryList();
+        for(GroceryItem i : gList) {
+            mAdapter.add(i);
+        }
 
         //Add button click
         mAddButton.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +49,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     mAdapter.getItem(itemInd).setItem(item);
 
                     //HERE insert update code
+                    listNetwork.updateListItem(mAdapter.getItem(itemInd));
 
                     itemInd = -1;
                     mAdapter.notifyDataSetChanged();
@@ -46,7 +57,12 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                 } else {
                     item = mItemEdit.getText().toString();
-                    mAdapter.add(new GroceryItem(item));
+                    GroceryItem gi = new GroceryItem(item);
+                    mAdapter.add(gi);
+
+                    // HERE INSERT UPDATE CODE
+                    listNetwork.addListItem(gi);
+
                     mAdapter.notifyDataSetChanged();
                     mItemEdit.setText("");
                 }

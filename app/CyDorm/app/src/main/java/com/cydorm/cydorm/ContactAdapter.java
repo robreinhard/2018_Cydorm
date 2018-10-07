@@ -1,5 +1,6 @@
 package com.cydorm.cydorm;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         contactViewHolder.vSurname.setText(ci.surname);
         contactViewHolder.vEmail.setText(ci.email);
         contactViewHolder.vTitle.setText(ci.name + " " + ci.surname);
+
+
     }
 
     @Override
@@ -44,9 +47,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         protected TextView vSurname;
         protected TextView vEmail;
         protected TextView vTitle;
+        public View view;
 
         public ContactViewHolder(View v) {
             super(v);
+            view = v;
             vName =  (TextView) v.findViewById(R.id.txtName);
             vSurname = (TextView)  v.findViewById(R.id.txtSurname);
             vEmail = (TextView)  v.findViewById(R.id.txtEmail);

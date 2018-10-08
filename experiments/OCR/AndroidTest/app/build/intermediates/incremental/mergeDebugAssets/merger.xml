@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/main/assets"/><source path="/home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/src/debug/assets"/></dataSet></merger>

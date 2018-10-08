@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/jack/Documents/Fall18/ComS309/VC_5_CyDorm/experiments/OCR/AndroidTest/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "/home/jack/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-rc02.aar/75c43d9fccd05f8d2a6ff5abd27d6951/res/values-v18/values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

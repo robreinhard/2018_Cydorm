@@ -48,3 +48,139 @@
 2018-10-07 13:14:56.971  INFO 95489 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2018-10-07 13:14:56.971  INFO 95489 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2018-10-07 13:14:56.986  INFO 95489 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 14 ms
+2018-10-07 19:51:14.595  INFO 1362 --- [main] web.Application                          : No active profile set, falling back to default profiles: default
+2018-10-07 19:51:14.603  INFO 1362 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5e17553a: startup date [Sun Oct 07 19:51:14 CDT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@243c4f91
+2018-10-07 19:51:15.214  INFO 1362 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=4eb4e282-5090-363a-915a-0cd426026a4b
+2018-10-07 19:51:15.264  INFO 1362 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$cb02c1aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-10-07 19:51:15.502  INFO 1362 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-10-07 19:51:15.519  INFO 1362 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-10-07 19:51:15.519  INFO 1362 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-10-07 19:51:15.522  INFO 1362 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/robertreinhard/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-10-07 19:51:15.617  INFO 1362 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-10-07 19:51:15.618  INFO 1362 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1015 ms
+2018-10-07 19:51:16.135  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-10-07 19:51:16.136  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2018-10-07 19:51:16.136  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-10-07 19:51:16.136  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-10-07 19:51:16.136  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-10-07 19:51:16.137  INFO 1362 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-10-07 19:51:16.137  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2018-10-07 19:51:16.137  INFO 1362 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-10-07 19:51:16.163  WARN 1362 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainControl' defined in file [/Users/robertreinhard/Desktop/coms309project/VC_5_CyDorm/Backend/com-s-309-project/bin/main/web/MainControl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [web.MainControl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+
+2018-10-07 19:51:16.164  INFO 1362 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-10-07 19:51:16.181  INFO 1362 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-10-07 19:51:16.188 ERROR 1362 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainControl' defined in file [/Users/robertreinhard/Desktop/coms309project/VC_5_CyDorm/Backend/com-s-309-project/bin/main/web/MainControl.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [web.MainControl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1128) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:535) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:495) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:759) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:869) ~[spring-context-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:780) [spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) [spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:333) [spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1277) [spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1265) [spring-boot-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at web.Application.main(Application.java:10) [main/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [web.MainControl]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:182) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1221) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	... 17 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+	CyDormUser cannot be resolved to a type
+	UserRepository cannot be resolved to a type
+
+	at web.MainControl.<init>(MainControl.java:20) ~[main/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_144]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_144]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170) ~[spring-beans-5.0.9.RELEASE.jar:5.0.9.RELEASE]
+	... 19 common frames omitted
+
+2018-10-07 19:51:39.091  INFO 1366 --- [main] web.Application                          : No active profile set, falling back to default profiles: default
+2018-10-07 19:51:39.099  INFO 1366 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4b2c5e02: startup date [Sun Oct 07 19:51:39 CDT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@130161f7
+2018-10-07 19:51:39.706  INFO 1366 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f2936c30-9764-3715-8d16-11275d17202a
+2018-10-07 19:51:39.755  INFO 1366 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$287bdae3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-10-07 19:51:39.979  INFO 1366 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-10-07 19:51:39.996  INFO 1366 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-10-07 19:51:39.996  INFO 1366 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-10-07 19:51:39.999  INFO 1366 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/robertreinhard/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-10-07 19:51:40.092  INFO 1366 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-10-07 19:51:40.093  INFO 1366 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 994 ms
+2018-10-07 19:51:40.623  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-10-07 19:51:40.624  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2018-10-07 19:51:40.624  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-10-07 19:51:40.624  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-10-07 19:51:40.624  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-10-07 19:51:40.624  INFO 1366 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-10-07 19:51:40.625  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2018-10-07 19:51:40.625  INFO 1366 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-10-07 19:51:40.755  WARN 1366 --- [main] o.s.security.core.userdetails.User       : User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2018-10-07 19:51:40.949  INFO 1366 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11b377c5, org.springframework.security.web.context.SecurityContextPersistenceFilter@10ef5fa0, org.springframework.security.web.header.HeaderWriterFilter@4726927c, org.springframework.security.web.csrf.CsrfFilter@7c551ad4, org.springframework.security.web.authentication.logout.LogoutFilter@6240651f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4088741b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10acd6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@736309a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7bca6fac, org.springframework.security.web.session.SessionManagementFilter@7ed9499e, org.springframework.security.web.access.ExceptionTranslationFilter@1f44ddab, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d278b4d]
+2018-10-07 19:51:41.019  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-07 19:51:41.237  INFO 1366 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4b2c5e02: startup date [Sun Oct 07 19:51:39 CDT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@130161f7
+2018-10-07 19:51:41.275  INFO 1366 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-10-07 19:51:41.276  INFO 1366 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/navbar] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/login] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/disputes] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/groceries] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/chores] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.286  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/purchases] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-10-07 19:51:41.296  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-07 19:51:41.296  INFO 1366 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-10-07 19:51:41.371  INFO 1366 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-10-07 19:51:41.547  INFO 1366 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2018-10-07 19:51:41.555  INFO 1366 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2018-10-07 19:51:41.556  INFO 1366 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2018-10-07 19:51:41.557  INFO 1366 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-10-07 19:51:41.628  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-10-07 19:51:41.636  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2018-10-07 19:51:41.637  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2018-10-07 19:51:41.638  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2018-10-07 19:51:41.640  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2018-10-07 19:51:41.646  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2018-10-07 19:51:41.652  INFO 1366 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=4b2c5e02,type=ConfigurationPropertiesRebinder]
+2018-10-07 19:51:41.693  INFO 1366 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-10-07 19:51:41.697  INFO 1366 --- [main] web.Application                          : Started Application in 3.189 seconds (JVM running for 3.637)
+2018-10-07 19:51:43.805  INFO 1366 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-10-07 19:51:43.805  INFO 1366 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-10-07 19:51:43.817  INFO 1366 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 12 ms

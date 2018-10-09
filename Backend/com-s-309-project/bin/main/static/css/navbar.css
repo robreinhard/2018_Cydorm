@@ -227,7 +227,8 @@ body {
 	outline: none;
     background-color: Transparent;
 	line-height:0px;
- 	vertical-align: middle;	    
+ 	vertical-align: middle;	   
+ 	width: 20%; 
 }
 
 .theLists {
@@ -357,7 +358,7 @@ body {
 
 .modal-body input[type=text]  {
 	
-	width: 80%;
+	width: 40%;
 	font-size: 24px;
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -368,6 +369,7 @@ body {
 	padding-left: 5px;
 	height: 40px;
 	float: left;
+	margin-left:2px;
 }
 
 .modal-body input[type=text]:focus {

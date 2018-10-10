@@ -9,7 +9,7 @@ import javax.persistence.Column;
 
 
 @Entity
-@Table(name="groceries") //cyDormUsers
+@Table(name="groceries")
 public class Grocery {
 	
 	public Grocery() {

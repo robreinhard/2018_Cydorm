@@ -313,14 +313,14 @@ function toDelete() {
 
 function modify() {
 	
-	toDelete();
 	
 	var newItem =  document.getElementById('gItem').value;
 	var newPrice = document.getElementById('gPrice').value;
 	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/addGroceryItem?';
 	
 	if (newItem.length != 0 && !isNaN(newPrice) && !(newItem==result.groceryItem && newPrice==result.groceryPrice)) {
-		
+		toDelete();
+	
 		result.groceryItem = newItem;
 		result.groceryPrice = newPrice;
 		

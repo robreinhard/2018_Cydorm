@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class MainControl {
 	private GroceryInterface groceryItem;
 
 	// Only get requests
-	@GetMapping("/addUser")
+	@PostMapping("/addUser")
 	public @ResponseBody String addNewUser(@RequestParam String firstName, @RequestParam String lastName,
 			@RequestParam String email, @RequestParam int permLevel) {
 		CyDormUser user = new CyDormUser(firstName, lastName, email, permLevel);
@@ -38,7 +39,7 @@ public class MainControl {
 		return userRepository.findAll();
 	}
 	
-	@GetMapping("/addGroceryItem")
+	@PostMapping("/addGroceryItem")
 	public @ResponseBody String addItem(@RequestParam String groceryItem, @RequestParam String groceryPrice,
 			@RequestParam char approved, @RequestParam String firstName, @RequestParam String lastName) {
 		Grocery item = new Grocery(groceryItem, groceryPrice, approved, firstName, lastName);

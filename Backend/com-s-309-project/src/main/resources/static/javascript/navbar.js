@@ -15,7 +15,7 @@ window.onload = function() {
 
     setInterval(function(){
 
-	var requestURL = 'http://localhost:8080/allGroceries';
+	var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allGroceries';
 	    var request = new XMLHttpRequest();
 	    request.open('GET', requestURL);
 	    request.responseType = 'json';
@@ -105,7 +105,7 @@ function addGroceryItems() {
 	var check1 = document.getElementById("gCheck1").checked;
 	var check2 = document.getElementById("gCheck2").checked;
 	var check3 = document.getElementById("gCheck3").checked;
-	var url = 'http://localhost:8080/addGroceryItem?';
+	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/addGroceryItem?';
 
 	var item1= {
 			

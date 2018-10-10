@@ -13,5 +13,7 @@ public interface GroceryInterface extends CrudRepository<Grocery, Integer> {
 	Collection<Grocery> findById(@Param("id") int id);
 
 	Grocery save(Grocery item);
+	
+    void delete(Grocery deleted);
 
 }

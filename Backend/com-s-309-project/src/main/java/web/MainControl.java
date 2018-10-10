@@ -39,7 +39,7 @@ public class MainControl {
 		return userRepository.findAll();
 	}
 	
-	@PostMapping("/addGroceryItem")
+	@GetMapping("/addGroceryItem")
 	public @ResponseBody String addItem(@RequestParam String groceryItem, @RequestParam String groceryPrice,
 			@RequestParam char approved, @RequestParam String firstName, @RequestParam String lastName) {
 		Grocery item = new Grocery(groceryItem, groceryPrice, approved, firstName, lastName);

@@ -292,7 +292,7 @@ function modifyRemovePrompt(id) {
 	document.getElementById('gPrice').value = result.groceryPrice;
 }
 
-function delete() {
+function toDelete() {
 	
 	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/deleteGroceryItem?id=' + result.id;
 	

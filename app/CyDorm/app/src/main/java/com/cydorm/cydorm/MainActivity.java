@@ -1,10 +1,11 @@
 package com.cydorm.cydorm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +34,9 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ContactAdapter(templist);
 
         mRecyclerView.setAdapter(mAdapter);
+
+        Intent i = new Intent(MainActivity.this,
+        GroceryManagerActivity.class);
+        startActivity(i);
     }
 }

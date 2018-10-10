@@ -39,7 +39,7 @@ window.onload = function() {
 	    			  if (isNotPushed) {
 	    				  
 	    				  purchaseGroceries.push(groceries[i]);
-	    				  $( "#toPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '<h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
+	    				  $( "#toPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
 
 	    			  }
 	    		  }
@@ -56,7 +56,7 @@ window.onload = function() {
 	    			  if (isNotPushed) {
 	    				  
 	    				  pendingGroceries.push(groceries[i]);
-	    				  $( "#pendingPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '<h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
+	    				  $( "#pendingPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
 
 	    			  }
 	    		  }
@@ -91,6 +91,7 @@ function closed() {
 	document.getElementById("gCheck3").checked = false;
     modal.style.display = "none";
     
+    
 }
 
 function addGroceryItems() {
@@ -104,40 +105,141 @@ function addGroceryItems() {
 	var check1 = document.getElementById("gCheck1").checked;
 	var check2 = document.getElementById("gCheck2").checked;
 	var check3 = document.getElementById("gCheck3").checked;
+	var url = 'http://localhost:8080/addGroceryItem?';
+
+	var item1= {
+			
+			groceryItem:null,
+			groceryPrice:0,
+			approved:null,
+			firstName:'Rob',
+			lastName:'Reinhard'
+				
+	};
+	var item2= {
+			
+			groceryItem:null,
+			groceryPrice:0,
+			approved:null,
+			firstName:'Rob',
+			lastName:'Reinhard'
+				
+	};
+	var item3= {
+			
+			groceryItem:null,
+			groceryPrice:0,
+			approved:null,
+			firstName:'Rob',
+			lastName:'Reinhard'
+				
+	};
+	
 	if (item1Text.length != 0 && !isNaN(price1)) {
+		
+		item1.groceryItem = item1Text;
+		item1.groceryPrice = price1;
+		
 		
 		if (check1 == true) {
 			
-			var string = "/addGroceryItem?groceryItem=Mustard&groceryPrice=2.35&approved=T&firstName=Andre&lastName=Chickering";
 			
+			item1.approved = 'T';	
 		}
 		else {
 
-			
+			item1.approved = 'F';	
+
+		}
+		
+		
+		var str = [];
+		for (var p in item1)
+		if (item1.hasOwnProperty(p)) {
+	      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(item1[p]));
+		}
+		var encoded =  str.join("&");
+		
+		var requestURL = url + encoded;
+	    var request = new XMLHttpRequest();
+	    request.open('GET', requestURL);
+	    request.send();
+	
+	    request.onload = function() {
+	    	
+	    	  console.log("Success");
+	    	  
 		}
 	}
 	if (item2Text.length != 0 && !isNaN(price2)) {
 		
+		item2.groceryItem = item2Text;
+		item2.groceryPrice = price2;
+		
 		if (check2 == true) {
 			
+			item2.approved = 'T';	
 
 			
 		}
 		else {
 
+			item2.approved = 'F';	
+
 			
+		}
+		
+		var str = [];
+		for (var p in item2)
+		if (item2.hasOwnProperty(p)) {
+	      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(item2[p]));
+		}
+		var encoded =  str.join("&");
+		
+		var requestURL = url + encoded;
+	    var request = new XMLHttpRequest();
+	    request.open('GET', requestURL);
+	    request.send();
+	
+	    request.onload = function() {
+	    	
+	    	  console.log("Success");
+	    	  
 		}
 	}
 	if (item3Text.length != 0 && !isNaN(price3)) {
 		
+		item3.groceryItem = item3Text;
+		item3.groceryPrice = price3;	
+		
 		if (check3 == true) {
 			
+			item3.approved = 'T';	
 			
 			
 		}
 		else {
 
+			item3.approved = 'F';	
+
 			
+		}
+		var str = [];
+		for (var p in item3)
+		if (item3.hasOwnProperty(p)) {
+	      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(item3[p]));
+		}
+		var encoded =  str.join("&");
+		
+		var requestURL = url + encoded;
+	    var request = new XMLHttpRequest();
+	    request.open('GET', requestURL);
+	    request.send();
+	
+	    request.onload = function() {
+	    	
+	    	  console.log("Success");
+	    	  
 		}
 	}	
 

@@ -228,7 +228,7 @@ body {
     background-color: Transparent;
 	line-height:0px;
  	vertical-align: middle;	   
- 	width: 20%; 
+ 	min-width: 20%;
 }
 
 .theLists {

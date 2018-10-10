@@ -2,9 +2,14 @@ package com.cydorm.cydorm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import com.android.volley.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroceryManagerActivity extends AppCompatActivity {
@@ -12,11 +17,12 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private ListView mGroceryList;
     private EditText mItemEdit;
     private Button mAddButton;
-    private GroceryListNetworkMock listNetwork;
+    private GroceryListNetwork listNetwork;
 
     private ArrayAdapter<GroceryItem> mAdapter;
 
     protected int itemInd;
+    private static String LOG_TAG = "GroceryMan";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +35,39 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
-        this.listNetwork = new GroceryListNetworkMock();
+        this.listNetwork = new GroceryListNetwork(this);
 
 
         this.itemInd = -1;
 
-        List<GroceryItem> gList = this.listNetwork.getGroceryList();
-        for(GroceryItem i : gList) {
-            mAdapter.add(i);
-        }
+        final ArrayList<GroceryItem> list = new ArrayList<>();
+        this.listNetwork.getGroceryList(new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.print(response.toString());
+                Log.d(LOG_TAG, "Now we are in the response");
+                JSONObject curObj;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        curObj = response.getJSONObject(i);
+                        list.add(new GroceryItem(curObj.getString(
+                                "groceryItem")));
+                        Log.d(LOG_TAG,
+                                "Here is is " + curObj.getString(
+                                        "groceryItem"));
+                    } catch (Exception e) {
+                        //Not going to do anything
+                        Log.d(LOG_TAG, "You messed up parsing");
+                    }
+                }
+
+                for(GroceryItem i : list) {
+                    mAdapter.add(i);
+                }
+            }
+        });
+
 
         //Add button click
         mAddButton.setOnClickListener(new AddButtonClickedListener());

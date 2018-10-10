@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.android.volley.Response;
+import android.os.SystemClock;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,6 +18,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private ListView mGroceryList;
     private EditText mItemEdit;
     private Button mAddButton;
+    private Button mRefreshButton;
+    private Button mRemoveButton;
     private GroceryListNetwork listNetwork;
 
     private ArrayAdapter<GroceryItem> mAdapter;
@@ -32,6 +35,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mGroceryList = (ListView) findViewById(R.id.grocery_listView);
         mItemEdit = (EditText) findViewById(R.id.item_editText);
         mAddButton = (Button) findViewById(R.id.add_button);
+        mRemoveButton = (Button) findViewById(R.id.remove_button);
+        mRefreshButton= (Button) findViewById(R.id.refresh_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
@@ -45,18 +50,18 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         //Add button click
         mAddButton.setOnClickListener(new AddButtonClickedListener());
+        mRefreshButton.setOnClickListener(new RefreshButtonClickedListener());
+        mRemoveButton.setOnClickListener(new RemoveButtonClickedListener());
 
         // Clicking Item
         mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
     }
 
-    private void addGroceryItem() {
-
-    }
-
     private List<GroceryItem> getGroceryList() {
 
         final ArrayList<GroceryItem> list = new ArrayList<>();
+        this.mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        mGroceryList.setAdapter(mAdapter);
 
         this.listNetwork.getGroceryList(new Response.Listener<JSONArray>() {
 
@@ -92,6 +97,25 @@ public class GroceryManagerActivity extends AppCompatActivity {
         return list;
     }
 
+    private class RemoveButtonClickedListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            if(itemInd >= 0) {
+                listNetwork.removeListItem(mAdapter.getItem(itemInd));
+            }
+        }
+    }
+
+    private class RefreshButtonClickedListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            getGroceryList();
+        }
+    }
+
+
     private class AddButtonClickedListener implements View.OnClickListener {
             @Override
             public void onClick(View v) {
@@ -108,6 +132,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     //HERE insert update code
                     listNetwork.updateListItem(mAdapter.getItem(itemInd),
                             newItem);
+                    SystemClock.sleep(2000);
+                    getGroceryList();
 
                     itemInd = -1;
                     mAdapter.notifyDataSetChanged();
@@ -121,11 +147,12 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                     // HERE INSERT UPDATE CODE
                     listNetwork.addListItem(gi);
+                    SystemClock.sleep(2000);
+                    getGroceryList();
 
                     mAdapter.notifyDataSetChanged();
                     mItemEdit.setText("");
                 }
-
             }
     }
 

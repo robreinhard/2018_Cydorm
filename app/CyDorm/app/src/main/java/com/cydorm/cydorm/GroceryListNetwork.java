@@ -36,7 +36,7 @@ public class GroceryListNetwork {//implements GroceryListNetworkInteface {
     public void updateListItem(GroceryItem old, GroceryItem n) {
         //Remove the list item
         this.removeListItem(old);
-        this.removeListItem(n);
+        this.addListItem(n);
     }
 
     public void removeListItem(GroceryItem i) {

@@ -57,4 +57,10 @@ public class MainControl {
 		return this.groceryItem.findAll();
 	}
 	
+	@GetMapping("/deleteGroceryItem")
+	public @ResponseBody String deleteItem(@RequestParam int id) {
+		Grocery toBeDeleted = this.groceryItem.findById(id);
+		this.groceryItem.delete(toBeDeleted);
+		return "Grocery Item deleted with the following id = " + id;
+	}
 }

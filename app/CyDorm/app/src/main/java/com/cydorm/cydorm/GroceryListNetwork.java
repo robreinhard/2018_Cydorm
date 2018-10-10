@@ -1,19 +1,16 @@
 package com.cydorm.cydorm;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class GroceryListNetwork {
+public class GroceryListNetwork implements GroceryListNetworkInteface {
 
-    public GroceryListNetwork() {
+    public GroceryListNetwork(String url) {
 
-    }
-
-    public int test_connection() {
-        return 0;
     }
 
     public int updateListItem(GroceryItem i) {
+        //Remove the list item
+        //Re-add the new item
         return 0;
     }
 
@@ -22,14 +19,6 @@ public class GroceryListNetwork {
     }
 
     public List<GroceryItem> getGroceryList() {
-        List<GroceryItem> l = new ArrayList<>();
-
-        l.add(new GroceryItem("Bananas"));
-        l.add(new GroceryItem("Toilet Paper"));
-        l.add(new GroceryItem("Tendies"));
-        l.add(new GroceryItem("Paper Towels"));
-
-
-        return l;
+        return null;
     }
 }

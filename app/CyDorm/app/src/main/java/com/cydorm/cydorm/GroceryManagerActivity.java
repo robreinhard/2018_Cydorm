@@ -1,7 +1,5 @@
 package com.cydorm.cydorm;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,21 +12,24 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private ListView mGroceryList;
     private EditText mItemEdit;
     private Button mAddButton;
-    private GroceryListNetwork listNetwork;
+    private GroceryListNetworkMock listNetwork;
 
     private ArrayAdapter<GroceryItem> mAdapter;
+
     protected int itemInd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_list);
+
         mGroceryList = (ListView) findViewById(R.id.grocery_listView);
         mItemEdit = (EditText) findViewById(R.id.item_editText);
         mAddButton = (Button) findViewById(R.id.add_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+
         mGroceryList.setAdapter(mAdapter);
-        this.listNetwork = new GroceryListNetwork();
+        this.listNetwork = new GroceryListNetworkMock();
 
 
         this.itemInd = -1;
@@ -39,7 +40,13 @@ public class GroceryManagerActivity extends AppCompatActivity {
         }
 
         //Add button click
-        mAddButton.setOnClickListener(new View.OnClickListener() {
+        mAddButton.setOnClickListener(new AddButtonClickedListener());
+
+        // Clicking Item
+        mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
+    }
+
+    private class AddButtonClickedListener implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 String item;
@@ -68,15 +75,14 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 }
 
             }
-        });
+    }
 
-        // Clicking Item
-        mGroceryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+    private class GroceryItemClickedListener implements AdapterView.OnItemClickListener {
+             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 itemInd = i;
                 mItemEdit.setText(adapterView.getItemAtPosition(i).toString());
             }
-        });
     }
+
 }

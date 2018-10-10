@@ -85,15 +85,18 @@ window.onload = function() {
   		  
   		  return true;
   	  	});
-  	  
-  	  	for (var l=0; l < toBeRemoved.length;l++) {}
+  	  	console.log(toBeRemoved);
+  	  	
+  	  	for (var l=0; l < toBeRemoved.length;l++) {
   	  	
   	  		if (toBeRemoved.length > 0) {
-  	  			$("#" + toBeRemoved[l].id).remove();
+  	  			var toRemove = "#" + toBeRemoved[l].id.toString();
+  	  			$(toRemove).remove();
   	  		}
   	  	
     	}
-  	  
+  	  	
+	    }
     }, 1000);
     
 };
@@ -310,6 +313,8 @@ function toDelete() {
 
 function modify() {
 	
+	toDelete();
+	
 	var newItem =  document.getElementById('gItem').value;
 	var newPrice = document.getElementById('gPrice').value;
 	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/addGroceryItem?';
@@ -320,12 +325,15 @@ function modify() {
 		result.groceryPrice = newPrice;
 		
 		var str = [];
-		for (var p in result)
-		if (result.hasOwnProperty(p)) {
-	      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(result[p]));
-		}
-		var encoded =  str.join("&");
 		
+		str.push(encodeURIComponent("groceryItem") + "=" + encodeURIComponent(newItem));
+		str.push(encodeURIComponent("groceryPrice") + "=" + encodeURIComponent(newPrice));
+		str.push(encodeURIComponent("approved") + "=" + encodeURIComponent(result.approval));
+		str.push(encodeURIComponent("firstName") + "=" + encodeURIComponent(result.firstName));
+		str.push(encodeURIComponent("lastName") + "=" + encodeURIComponent(result.lastName));
+
+		var encoded =  str.join("&");
+		console.log(encoded);
 		var requestURL = url + encoded;
 	    var request = new XMLHttpRequest();
 	    request.open('GET', requestURL);

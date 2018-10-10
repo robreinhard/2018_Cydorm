@@ -15,7 +15,7 @@ window.onload = function() {
 
     setInterval(function(){
 
-	var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allGroceries';
+    	var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allGroceries';
 	    var request = new XMLHttpRequest();
 	    request.open('GET', requestURL);
 	    request.responseType = 'json';
@@ -39,7 +39,7 @@ window.onload = function() {
 	    			  if (isNotPushed) {
 	    				  
 	    				  purchaseGroceries.push(groceries[i]);
-	    				  $( "#toPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
+	    				  $( "#toPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + ' onclick="modifyRemovePrompt('+ groceries[i].id + ')"><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
 
 	    			  }
 	    		  }
@@ -56,13 +56,44 @@ window.onload = function() {
 	    			  if (isNotPushed) {
 	    				  
 	    				  pendingGroceries.push(groceries[i]);
-	    				  $( "#pendingPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + '><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
+	    				  $( "#pendingPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + ' onclick="modifyRemovePrompt('+ groceries[i].id + ')"><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].firstName+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
 
 	    			  }
 	    		  }
 	
 	    	  }
-		}
+	    	 
+	    	  /*
+	    	  for (var k=0; k < toBeRemoved.length;k++) {
+	    		  
+				  $( "#" + toBeRemoved[k].id).remove();
+	    	  }*/
+		
+	    
+	    var allGroceries = pendingGroceries.concat(purchaseGroceries);
+  	  
+  	  	var toBeRemoved = allGroceries.filter(function(g) {
+  		
+  		  for (var k=0; k < groceries.length;k++) {
+  			  
+  			  if (groceries[k].id == g.id) {
+  				  
+  				  return false;
+  			  }
+  			  
+  		  }
+  		  
+  		  return true;
+  	  	});
+  	  
+  	  	for (var l=0; l < toBeRemoved.length;l++) {}
+  	  	
+  	  		if (toBeRemoved.length > 0) {
+  	  			$("#" + toBeRemoved[l].id).remove();
+  	  		}
+  	  	
+    	}
+  	  
     }, 1000);
     
 };
@@ -244,6 +275,69 @@ function addGroceryItems() {
 	}	
 
 	closed();
+}
+var result;
+
+function modifyRemovePrompt(id) {
+	
+	modal = document.getElementById('myModal2');
+	btn = document.getElementById("myBtn");
+	document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+    var allGroceries = pendingGroceries.concat(purchaseGroceries);
+    result = allGroceries.find(obj => {
+    	  return obj.id === id
+	})
+    document.getElementById('gItem').value = result.groceryItem;
+	document.getElementById('gPrice').value = result.groceryPrice;
+}
+
+function delete() {
+	
+	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/deleteGroceryItem?id=' + result.id;
+	
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.send();
+
+    request.onload = function() {
+    	
+    	  console.log("Success");
+    	  
+	}
+    closed();
+}
+
+function modify() {
+	
+	var newItem =  document.getElementById('gItem').value;
+	var newPrice = document.getElementById('gPrice').value;
+	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/addGroceryItem?';
+	
+	if (newItem.length != 0 && !isNaN(newPrice) && !(newItem==result.groceryItem && newPrice==result.groceryPrice)) {
+		
+		result.groceryItem = newItem;
+		result.groceryPrice = newPrice;
+		
+		var str = [];
+		for (var p in result)
+		if (result.hasOwnProperty(p)) {
+	      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(result[p]));
+		}
+		var encoded =  str.join("&");
+		
+		var requestURL = url + encoded;
+	    var request = new XMLHttpRequest();
+	    request.open('GET', requestURL);
+	    request.send();
+	
+	    request.onload = function() {
+	    	
+	    	  console.log("Success");
+	    	  
+		}
+	    
+	}
 }
 
 // When the user clicks anywhere outside of the modal, close it

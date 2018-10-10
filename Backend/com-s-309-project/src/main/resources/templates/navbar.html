@@ -59,7 +59,7 @@
 				<div class="theLists">	
 				<div class="listContent" id='toPurchase'> 
 					<div class="colDeclaration">
-						<a href="/disputes" class="colSubHeaderTxt"><i>To Purchases</i></a>
+						<a href="/disputes" class="colSubHeaderTxt"><i>To Purchase</i></a>
 					</div>
 					
 				</div>
@@ -155,4 +155,27 @@
 	  </div>
 	
 	</div>
+	<div id="myModal2" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Modify Purchase:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="modifyGroceryItemContainer">
+		      <input type="text" id="gItem" >
+    		  <input type="text" id="gPrice" >
+		      
+	      </div>
+	      
+	    </div>
+	    <button onclick="delete()" class="removeItem">REMOVE ITEM</button>
+   	    <button onclick="modify()" class="button-footer">Modify Item</button>
+	    
+	  </div>
+	
+	</div>
+	
 </body>

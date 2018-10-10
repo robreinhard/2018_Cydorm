@@ -40,7 +40,24 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         this.itemInd = -1;
 
+        //Get grocery list and add it
+        this.getGroceryList();
+
+        //Add button click
+        mAddButton.setOnClickListener(new AddButtonClickedListener());
+
+        // Clicking Item
+        mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
+    }
+
+    private void addGroceryItem() {
+
+    }
+
+    private List<GroceryItem> getGroceryList() {
+
         final ArrayList<GroceryItem> list = new ArrayList<>();
+
         this.listNetwork.getGroceryList(new Response.Listener<JSONArray>() {
 
             @Override
@@ -52,7 +69,11 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     try {
                         curObj = response.getJSONObject(i);
                         list.add(new GroceryItem(curObj.getString(
-                                "groceryItem")));
+                                "groceryItem"),
+                                curObj.getString("id"),
+                                curObj.getString("firstName"),
+                                curObj.getString("lastName"),
+                                curObj.getString("groceryPrice")));
                         Log.d(LOG_TAG,
                                 "Here is is " + curObj.getString(
                                         "groceryItem"));
@@ -68,12 +89,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
             }
         });
 
-
-        //Add button click
-        mAddButton.setOnClickListener(new AddButtonClickedListener());
-
-        // Clicking Item
-        mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
+        return list;
     }
 
     private class AddButtonClickedListener implements View.OnClickListener {
@@ -85,8 +101,13 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                     mAdapter.getItem(itemInd).setItem(item);
 
+                    GroceryItem newItem =
+                            new GroceryItem(mAdapter.getItem(itemInd));
+                    newItem.setItem(item);
+
                     //HERE insert update code
-                    listNetwork.updateListItem(mAdapter.getItem(itemInd));
+                    listNetwork.updateListItem(mAdapter.getItem(itemInd),
+                            newItem);
 
                     itemInd = -1;
                     mAdapter.notifyDataSetChanged();
@@ -94,7 +115,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                 } else {
                     item = mItemEdit.getText().toString();
-                    GroceryItem gi = new GroceryItem(item);
+                    GroceryItem gi = new GroceryItem(item, "0", "Malcolm",
+                            "Boyd", "7.99");
                     mAdapter.add(gi);
 
                     // HERE INSERT UPDATE CODE

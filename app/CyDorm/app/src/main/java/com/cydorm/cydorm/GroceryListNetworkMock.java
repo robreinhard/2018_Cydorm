@@ -24,12 +24,6 @@ public class GroceryListNetworkMock implements GroceryListNetworkInteface {
     public List<GroceryItem> getGroceryList() {
         List<GroceryItem> l = new ArrayList<>();
 
-        l.add(new GroceryItem("Bananas"));
-        l.add(new GroceryItem("Toilet Paper"));
-        l.add(new GroceryItem("Tendies"));
-        l.add(new GroceryItem("Paper Towels"));
-
-
         return l;
     }
 }

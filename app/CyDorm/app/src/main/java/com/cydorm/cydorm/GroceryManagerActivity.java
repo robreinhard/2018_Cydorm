@@ -115,7 +115,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
         }
     }
 
-
     private class AddButtonClickedListener implements View.OnClickListener {
             @Override
             public void onClick(View v) {

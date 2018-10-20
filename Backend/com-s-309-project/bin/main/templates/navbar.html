@@ -6,7 +6,8 @@
 	
   	<title>CyDorm Log In</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+	<script src="/javascript/navbar.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,22 +31,151 @@
 		<div class="content">
 			<div class="col33">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Disputes</a>
+					<a href="/disputes" class="colHeaderTxt">Disputes</a>
+					<button onclick="" class="add">+</button>
+				</div>
+				<div class="theLists">	
+				<div class="listContent"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Disputes</i></a>
+					</div>
+					<div class="disputeItemContainer"></div>
+				
+				</div>
+				
+				<div class="listContent">
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Past Disputes</i></a>
+					</div>
+				</div>
 				</div>
 			</div>
 			<div class="col33">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Grocery</a>
+					<a href="/grocery" class="colHeaderTxt">Grocery</a>
+					<button onclick="theTest()" class="add">+</button>
 
+				</div>
+				<div class="theLists">	
+				<div class="listContent" id='toPurchase'> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>To Purchase</i></a>
+					</div>
+					
+				</div>
+				
+				<div class="listContent" id='pendingPurchase'>
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Purchases</i></a>
+					</div>
+					
+				</div>
 				</div>
 			</div>
 			<div class="col33 noRightMarginColumn">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Chores</a>
+					<a href="/chores" class="colHeaderTxt">Chores</a>
+					<button onclick="" class="add">+</button>
 
+				</div>
+				<div class="theLists">
+				<div class="listContent"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>To Do</i></a>
+					</div>
+					<div class="choresItemContainer">
+					</div>
+					<div class="choresItemContainer">
+					</div>
+				
+				</div>
+				<div class="listContent"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Past Due</i></a>
+					</div>
+					<div class="choresItemContainer">
+					</div>
+				</div>
+				<div class="listContent">
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending</i></a>
+					</div>
+					<div class="choresItemContainer">
+						
+						<div class="choresLeftText">
+							
+							<h3 class="choresHeader">Sweeping</h3>
+							<h4 class="lastDone">Last Done by Rob</h4>
+							
+						</div>
+						<div class="choresRightText">
+							
+							<h3 class="dueDate">TUESDAY</h3>
+							
+						</div>
+						
+					</div>
+					<div class="choresItemContainer">
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<div id="myModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Add Purchases:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem1" placeholder="Item 1">
+    		  <input type="text" id="pItem1" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck1" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem2" placeholder="Item 2">
+         	  <input type="text" id="pItem2" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck2" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem3" placeholder="Item 3">
+         	  <input type="text" id="pItem3" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck3" class=" addGroceryCheckbox">
+	      </div>
+	     
+	    </div>
+	    <button onclick="addGroceryItems()" class="button-footer">Add Items</button>
+	  </div>
+	
+	</div>
+	<div id="myModal2" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Modify Purchase:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="modifyGroceryItemContainer">
+		      <input type="text" id="gItem" >
+    		  <input type="text" id="gPrice" >
+		      
+	      </div>
+	      
+	    </div>
+	    <button onclick="toDelete()" class="removeItem">REMOVE ITEM</button>
+   	    <button onclick="modify()" class="button-footer">Modify Item</button>
+	    
+	  </div>
+	
+	</div>
+	
 </body>

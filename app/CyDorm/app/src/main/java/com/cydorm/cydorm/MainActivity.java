@@ -1,43 +1,48 @@
 package com.cydorm.cydorm;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    //private RecyclerView mRecyclerView;
+    //private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.cardList);
+        //Setup the IconMappingScheme
+        final IconMapping im = new IconMapping();
+        im.addMapping(GroceryManagerActivity.class, R.drawable.ic_launcher_foreground);
 
-        //TODO this may need to change with time
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new IconAdapter(this, im));
 
-        List<ContactInfo> templist = new ArrayList<>();
-        templist.add(new ContactInfo());
-        templist.add(new ContactInfo());
-        templist.add(new ContactInfo());
-        templist.add(new ContactInfo());
-        mAdapter = new ContactAdapter(templist);
+        gridview.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Intent i = new Intent(MainActivity.this,
+                        im.getActivity(position));
+            }
+        });
 
-        mRecyclerView.setAdapter(mAdapter);
-
-        Intent i = new Intent(MainActivity.this,
-        GroceryManagerActivity.class);
-        startActivity(i);
+        //Move to the grocery list activity
+        //Intent i = new Intent(MainActivity.this, GroceryManagerActivity
+        // .class);
+        //startActivity(i);
     }
 }

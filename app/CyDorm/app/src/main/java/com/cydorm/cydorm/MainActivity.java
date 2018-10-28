@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         final IconMapping im = new IconMapping();
         im.addMapping(GroceryManagerActivity.class, R.drawable.ic_launcher_foreground);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
+        // the grid of icons
+        GridView gridview = (GridView) findViewById(R.id.gridview); //The
         gridview.setAdapter(new IconAdapter(this, im));
 
         gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -37,12 +38,8 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent i = new Intent(MainActivity.this,
                         im.getActivity(position));
+                startActivity(i);
             }
         });
-
-        //Move to the grocery list activity
-        //Intent i = new Intent(MainActivity.this, GroceryManagerActivity
-        // .class);
-        //startActivity(i);
     }
 }

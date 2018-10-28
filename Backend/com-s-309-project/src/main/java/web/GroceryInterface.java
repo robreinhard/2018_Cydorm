@@ -15,5 +15,7 @@ public interface GroceryInterface extends CrudRepository<Grocery, Integer> {
 	Grocery save(Grocery item);
 	
     void delete(Grocery deleted);
+    
+    Grocery edit(Grocery edit);
 
 }

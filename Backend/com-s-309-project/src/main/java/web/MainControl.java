@@ -20,7 +20,7 @@ public class MainControl {
 	@Autowired
 	private GroceryInterface groceryItem;
 
-	// Only get requests
+	// Post request
 	@PostMapping("/addUser")
 	public @ResponseBody String addNewUser(@RequestParam String firstName, @RequestParam String lastName,
 			@RequestParam String email, @RequestParam int permLevel) {
@@ -39,7 +39,7 @@ public class MainControl {
 		return userRepository.findAll();
 	}
 	
-	@GetMapping("/addGroceryItem")
+	@PostMapping("/addGroceryItem")
 	public @ResponseBody String addItem(@RequestParam String groceryItem, @RequestParam String groceryPrice,
 			@RequestParam char approved, @RequestParam String firstName, @RequestParam String lastName) {
 		Grocery item = new Grocery(groceryItem, groceryPrice, approved, firstName, lastName);
@@ -57,10 +57,17 @@ public class MainControl {
 		return this.groceryItem.findAll();
 	}
 	
-	@GetMapping("/deleteGroceryItem")
+	@PostMapping("/deleteGroceryItem")
 	public @ResponseBody String deleteItem(@RequestParam int id) {
 		Grocery toBeDeleted = this.groceryItem.findById(id);
 		this.groceryItem.delete(toBeDeleted);
 		return "Grocery Item deleted with the following id = " + id;
+	}
+	
+	@PostMapping("/editGroceryItem")
+	public @ResponseBody String editItem(@RequestParam int id) {
+		Grocery edit = this.groceryItem.findById(id);
+		
+		return "";
 	}
 }

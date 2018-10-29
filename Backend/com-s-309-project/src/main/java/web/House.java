@@ -35,7 +35,7 @@ public class House {
 		this.chores = chores;
 	}
 	
-	//This could be a relationship
+	//This could be the start of a beautiful relationship
 	public String chores() {
 		return chores;
 	}

@@ -26,14 +26,11 @@ public class Grocery {
     @Column
     private char approved;
     @Column
-    private String firstName;
-    @Column
-    private String lastName;
+    private String studentID;
     
     
-    public Grocery(String groceryItem, String groceryPrice, char approved, String firstName, String lastName) {
-    		this.firstName = firstName;
-    		this.lastName=lastName;
+    public Grocery(String groceryItem, String groceryPrice, char approved, String studentID) {
+    		this.studentID = studentID;
     		this.groceryItem = groceryItem;
     		this.groceryPrice = groceryPrice;
     		this.approved = 'F';		//Newly created item needs approval for billing
@@ -56,22 +53,14 @@ public class Grocery {
     		return groceryPrice;
     }
  
-    public String getFirstName() {
-    		return firstName;
+    public String getstudentID() {
+    		return studentID;
     }
     
-    public void setFirstName(String firstName) {
-		this.firstName = firstName;
+    public void setFirstName(String studentID) {
+		this.studentID=studentID;
     }
    
-    
-    public void setLastName(String lastName) {
-		this.lastName = lastName;
-    }
-    
-    public String getLastName() {
-    		return lastName;
-    }
     
     public void setApproval(char approved){
     		this.approved = approved;
@@ -84,8 +73,7 @@ public class Grocery {
     
     @Override
     public String toString() {
-    		String fullName = firstName + " " + lastName;
         return "Grocery Item [id=" + id + ", Grocery Item: " + groceryItem
-                + ", Grocery Price" + groceryPrice + ", Purchaser Name=" + fullName + "]";
+                + ", Grocery Price" + groceryPrice + ", Purchaser ID=" + studentID + "]";
     }
 }

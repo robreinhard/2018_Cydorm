@@ -30,14 +30,17 @@ public class CyDormUser {
     private String firstName;
     @Column
     private String lastName;
+    @Column
+    private String studentID;
     
     
-    public CyDormUser(String firstName, String lastName, String email, int permLevel) {
+    public CyDormUser(String firstName, String lastName, String email, int permLevel, String studentID) {
     		this.firstName = firstName;
     		this.lastName=lastName;
     		this.email = email;
     		//this.user_password = user_password;
     		this.permLevel = permLevel;
+    		this.studentID = studentID;
     }
     
     

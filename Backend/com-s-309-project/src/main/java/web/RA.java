@@ -12,5 +12,5 @@ import javax.persistence.Column;
 @Table(name = "Ras")
 public class RA {
 	
-	
+	//An RA can be a student, so join from Student db?
 }

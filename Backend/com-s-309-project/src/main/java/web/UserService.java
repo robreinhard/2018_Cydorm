@@ -23,11 +23,11 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public CyDormUser findUserByEmail(String netID) {
-        return userRepository.findById(netID);
+    public User findUserByEmail(String netID) {
+        return userRepository.findByNetID(netID);
     }
 
-    public void saveUser(CyDormUser user, String role) {
+    public void saveUser(User user, String role) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (role == "ADMIN") {
         	

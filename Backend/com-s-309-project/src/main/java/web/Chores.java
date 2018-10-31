@@ -13,7 +13,7 @@ public class Chores {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int id;
+	public int chores_id;
 	
 	
 

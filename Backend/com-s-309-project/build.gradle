@@ -40,9 +40,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-websocket')
 	compile('org.springframework.retry:spring-retry')
 	compile('org.springframework.session:spring-session-core')
-	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('javax.xml.bind:jaxb-api:2.3.0')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.microsoft.sqlserver:mssql-jdbc')
+	
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')

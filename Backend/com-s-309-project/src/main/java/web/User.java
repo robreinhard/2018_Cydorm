@@ -6,6 +6,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -17,10 +18,10 @@ import javax.persistence.Column;
 
 
 @Entity
-@Table(name="cyDormUsers") //cyDormUsers
-public class CyDormUser {
+@Table(name="User") //cyDormUsers
+public class User {
 	
-	public CyDormUser() {
+	public User() {
 		
 	}
 	@Id
@@ -38,7 +39,9 @@ public class CyDormUser {
     @Column(name="password")
     private String password;
     
-    //Role to User relationship
+    
+    
+    //Role to User relationship <- does this need to be renamed to cydormuser_role
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", 
     		   joinColumns = @JoinColumn(name = "user_id"), 
@@ -48,13 +51,17 @@ public class CyDormUser {
     
     //Address to user relationship
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_residency",
+    @JoinTable(name = "user_address",
     		   joinColumns = @JoinColumn(name= "user_id"),
-    		   inverseJoinColumns = @JoinColumn(name = "residency_id")
+    		   inverseJoinColumns = @JoinColumn(name = "address_id")
     )
-    private Residency residency;
+    private Address residency;
     
-    public CyDormUser(String firstName, String lastName, String netID, String password) {
+    
+    
+
+    
+    public User(String firstName, String lastName, String netID, String password) {
     		this.firstName = firstName;
     		this.lastName=lastName;
     		this.netID = netID;
@@ -100,7 +107,7 @@ public class CyDormUser {
     //Might need to change depending on what we need.
     @Override
     public String toString() {
-        return "CyDormUser [user_id=" + user_id + ", firstName=" + firstName
+        return "User [user_id=" + user_id + ", firstName=" + firstName
                 + ", lastName=" + lastName + ", netID=" + netID + "]";
     }
     

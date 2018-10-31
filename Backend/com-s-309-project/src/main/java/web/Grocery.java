@@ -2,6 +2,7 @@ package web;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -27,6 +28,8 @@ public class Grocery {
     private char approved;
     @Column(name="studentID")
     private String studentID;
+    
+    
     
     
     public Grocery(String groceryItem, String groceryPrice, char approved, String studentID) {
@@ -70,10 +73,10 @@ public class Grocery {
     		return approved;
     }
     
-    
+    //This needs to be updated --Rob
     @Override
     public String toString() {
-        return "Grocery Item [id=" + grocery_id + ", Grocery Item: " + groceryItem
+        return "Grocery Item [grocery_id=" + grocery_id + ", Grocery Item: " + groceryItem
                 + ", Grocery Price" + groceryPrice + ", Purchaser ID=" + studentID + "]";
     }
 }

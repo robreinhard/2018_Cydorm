@@ -17,15 +17,15 @@ public class Grocery {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Integer grocery_id;
  
-    @Column
+    @Column(name="groceryItem")
     private String groceryItem;
-    @Column
+    @Column(name="groceryPrice")
     private String groceryPrice;
-    @Column
+    @Column(name="approved")
     private char approved;
-    @Column
+    @Column(name="studentID")
     private String studentID;
     
     
@@ -33,16 +33,16 @@ public class Grocery {
     		this.studentID = studentID;
     		this.groceryItem = groceryItem;
     		this.groceryPrice = groceryPrice;
-    		this.approved = 'F';		//Newly created item needs approval for billing
+    		this.approved = 'F';		
     }
     
     
     public Integer getId() {
-    		return id;
+    		return grocery_id;
     }
     
     public void setId(Integer id) {
-    		id = this.id;
+    		id = this.grocery_id;
     }
     
     public String getGroceryItem() {
@@ -73,7 +73,7 @@ public class Grocery {
     
     @Override
     public String toString() {
-        return "Grocery Item [id=" + id + ", Grocery Item: " + groceryItem
+        return "Grocery Item [id=" + grocery_id + ", Grocery Item: " + groceryItem
                 + ", Grocery Price" + groceryPrice + ", Purchaser ID=" + studentID + "]";
     }
 }

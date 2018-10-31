@@ -2,9 +2,17 @@ package web;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 
@@ -17,48 +25,51 @@ public class CyDormUser {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Integer user_id;
 
-	
-	@Column
-    private int permLevel;
-	
+
     //TODO isLoggedIn needs set   
-    @Column
-    private String email;
-    @Column
+    @Column(name="firstName")
     private String firstName;
-    @Column
+    @Column(name="lastName")
     private String lastName;
-    @Column
-    private String studentID;
+    @Column(name="netID")
+    private String netID;
+    @Column(name="password")
+    private String password;
     
+    //Role to User relationship
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", 
+    		   joinColumns = @JoinColumn(name = "user_id"), 
+    		   inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Role role; //this might need to be changed.
     
-    public CyDormUser(String firstName, String lastName, String email, int permLevel, String studentID) {
+    //Address to user relationship
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_residency",
+    		   joinColumns = @JoinColumn(name= "user_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "residency_id")
+    )
+    private Residency residency;
+    
+    public CyDormUser(String firstName, String lastName, String netID, String password) {
     		this.firstName = firstName;
     		this.lastName=lastName;
-    		this.email = email;
-    		//this.user_password = user_password;
-    		this.permLevel = permLevel;
-    		this.studentID = studentID;
+    		this.netID = netID;
+    		this.password = password;
     }
     
     
     public Integer getId() {
-    		return id;
+    		return user_id;
     }
     
     public void setId(Integer id) {
-    		id = this.id;
+    		id = this.user_id;
     }
-    /*
-    public String getuser_name() {
-        return user_name;
-    }*/
-    
-    //public boolean isLoggedIn() {
-    	//	return isLoggedIn;
-    //}
+   
     
     public String getFirstName() {
     		return firstName;
@@ -76,61 +87,22 @@ public class CyDormUser {
     		this.lastName = lastName;
     }
     
-    //TODO
-    //public void userAuth(String database, String user_name) {
-    		//isLoggedIn=true;
-    	//	isLoggedIn = false;	//Hacker no hacking!
-    //}
-    
-    /*public void setTempPass() {
-    		user_password = "SetMeLater";
-    }*/
-    
-    public String getEmail() {
-    		return email;
+    public String getPassword() {
+    	
+    		return password;
     }
     
-    public void setEmail(String email) {
-    		this.email = email;
+    public void setPassword(String password) {
+    	
+    		this.password = password;
     }
     
-    /*public void setuser_name() {
-        user_name = firstName+lastName.charAt(0);
-    }*/
-    
-    public int getPermLevel() {
-    		return permLevel;
-    }
-    
-    public void setPermLevel(int num) {
-		permLevel = num;
-}
-    
-    /*public String getuser_password() {
-        return user_password;
-    }
-    
-    public void setuser_password(String user_password) {
-    		if(verifyuser_password(user_password))
-    			this.user_password = user_password;
-    }*/
-    
-    /***
-     * This method verifies the user_password before the user can reset/set user_password.
-     * @param user_password
-     * @return true if user_password fits requirements, or false if not.
-     */
-    public boolean verifyuser_password(String user_password) {
-    		if (user_password.isEmpty()) return false;
-    		else if (user_password.length() < 8) return false;
-    		//else if (user_password.contains(user_name)) return false;
-    		else if (user_password.toLowerCase().contains("user_password")) return false;
-    		else return true;	//Check for upper/lower/special chars combo
-    }
-    
+    //Might need to change depending on what we need.
     @Override
     public String toString() {
-        return "CyDormUser [id=" + id + ", firstName=" + firstName
-                + ", lastName=" + lastName + ", email=" + email + "]";
+        return "CyDormUser [user_id=" + user_id + ", firstName=" + firstName
+                + ", lastName=" + lastName + ", netID=" + netID + "]";
     }
+    
+    
 }

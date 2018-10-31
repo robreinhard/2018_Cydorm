@@ -9,8 +9,12 @@ import javax.persistence.Column;
 
 
 @Entity
-@Table(name = "Ras")
-public class RA {
-	
-	//An RA can be a student, so join from Student db?
+@Table(name = "role")
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "role_id")
+    private int role_id;
+    @Column(name = "role")
+    private String role;
 }

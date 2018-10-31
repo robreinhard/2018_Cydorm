@@ -6,12 +6,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 
 @Repository
-public interface UserRepository extends CrudRepository<CyDormUser, Integer> {
+public interface RoleRepository extends CrudRepository<Role, Integer> {
 
-	Collection<CyDormUser> findAll();
+	Collection<Role> findAll();
 
-	CyDormUser findById(@Param("netID") String netID);
+	Role findByRole(@Param("role_id") String role_id);
 
-	CyDormUser save(CyDormUser user);
 
 }

@@ -10,6 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Set;
 
@@ -29,16 +32,21 @@ public class User {
     private Integer user_id;
 
 
-    //TODO isLoggedIn needs set   
     @Column(name="firstName")
+    @NotEmpty(message = "*Please provide a first name")
     private String firstName;
     @Column(name="lastName")
+    @NotEmpty(message = "*Please provide a last name")
     private String lastName;
     @Column(name="netID")
+    @NotEmpty(message = "*Please provide an Iowa State NetID")
     private String netID;
     @Column(name="password")
+    @Length(min = 6, message = "*Your password must have at least 6 characters")
+    @NotEmpty(message = "*Please provide a password")
     private String password;
-    
+    @Column(name="active")
+    private int active;
     
     
     //Role to User relationship <- does this need to be renamed to cydormuser_role
@@ -62,10 +70,12 @@ public class User {
 
     
     public User(String firstName, String lastName, String netID, String password) {
+    	
     		this.firstName = firstName;
     		this.lastName=lastName;
     		this.netID = netID;
     		this.password = password;
+    		
     }
     
     
@@ -77,6 +87,9 @@ public class User {
     		id = this.user_id;
     }
    
+    public String getNetID() {
+    		return netID;
+    }
     
     public String getFirstName() {
     		return firstName;
@@ -104,6 +117,25 @@ public class User {
     		this.password = password;
     }
     
+    public Role getRole() {
+    	
+    		return role;
+    }
+    
+    public void setRole(Role role) {
+    	
+    		this.role = role;
+    }
+    
+    public int getActive() {
+    	
+    		return active;
+    }
+    
+    public void setActive(int newActive) {
+    	
+    		active = newActive;
+    }
     //Might need to change depending on what we need.
     @Override
     public String toString() {

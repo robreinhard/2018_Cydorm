@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="/css/registration.css">
+  	<title>CyDorm Log In</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h1 class="logo">CyDorm</h1>
+
+		<div class="loginform">
+			<form autocomplete="off" action="#" th:action="@{/registration}" th:object="${userRole}" method="post" role="form"> 
+				<div id="#loginTextContainer">
+
+					<h1 class="centerRoboto" id="loginText">Registration</h1>
+
+				</div>
+				<input type="text" name="fName" th:field="*{firstName}" placeholder="First Name"/>
+				<input type="text" name="lName" th:field="*{lastName}" placeholder="Last Name"/>
+				<input type="text" name="netid" th:field="*{netID}" placeholder="Net-ID"/>
+				<input type="password" name="password" th:field="*{password}" placeholder="Password"/>
+				<select name="permLevel" id="permLevelSelect" th:field="*{role}">
+				    <option value="" disabled selected>Permission Levels</option>
+				  	<option th:value="RESIDENT">Resident</option>
+				    <option th:value="CA">CA</option>
+				    <option th:value="ADMIN">Admin</option>
+			  	</select>
+
+				<button class="loginButton" type="submit">Sign Up</button>
+
+			</form>
+
+		</div>
+
+
+	</div>
+
+
+
+</body>

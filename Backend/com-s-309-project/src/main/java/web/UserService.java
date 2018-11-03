@@ -23,26 +23,30 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public User findUserByEmail(String netID) {
+    public User findUserByNetID(String netID) {
         return userRepository.findByNetID(netID);
     }
 
     public void saveUser(User user, String role) {
+    	
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        
         if (role == "ADMIN") {
         	
-            Role userRole = roleRepository.findByRole("ADMIN");
+            user.setRole(roleRepository.findByRole("ADMIN"));
 
         }
         else if (role == "CA") {
         	
-        	Role userRole = roleRepository.findByRole("CA");
+            user.setRole(roleRepository.findByRole("CA"));
         }
         else {
         	
-        	Role userRole = roleRepository.findByRole("RESIDENT");
+            user.setRole(roleRepository.findByRole("RESIDENT"));
 
         }
+        
         userRepository.save(user);
     }
 

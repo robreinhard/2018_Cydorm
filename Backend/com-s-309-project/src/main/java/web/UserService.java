@@ -32,12 +32,12 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         
-        if (role == "ADMIN") {
+        if (role.equals("ADMIN")) {
         	
             user.setRole(roleRepository.findByRole("ADMIN"));
 
         }
-        else if (role == "CA") {
+        else if (role.equals("CA")) {
         	
             user.setRole(roleRepository.findByRole("CA"));
         }

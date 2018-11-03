@@ -7,7 +7,7 @@ public class UserRole {
 	}
 	
 	private User theUser;
-	private String theRole;
+	private String role;
 	private String firstName;
 	private String lastName;
 	private String netID;
@@ -16,7 +16,7 @@ public class UserRole {
 
 	public UserRole(String firstName, String lastName, String netID, String password, String role) {
 		
-		theRole = role;
+		this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.netID = netID;
@@ -31,7 +31,12 @@ public class UserRole {
 	
 	public String getRole() {
 		
-		return theRole;
+		return role;
+	}
+	
+	public void setRole(String newRole) {
+		
+		this.role = newRole;
 	}
 	
 	public String getFirstName() {
@@ -72,5 +77,11 @@ public class UserRole {
 	public void setPassword(String newPassword) {
 		
 		this.password = newPassword;
+	}
+	
+	public String toString() {
+		
+		return "UserRole [firstName=" + firstName
+                + ", lastName=" + lastName + ", netID=" + netID + ", password=" + password + ", role=" + role + "]";
 	}
 }

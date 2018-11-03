@@ -1,4 +1,5 @@
 package web;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -6,6 +7,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Sublocation")
 public class Sublocation {
+	
+	public Sublocation() {
+		
+	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,12 +37,20 @@ public class Sublocation {
 	public Sublocation(String sublocation) {
 		
 		this.sublocation = sublocation;
-		
+		addresses = new HashSet<>();;
 	}
 	
-	public void setSublocation(String sublocation) {
+	public String getSublocation() {
 		
-		this.sublocation = sublocation;
+		return sublocation;
+	}
+	
+	public void addAddress(Address address) {
+		
+		System.out.println("DEEPER: " + address);
+		System.out.println(addresses);
+		addresses.add(address);
+		System.out.println(addresses);
 	}
 	
 	@Override

@@ -7,6 +7,10 @@ import javax.persistence.*;
 @Table(name = "Address")
 public class Address {
 	
+	public Address() {
+		
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int address_id;
@@ -22,10 +26,15 @@ public class Address {
     )
     private Set<Grocery> groceries;
 	
-	public Address(String location, String sublocation, String address) {
+	public Address(String address) {
 		
 		this.address = address;
 		
+	}
+	
+	public String getAddress() {
+		
+		return address;
 	}
 	
 	public void setAddress(String address) {

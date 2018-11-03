@@ -1,4 +1,5 @@
 package web;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -6,6 +7,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Location")
 public class Location {
+	
+	public Location() {
+		
+		
+	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,18 +26,23 @@ public class Location {
     		   joinColumns = @JoinColumn(name= "location_id"),
     		   inverseJoinColumns = @JoinColumn(name = "sublocation_id")
     )
-    private Set<Address> addresses;
+    private Set<Sublocation> sublocations;
 	
   
 	public Location(String location) {
 		
 		this.location = location;
-		
+		sublocations = new HashSet<>();
 	}
 	
-	public void setSublocation(String sublocation) {
+	public String getLocation() {
 		
-		this.location = location;
+		return location;
+	}
+	
+	public void addSublocation(Sublocation sublocation) {
+		
+		sublocations.add(sublocation);
 	}
 	
 	@Override

@@ -25,7 +25,7 @@
 				<input type="text" name="lName" th:field="*{lastName}" placeholder="Last Name"/>
 				<input type="text" name="netid" th:field="*{netID}" placeholder="Net-ID"/>
 				<input type="password" name="password" th:field="*{password}" placeholder="Password"/>
-				<select name="permLevel" id="permLevelSelect" th:field="*{role}">
+				<select name="permLevel" id="permLevelSelect" th:field="*{role}"/>
 				    <option value="" disabled selected>Permission Levels</option>
 				  	<option th:value="RESIDENT">Resident</option>
 				    <option th:value="CA">CA</option>

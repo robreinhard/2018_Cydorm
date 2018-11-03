@@ -73,19 +73,22 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/admin", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/addResidency", method = RequestMethod.GET)
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
         Residency residency = new Residency();
+        Residency userResidency = new Residency();
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin");
+        modelAndView.setViewName("/admin/addResidency");
         return modelAndView;
     }
+    
+    
 
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addResidency", method = RequestMethod.POST)
     public ModelAndView createResidency (@Valid Residency residency, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println(residency.getAddress());
@@ -106,19 +109,63 @@ public class MainController {
         	sublocation = new Sublocation(residency.getSublocation());
         	System.out.println(residencyService.findAddress(residency.getAddress()));
         	System.out.println(address.toString());
-        	residencyService.saveSublocation(sublocation,residencyService.findAddress(residency.getAddress()));
         	
         }
+    	residencyService.saveSublocation(sublocation,residencyService.findAddress(residency.getAddress()));
         Location location = residencyService.findLocation(residency.getLocation());
         if (location == null) {
         	
         	location = new Location(residency.getLocation());
-        	residencyService.saveLocation(location,residencyService.findSublocation(residency.getSublocation()));
         }
-        
-        modelAndView.setViewName("/admin");
+    	residencyService.saveLocation(location,residencyService.findSublocation(residency.getSublocation()));
+
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByNetID(auth.getName());
+    	modelAndView.addObject("userName", user.getFirstName());
+        modelAndView.addObject("residency", residency);
+        modelAndView.setViewName("/admin/addResidency");
         return modelAndView;
         
        
+    }
+    
+    @RequestMapping(value="/admin/setUserToResidency", method = RequestMethod.GET)
+    public ModelAndView admin2(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByNetID(auth.getName());
+        modelAndView.addObject("userName", user.getFirstName());
+        Residency residency = new Residency();
+        modelAndView.addObject("residency", residency);
+        modelAndView.setViewName("/admin/setUserToResidency");
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/admin/setUserToResidency", method = RequestMethod.POST)
+    public ModelAndView setUser (@Valid Residency residency, BindingResult bindingResult) {
+    	
+    	System.out.println(residency.toString());
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByNetID(auth.getName());
+        System.out.println(user.toString());
+        Address isAddressValid = residencyService.findAddress(residency.getAddress());
+        System.out.println(isAddressValid.toString());
+        Sublocation isSublocationValid = residencyService.findSublocation(residency.getSublocation());
+        System.out.println(isSublocationValid.toString());
+        Location  isLocationValid = residencyService.findLocation(residency.getLocation());
+        System.out.println(isLocationValid.toString());
+        if (!(isAddressValid == null || isSublocationValid == null | isLocationValid == null)) {
+            
+        	residencyService.setUserAddress(user, isAddressValid);
+            
+        }
+        
+       
+        modelAndView.addObject("userName", user.getFirstName());
+        modelAndView.addObject("residency", residency);
+        modelAndView.setViewName("/admin/setUserToResidency");
+        return modelAndView;
+        
     }
 }

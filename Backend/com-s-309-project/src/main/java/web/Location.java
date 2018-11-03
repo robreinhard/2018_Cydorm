@@ -47,7 +47,7 @@ public class Location {
 	
 	@Override
     public String toString() {
-        return "Sublocation [sublocation_id=" + location_id + ", sublocation=" + location + "]";
+        return "Location [location_id=" + location_id + ", location=" + location + "]";
     }
     
 	

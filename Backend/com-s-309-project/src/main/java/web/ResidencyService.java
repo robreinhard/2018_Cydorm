@@ -62,5 +62,12 @@ public class ResidencyService {
     	
     	addressRepository.save(address);
     }
+    
+    public void setUserAddress(User user, Address address) {
+    	
+    	user.setAddress(address);
+    	userRepository.save(user);
+    	
+    }
 
 }

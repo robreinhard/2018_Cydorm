@@ -49,4 +49,9 @@ public class Residency {
 		address = newAddress;
 	}
 	
+	public String toString() {
+		
+		return "Residency [location= " + location + ", sublocation= " + sublocation + ", address= " + address + "]";
+	}
+	
 }

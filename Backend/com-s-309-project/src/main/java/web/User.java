@@ -63,7 +63,7 @@ public class User {
     		   joinColumns = @JoinColumn(name= "user_id"),
     		   inverseJoinColumns = @JoinColumn(name = "address_id")
     )
-    private Address residency;
+    private Address address;
     
     
     
@@ -130,6 +130,18 @@ public class User {
     public int getActive() {
     	
     		return active;
+    }
+    
+    public Address getAddress() {
+    	
+    		return address;
+    }
+    
+    public void setAddress(Address address) {
+    	
+    	
+    	this.address = address;
+    	System.out.println(this.address.toString());
     }
     
     public void setActive(int newActive) {

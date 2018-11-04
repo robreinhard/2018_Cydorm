@@ -11,8 +11,99 @@ var groceries;
 var pendingGroceries = [];
 var purchaseGroceries = [];
 
-window.onload = function() {
+var stompClient = null;
 
+window.onload = function() {
+	
+	var socket = new SockJS('/gs-guide-websocket');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/allGroceries', function(theList) {
+        	alert(theList.body);
+        	updateList(JSON.parse(theList.body));
+        });
+    	stompClient.send("/dumpGrocery",{},JSON.stringify({'netID': netID}));
+    	
+    });
+};   
+
+function updateList(groceries) {
+	
+	for (var i=0; i < groceries.length;i++) {
+		console.log(groceries[i].approval);
+		if (groceries[i].approval === 'F') {
+			  
+		  var isNotPushed = true;
+		  for (var j=0; j < purchaseGroceries.length;j++) {
+
+			  if (groceries[i].id == purchaseGroceries[j].id) {
+				  
+				  isNotPushed = false;
+			  }
+				  
+		  }
+		  if (isNotPushed) {
+				  
+			  purchaseGroceries.push(groceries[i]);
+			  $( "#toPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + ' onclick="modifyRemovePrompt('+ groceries[i].id + ')"><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].studentID+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
+
+		  }
+		}
+		else {
+			  
+		  var isNotPushed = true;
+		  for (var j=0; j < pendingGroceries.length;j++) {
+				  
+			  if (groceries[i].id == pendingGroceries[j].id) {
+					  
+			  	isNotPushed = false;
+			  	
+			  }
+		  }
+		  if (isNotPushed) {
+				  
+			  	pendingGroceries.push(groceries[i]);
+			  	$( "#pendingPurchase" ).append('<div class="groceryItemContainer" id=' + groceries[i].id + ' onclick="modifyRemovePrompt('+ groceries[i].id + ')"><h4 class="containerComponents">' + groceries[i].groceryItem + '</h4><h4 class="containerComponents">$'+ groceries[i].groceryPrice+'</h4><h4 class="containerComponents">'+groceries[i].studentID+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
+
+		  }
+		}
+
+  }
+	 
+  var allGroceries = pendingGroceries.concat(purchaseGroceries);
+
+  var toBeRemoved = allGroceries.filter(function(g) {
+
+	for (var k=0; k < groceries.length;k++) {
+	  
+	  if (groceries[k].id == g.id) {
+		  
+		  return false;
+	  }
+	  
+	}
+  
+	return true;
+  
+  });
+  
+  console.log(toBeRemoved);
+	
+  for (var l=0; l < toBeRemoved.length;l++) {
+	
+	if (toBeRemoved.length > 0) {
+		
+		var toRemove = "#" + toBeRemoved[l].id.toString();
+		$(toRemove).remove();
+	}
+	
+
+	
+  }
+	
+}
+	/*
     setInterval(function(){
 
     	var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allGroceries';
@@ -69,7 +160,7 @@ window.onload = function() {
 				  $( "#" + toBeRemoved[k].id).remove();
 	    	  }*/
 		
-	    
+	    /*
 	    var allGroceries = pendingGroceries.concat(purchaseGroceries);
   	  
   	  	var toBeRemoved = allGroceries.filter(function(g) {
@@ -98,8 +189,8 @@ window.onload = function() {
   	  	
 	    }
     }, 1000);
-    
-};
+    */
+
 
 
 function theTest() {
@@ -173,20 +264,22 @@ function addGroceryItems() {
 		
 		item1.groceryItem = item1Text;
 		item1.groceryPrice = price1;
-		
+		var approved;
 		
 		if (check1 == true) {
 			
 			
-			item1.approved = 'T';	
+			approved = 'T';	
 		}
 		else {
 
-			item1.approved = 'F';	
+			approved = 'F';	
 
 		}
 		
+		stompClient.send("/addGroceryItem",{},JSON.stringify({'groceryItem': item1Text,'groceryPrice': price1,'approved' : approved,'studentID': netID}));
 		
+		/*
 		var str = [];
 		for (var p in item1)
 		if (item1.hasOwnProperty(p)) {
@@ -203,26 +296,27 @@ function addGroceryItems() {
 	    	
 	    	  console.log("Success");
 	    	  
-		}
+		}*/
 	}
 	if (item2Text.length != 0 && !isNaN(price2)) {
 		
 		item2.groceryItem = item2Text;
 		item2.groceryPrice = price2;
-		
+		var approved;
+
 		if (check2 == true) {
 			
-			item2.approved = 'T';	
+			approved = 'T';	
 
 			
 		}
 		else {
 
-			item2.approved = 'F';	
+			approved = 'F';	
 
 			
 		}
-		
+		/*
 		var str = [];
 		for (var p in item2)
 		if (item2.hasOwnProperty(p)) {
@@ -239,25 +333,30 @@ function addGroceryItems() {
 	    	
 	    	  console.log("Success");
 	    	  
-		}
+		}*/
+		
+		stompClient.send("/addGroceryItem",{},JSON.stringify({'groceryItem': item2Text,'groceryPrice': price2,'approved' : approved,'studentID': netID}));
+
 	}
 	if (item3Text.length != 0 && !isNaN(price3)) {
 		
 		item3.groceryItem = item3Text;
 		item3.groceryPrice = price3;	
+		var approved; 
 		
 		if (check3 == true) {
 			
-			item3.approved = 'T';	
+			approved = 'T';	
 			
 			
 		}
 		else {
 
-			item3.approved = 'F';	
+			approved = 'F';	
 
 			
 		}
+		/*
 		var str = [];
 		for (var p in item3)
 		if (item3.hasOwnProperty(p)) {
@@ -274,7 +373,9 @@ function addGroceryItems() {
 	    	
 	    	  console.log("Success");
 	    	  
-		}
+		}*/
+		stompClient.send("/addGroceryItem",{},JSON.stringify({'groceryItem': item3Text,'groceryPrice': price3,'approved' : approved,'studentID': netID}));
+	
 	}	
 
 	closed();
@@ -297,17 +398,8 @@ function modifyRemovePrompt(id) {
 
 function toDelete() {
 	
-	var url = 'http://proj309-vc-05.misc.iastate.edu:8080/deleteGroceryItem?id=' + result.id;
-	
-    var request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.send();
+	stompClient.send("/deleteGroceryItem",{},JSON.stringify({'netID': netID,'grocery_id':result.id}));
 
-    request.onload = function() {
-    	
-    	  console.log("Success");
-    	  
-	}
     closed();
 }
 

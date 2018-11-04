@@ -2,6 +2,7 @@ package web;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
 
 
@@ -15,6 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Controller
 public class MainController {
@@ -76,6 +81,7 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
+        modelAndView.addObject("netID", user.getNetID());
         modelAndView.setViewName("/navbar");
         return modelAndView;
     }
@@ -178,13 +184,45 @@ public class MainController {
     
     @MessageMapping("/addGroceryItem")
     @SendTo("/allGroceries")
-    public Set<Grocery> grocery(Grocery grocery) throws Exception {
+    public Set<Grocery> addGroceryItem(Grocery grocery) throws Exception {
 
-    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-         User user = userService.findUserByNetID(auth.getName());
+    	 System.out.println(grocery.toString());
+    	 grocery.setApproval('F');
+         User user = userService.findUserByNetID(grocery.getstudentID());
          groceryService.saveGrocery(grocery);
-         user.getAddress().getGroceries().add(grocery);
+         System.out.println(grocery);
+         groceryService.saveAddressGrocery(user.getAddress(), grocery);
+         
          return user.getAddress().getGroceries();
+    	
+    }
+    
+    @MessageMapping("/dumpGrocery")
+    @SendTo("/allGroceries")
+    public Set<Grocery> dumpGrocery(String jsonData) throws Exception {
+
+    	 ObjectMapper objectMapper = new ObjectMapper();
+    	 JsonNode rootNode = objectMapper.readTree(jsonData);
+    	 JsonNode netID = rootNode.path("netID");
+         User user = userService.findUserByNetID(netID.asText());
+         
+         return user.getAddress().getGroceries();
+    	
+    }
+    
+    @MessageMapping("/deleteGroceryItem")
+    @SendTo("/allGroceries")
+    public Set<Grocery> deleteGrocery(String jsonData) throws Exception {
+    	
+    	ObjectMapper objectMapper = new ObjectMapper();
+   	 	JsonNode rootNode = objectMapper.readTree(jsonData);
+   	 	JsonNode netID = rootNode.path("netID");
+   	 	User user = userService.findUserByNetID(netID.asText());
+   	 	JsonNode groceryID = rootNode.path("grocery_id");
+   	 	Grocery grocery = groceryService.findGroceryByID(groceryID.asInt());
+   	 	groceryService.deleteGrocery(user.getAddress(),grocery);
+   	 	user = userService.findUserByNetID(netID.asText());
+   	 	return user.getAddress().getGroceries();
     	
     }
 }

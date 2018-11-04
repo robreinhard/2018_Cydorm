@@ -47,6 +47,18 @@ public class Address {
 		return groceries;
 	}
 	
+	//Address has many chores
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "address_chores",
+    		   joinColumns = @JoinColumn(name= "address_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "chore_id")
+    )
+	public Set<Chores> chores; 
+    
+    public Set<Chores> getChores(){
+		return chores;
+	}
+	
 	@Override
     public String toString() {
         return "Address [address_id=" + address_id + ", address=" + address + "]";

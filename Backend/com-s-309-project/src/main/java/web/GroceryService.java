@@ -24,7 +24,6 @@ public class GroceryService {
     public void saveGrocery(Grocery grocery) {
     	
     	groceryRepository.save(grocery);
-    	
     }
 
 }

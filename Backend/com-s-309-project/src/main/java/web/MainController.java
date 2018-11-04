@@ -179,12 +179,19 @@ public class MainController {
     @MessageMapping("/addGroceryItem")
     @SendTo("/allGroceries")
     public Set<Grocery> grocery(Grocery grocery) throws Exception {
-
-    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
          User user = userService.findUserByNetID(auth.getName());
          groceryService.saveGrocery(grocery);
          user.getAddress().getGroceries().add(grocery);
          return user.getAddress().getGroceries();
     	
+    }
+    
+    @RequestMapping(value = "/user/addChore", method = RequestMethod.POST)
+    public Set<Chores> chore(Chores chore) throws Exception{
+    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    		User user = userService.findUserByNetID(auth.getName());
+    		user.getAddress().getChores().add(chore);
+    		return user.getAddress().getChores();
     }
 }

@@ -194,4 +194,12 @@ public class MainController {
     		user.getAddress().getChores().add(chore);
     		return user.getAddress().getChores();
     }
+    
+    @RequestMapping(value = "/user/addDispute", method = RequestMethod.POST)
+    public Set<Dispute> dispute(Dispute dispute) throws Exception{
+    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    		User user = userService.findUserByNetID(auth.getName());
+    		user.getAddress().getDispute().add(dispute);
+    		return user.getAddress().getDispute();
+    }
 }

@@ -21,7 +21,7 @@ import javax.persistence.Column;
 
 
 @Entity
-@Table(name="User") //cyDormUsers
+@Table(name="user") //cyDormUsers
 public class User {
 	
 	public User() {

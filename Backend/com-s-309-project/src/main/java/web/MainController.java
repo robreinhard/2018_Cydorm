@@ -82,7 +82,7 @@ public class MainController {
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
         modelAndView.addObject("netID", user.getNetID());
-        modelAndView.setViewName("/navbar");
+        modelAndView.setViewName("navbar");
         return modelAndView;
     }
 
@@ -95,7 +95,7 @@ public class MainController {
         Residency residency = new Residency();
         Residency userResidency = new Residency();
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/addResidency");
+        modelAndView.setViewName("admin/addResidency");
         return modelAndView;
     }
     
@@ -136,7 +136,7 @@ public class MainController {
         User user = userService.findUserByNetID(auth.getName());
     	modelAndView.addObject("userName", user.getFirstName());
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/addResidency");
+        modelAndView.setViewName("admin/addResidency");
         return modelAndView;
         
        
@@ -150,7 +150,7 @@ public class MainController {
         modelAndView.addObject("userName", user.getFirstName());
         Residency residency = new Residency();
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/setUserToResidency");
+        modelAndView.setViewName("admin/setUserToResidency");
         return modelAndView;
     }
     
@@ -177,7 +177,7 @@ public class MainController {
        
         modelAndView.addObject("userName", user.getFirstName());
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/setUserToResidency");
+        modelAndView.setViewName("admin/setUserToResidency");
         return modelAndView;
         
     }

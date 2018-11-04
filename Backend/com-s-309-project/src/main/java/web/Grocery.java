@@ -77,6 +77,6 @@ public class Grocery {
     @Override
     public String toString() {
         return "Grocery Item [grocery_id=" + grocery_id + ", Grocery Item: " + groceryItem
-                + ", Grocery Price" + groceryPrice + ", Purchaser ID=" + studentID + "]";
+                + ", Grocery Price: " + groceryPrice + ", Approved: " + approved + ", Purchaser ID=" + studentID + "]";
     }
 }

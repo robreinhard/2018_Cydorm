@@ -2,6 +2,7 @@ package web;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
 
 
@@ -15,6 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Controller
 public class MainController {
@@ -76,7 +81,8 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
-        modelAndView.setViewName("/navbar");
+        modelAndView.addObject("netID", user.getNetID());
+        modelAndView.setViewName("navbar");
         return modelAndView;
     }
 
@@ -89,7 +95,7 @@ public class MainController {
         Residency residency = new Residency();
         Residency userResidency = new Residency();
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/addResidency");
+        modelAndView.setViewName("admin/addResidency");
         return modelAndView;
     }
     
@@ -130,7 +136,7 @@ public class MainController {
         User user = userService.findUserByNetID(auth.getName());
     	modelAndView.addObject("userName", user.getFirstName());
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/addResidency");
+        modelAndView.setViewName("admin/addResidency");
         return modelAndView;
         
        
@@ -144,7 +150,7 @@ public class MainController {
         modelAndView.addObject("userName", user.getFirstName());
         Residency residency = new Residency();
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/setUserToResidency");
+        modelAndView.setViewName("admin/setUserToResidency");
         return modelAndView;
     }
     
@@ -171,35 +177,52 @@ public class MainController {
        
         modelAndView.addObject("userName", user.getFirstName());
         modelAndView.addObject("residency", residency);
-        modelAndView.setViewName("/admin/setUserToResidency");
+        modelAndView.setViewName("admin/setUserToResidency");
         return modelAndView;
         
     }
     
     @MessageMapping("/addGroceryItem")
     @SendTo("/allGroceries")
-    public Set<Grocery> grocery(Grocery grocery) throws Exception {
-    	 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-         User user = userService.findUserByNetID(auth.getName());
+    public Set<Grocery> addGroceryItem(Grocery grocery) throws Exception {
+
+    	 System.out.println(grocery.toString());
+    	 grocery.setApproval('F');
+         User user = userService.findUserByNetID(grocery.getstudentID());
          groceryService.saveGrocery(grocery);
-         user.getAddress().getGroceries().add(grocery);
+         System.out.println(grocery);
+         groceryService.saveAddressGrocery(user.getAddress(), grocery);
+         
          return user.getAddress().getGroceries();
     	
     }
     
-    @RequestMapping(value = "/user/addChore", method = RequestMethod.POST)
-    public Set<Chores> chore(Chores chore) throws Exception{
-    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    		User user = userService.findUserByNetID(auth.getName());
-    		user.getAddress().getChores().add(chore);
-    		return user.getAddress().getChores();
+	@MessageMapping("/dumpGrocery")
+    @SendTo("/allGroceries")
+    public Set<Grocery> dumpGrocery(String jsonData) throws Exception {
+
+    	 ObjectMapper objectMapper = new ObjectMapper();
+    	 JsonNode rootNode = objectMapper.readTree(jsonData);
+    	 JsonNode netID = rootNode.path("netID");
+         User user = userService.findUserByNetID(netID.asText());
+         
+         return user.getAddress().getGroceries();
+    	
     }
     
-    @RequestMapping(value = "/user/addDispute", method = RequestMethod.POST)
-    public Set<Dispute> dispute(Dispute dispute) throws Exception{
-    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    		User user = userService.findUserByNetID(auth.getName());
-    		user.getAddress().getDispute().add(dispute);
-    		return user.getAddress().getDispute();
+    @MessageMapping("/deleteGroceryItem")
+    @SendTo("/allGroceries")
+    public Set<Grocery> deleteGrocery(String jsonData) throws Exception {
+    	
+    	ObjectMapper objectMapper = new ObjectMapper();
+   	 	JsonNode rootNode = objectMapper.readTree(jsonData);
+   	 	JsonNode netID = rootNode.path("netID");
+   	 	User user = userService.findUserByNetID(netID.asText());
+   	 	JsonNode groceryID = rootNode.path("grocery_id");
+   	 	Grocery grocery = groceryService.findGroceryByID(groceryID.asInt());
+   	 	groceryService.deleteGrocery(user.getAddress(),grocery);
+   	 	user = userService.findUserByNetID(netID.asText());
+   	 	return user.getAddress().getGroceries();
+    	
     }
 }

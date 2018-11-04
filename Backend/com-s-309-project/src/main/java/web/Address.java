@@ -4,7 +4,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Address")
+@Table(name = "address")
 public class Address {
 	
 	public Address() {
@@ -59,6 +59,17 @@ public class Address {
 		return chores;
 	}
 	
+  //Address has many chores
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "address_disputes",
+    		   joinColumns = @JoinColumn(name= "address_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "dispute_id")
+    )
+	public Set<Dispute> dispute; 
+    
+    public Set<Dispute> getDispute(){
+		return dispute;
+	}
 	@Override
     public String toString() {
         return "Address [address_id=" + address_id + ", address=" + address + "]";

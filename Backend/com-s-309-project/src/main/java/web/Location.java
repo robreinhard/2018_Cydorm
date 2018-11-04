@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Location")
+@Table(name = "location")
 public class Location {
 	
 	public Location() {

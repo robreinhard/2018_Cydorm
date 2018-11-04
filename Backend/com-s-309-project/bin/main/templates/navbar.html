@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="/css/navbar.css">
@@ -22,8 +23,9 @@
 			<li><a href="/chores" class="logOutNavbar">Chores</a></li>
 		</div>
 		<div class="right">
+		    <li><span th:utext="${userName}" class="accountNavbar"></span></li>
 			<li><a href="/settings" class="settingsNavbar"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
-			<li><a href="#" class="logOutNavbar">Log Out</a></li>
+			<li><form th:action="@{logout}" method="get"><button type="Submit" class="logOutNavbar">Log Out</button></form></li>
 		</div>
 	</ul>
 

@@ -9,9 +9,26 @@ ul {
 	font-family: Roboto;
 }
 
+li form button {
+	
+	background-color: #3066BE;
+	height: 60px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	border: none;
+	font-family: Roboto;
+	outline: none;
+	color: white;
+	text-decoration: none;
+	line-height: 60px;
+	vertical-align: middle;
+	transition: .2s;
+	font-size: 16px;
+}
 
-
-li a {
+li a, li span {
 
 	color: white;
 	text-decoration: none;
@@ -23,7 +40,7 @@ li a {
 	transition: .2s;
 }
 
-li a:hover {
+li a:hover, li span:hover, li form button:hover {
 
 	background-color: #00338B;
 
@@ -42,6 +59,13 @@ body {
 	font-size: 28px;
 	width: 225px;
 
+}
+
+.accountNavbar{
+
+	float:right;
+	width: 150px;
+	
 }
 
 .logOutNavbar {

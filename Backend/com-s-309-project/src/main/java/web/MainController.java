@@ -162,7 +162,7 @@ public class MainController {
         System.out.println(isSublocationValid.toString());
         Location  isLocationValid = residencyService.findLocation(residency.getLocation());
         System.out.println(isLocationValid.toString());
-        if (!(isAddressValid == null || isSublocationValid == null | isLocationValid == null)) {
+        if (!(isAddressValid == null || isSublocationValid == null || isLocationValid == null)) {
             
         	residencyService.setUserAddress(user, isAddressValid);
             

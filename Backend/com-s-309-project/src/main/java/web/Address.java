@@ -42,6 +42,11 @@ public class Address {
 		this.address = address;
 	}
 	
+	public Set<Grocery> getGroceries() {
+		
+		return groceries;
+	}
+	
 	@Override
     public String toString() {
         return "Address [address_id=" + address_id + ", address=" + address + "]";

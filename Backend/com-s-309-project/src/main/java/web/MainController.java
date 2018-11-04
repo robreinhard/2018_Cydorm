@@ -1,9 +1,13 @@
 package web;
 
+import java.util.Set;
+
 import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,9 @@ public class MainController {
     
     @Autowired
     private ResidencyService residencyService;
+    
+    @Autowired
+    private GroceryService groceryService;
 
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
@@ -167,5 +174,17 @@ public class MainController {
         modelAndView.setViewName("/admin/setUserToResidency");
         return modelAndView;
         
+    }
+    
+    @MessageMapping("/addGroceryItem")
+    @SendTo("/allGroceries")
+    public Set<Grocery> grocery(Grocery grocery) throws Exception {
+
+    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+         User user = userService.findUserByNetID(auth.getName());
+         groceryService.saveGrocery(grocery);
+         user.getAddress().getGroceries().add(grocery);
+         return user.getAddress().getGroceries();
+    	
     }
 }

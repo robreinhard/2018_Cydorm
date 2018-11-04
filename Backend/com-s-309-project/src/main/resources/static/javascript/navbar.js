@@ -417,25 +417,9 @@ function modify() {
 		result.groceryPrice = newPrice;
 		
 		var str = [];
-		
-		str.push(encodeURIComponent("groceryItem") + "=" + encodeURIComponent(newItem));
-		str.push(encodeURIComponent("groceryPrice") + "=" + encodeURIComponent(newPrice));
-		str.push(encodeURIComponent("approved") + "=" + encodeURIComponent(result.approval));
-		str.push(encodeURIComponent("firstName") + "=" + encodeURIComponent(result.firstName));
-		str.push(encodeURIComponent("lastName") + "=" + encodeURIComponent(result.lastName));
+		stompClient.send("/addGroceryItem",{},JSON.stringify({'groceryItem': newItem,'groceryPrice': newPrice,'approved' : result.approval,'studentID': netID}));
 
-		var encoded =  str.join("&");
-		console.log(encoded);
-		var requestURL = url + encoded;
-	    var request = new XMLHttpRequest();
-	    request.open('GET', requestURL);
-	    request.send();
-	
-	    request.onload = function() {
-	    	
-	    	  console.log("Success");
-	    	  
-		}
+		
 	    
 	}
 }

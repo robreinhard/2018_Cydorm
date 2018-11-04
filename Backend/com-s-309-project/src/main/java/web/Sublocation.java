@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Sublocation")
+@Table(name = "sublocation")
 public class Sublocation {
 	
 	public Sublocation() {

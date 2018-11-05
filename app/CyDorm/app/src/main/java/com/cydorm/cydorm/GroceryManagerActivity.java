@@ -54,7 +54,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
-        
+
         this.sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
         subscribeAdd();
 

@@ -95,12 +95,12 @@ public class LoadImage extends AppCompatActivity {
         OCRresult = mTess.getUTF8Text();
         TextView tv_OCR_Result = (TextView) findViewById(R.id.tv_OCR_Result);
         OCRresult = OCRresult.toLowerCase();
-        String[] groceryList = getGroceries();
+        ArrayList<GroceryItem> groceryList = getGroceryList(sc.sc);
         String output = "";
-        for (int i = 0; i < groceryList.length; i++) {
-            if(OCRresult.contains(groceryList[i].toLowerCase())){
-                removeGrocery(groceryList[i]);
-                output = output.concat("Removed " + groceryList[i] + " From shopping list\n");
+        for (int i = 0; i < groceryList.size(); i++) {
+            if(OCRresult.contains(groceryList.get(i).getItem().toLowerCase())){
+                removeGrocery(groceryList.get(i));
+                output = output.concat("Removed " + groceryList.get(i).getItem() + " From shopping list\n");
             }
         }
         tv_OCR_Result.setText(output);
@@ -112,20 +112,22 @@ public class LoadImage extends AppCompatActivity {
         return testVals;
     }
 
-    private void removeGrocery(String item){
-
+    private void removeGrocery(GroceryItem item){
+        this.sc.sc.send("/deleteGroceryItem", "{\"netID\":\"jpotter\" , " +
+                "\"grocery_id\" : \"" + item.getID() + "\" }").subscribe();
     }
 
-    private void dumpGroceryAndUpdate(StompClient mStompClient) {
+    private ArrayList<GroceryItem> getGroceryList(StompClient mStompClient) {
 
         ArrayList<GroceryItem> groceryList = new ArrayList<GroceryItem>();
-        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
+        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"jpotter\" }").subscribe(topicMessage -> {
             try {
                 JSONArray ja =
                         new JSONArray(Normalizer.normalize(topicMessage.toString(),
                                 Normalizer.Form.NFC));
                 for(int i = 0; i < ja.length(); i++) {
                     JSONObject jo = ja.getJSONObject(i);
+                    groceryList.add(new GroceryItem(jo));
                 }
 
 
@@ -133,6 +135,7 @@ public class LoadImage extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+        return groceryList;
     }
 
     private void removeGroceryAndUpdate(StompClient mStompClient, String id) {

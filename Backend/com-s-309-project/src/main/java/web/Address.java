@@ -31,7 +31,7 @@ public class Address {
 		
 		this.address = address;
 		groceries = new HashSet<>();;
-
+		chores = new HashSet<>();
 	}
 	
 	public String getAddress() {
@@ -50,19 +50,30 @@ public class Address {
 	}
 	
 	//Address has many chores
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
     @JoinTable(name = "address_chores",
     		   joinColumns = @JoinColumn(name= "address_id"),
     		   inverseJoinColumns = @JoinColumn(name = "chore_id")
     )
-	public Set<Chores> chores; 
+	public Set<Chore> chores; 
     
-    public Set<Chores> getChores(){
+    public Set<Chore> getChores(){
 		return chores;
 	}
 	
+    public void addChore(Chore chore) {
+    	
+    	chores.add(chore);
+    }
+    
+    public void deleteChore(Chore chore) {
+    	
+    	chores.remove(chore);
+    	System.out.println(chores);
+    }
+    
   //Address has many chores
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
     @JoinTable(name = "address_disputes",
     		   joinColumns = @JoinColumn(name= "address_id"),
     		   inverseJoinColumns = @JoinColumn(name = "dispute_id")

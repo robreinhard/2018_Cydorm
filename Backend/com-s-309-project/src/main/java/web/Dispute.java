@@ -10,6 +10,7 @@ import javax.persistence.Column;
 @Entity
 @Table(name="disputes")
 public class Dispute {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int disputes_id;

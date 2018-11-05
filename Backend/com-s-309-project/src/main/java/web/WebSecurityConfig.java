@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/","/login","/registration").permitAll()
             .antMatchers("/admin/**").hasAuthority("ADMIN")
-            .antMatchers("/navbar","/chore","groceries","disputes","/addGroceryItem","/allGroceries").hasAnyAuthority("RESIDENT","CA","ADMIN").anyRequest()
+            .antMatchers("/navbar","/chore","groceries","disputes").hasAnyAuthority("RESIDENT","CA","ADMIN").anyRequest()
             .authenticated().and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")
             .defaultSuccessUrl("/navbar")

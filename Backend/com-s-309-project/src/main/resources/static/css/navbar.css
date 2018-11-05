@@ -320,11 +320,30 @@ body {
     
 }
 
+
+
 /* Modal Content */
 .modal-content {
     position: relative;
     background-color: white;
     margin: auto;
+    padding: 0;
+    border: 2px solid #3066BE;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content-3 {
+    position: relative;
+    background-color: white;
+    margin-left: 66%;
+    margin-right: 33%;
     padding: 0;
     border: 2px solid #3066BE;
     width: 32%;
@@ -396,7 +415,7 @@ body {
 	margin-left:2px;
 }
 
-.modifyGroceryItemContainer input[type=text]  {
+.modifyGroceryItemContainer input[type=text], .addChoreContainer input[type=text], .addChoreContainer select  {
 	
 	width: 90%;
 	font-size: 24px;
@@ -459,11 +478,11 @@ body {
 	float: left;
 }
 
-.addGroceryItemContainer {
+.addGroceryItemContainer, .addChoreContainer {
 	
 	width: 100%;
-	background-color: red;
 }
+
 
 .addGroceryCheckbox {
 	

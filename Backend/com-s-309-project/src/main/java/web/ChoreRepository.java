@@ -7,13 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ChoreRepository extends CrudRepository<Chores, Integer> {
+public interface ChoreRepository extends CrudRepository<Chore, Integer> {
 
-	Collection<Chores> findAll();
+	Collection<Chore> findAll();
 
-	Chores findById(@Param("chore_id") int chore_id);
+	Chore findById(@Param("chore_id") int chore_id);
 
-	Chores save(Chores chore);
+	Chore save(Chore chore);
 	
-    void delete(Chores deleted);
+    void delete(Chore deleted);
 }

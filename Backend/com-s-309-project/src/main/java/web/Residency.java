@@ -9,13 +9,32 @@ public class Residency {
 	private String location;
 	private String sublocation;
 	private String address;
+	private String netID;
+	
+	public Residency(String location, String sublocation, String address, String netID) {
+		
+		this.location = location;
+		this.sublocation = sublocation;
+		this.address = address;
+		this.netID = netID;
+	}
 	
 	public Residency(String location, String sublocation, String address) {
 		
 		this.location = location;
 		this.sublocation = sublocation;
 		this.address = address;
+
+	}
+	
+	public String getNetID() {
 		
+		return netID;
+	}
+	
+	public void setNetID(String newNetID) {
+		
+		this.netID = newNetID;
 	}
 	
 	public String getLocation() {

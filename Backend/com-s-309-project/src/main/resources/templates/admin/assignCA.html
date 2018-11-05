@@ -31,17 +31,16 @@
 	
 	<div class="container">
 	
-		<h1>Add Addresses:</h1>
-		<form autocomplete="off" action="#" th:action="@{/admin/addResidency}" th:object="${residency}" method="post" role="form"> 
+		<h1>Set CA to Sublocation:</h1>
+		<form autocomplete="off" action="#" th:action="@{/admin/assignCA}" th:object="${residency}" method="post" role="form"> 
 		
 				<input type="text" name="location" th:field="*{location}" placeholder="Location"/>
 				<input type="text" name="sublocation" th:field="*{sublocation}" placeholder="Sublocations"/>
-				<input type="text" name="address" th:field="*{address}" placeholder="Address"/>
-
-				<button class="loginButton" type="submit">Add Housing Location</button>
+				<input type="text" name="address" th:field="*{address}" placeholder="Address (Their Room)"/>
+				<input type="text" name="netID" th:field="*{netID}" placeholder="NetID"/>
+				<button class="loginButton" type="submit">Set CA to Sublocation (and assign them address)</button>
 
 		</form>
-		
 	</div>
 	
 	

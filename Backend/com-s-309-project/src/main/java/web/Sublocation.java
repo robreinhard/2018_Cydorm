@@ -20,11 +20,7 @@ public class Sublocation {
 	private String sublocation;
 	
 	//Address to user relationship
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "sublocation_address",
-    		   joinColumns = @JoinColumn(name= "sublocation_id"),
-    		   inverseJoinColumns = @JoinColumn(name = "address_id")
-    )
+    @OneToMany(mappedBy="sublocation")
     private Set<Address> addresses;
 	
     @OneToOne(cascade= CascadeType.ALL)
@@ -45,12 +41,14 @@ public class Sublocation {
 		return sublocation;
 	}
 	
-	public void addAddress(Address address) {
+	public User getCA() {
 		
-		System.out.println("DEEPER: " + address);
-		System.out.println(addresses);
-		addresses.add(address);
-		System.out.println(addresses);
+		return ca;
+	}
+	
+	public void setCA(User user) {
+		
+		ca = user;
 	}
 	
 	@Override

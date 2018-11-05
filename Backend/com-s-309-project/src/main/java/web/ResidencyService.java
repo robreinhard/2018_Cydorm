@@ -52,8 +52,8 @@ public class ResidencyService {
     public void saveSublocation(Sublocation sublocation, Address address) {
     	
     	System.out.println("ADDRESS: " + address.toString());
-    	sublocation.addAddress(address);
-    	sublocationRepository.save(sublocation);
+    	address.setSublocation(sublocation);
+    	addressRepository.save(address);
     	
     }
     
@@ -66,6 +66,14 @@ public class ResidencyService {
     public void setUserAddress(User user, Address address) {
     	
     	user.setAddress(address);
+    	userRepository.save(user);
+    	
+    }
+    
+    public void setCASublocation(User user, Sublocation sublocation) {
+    	
+    	System.out.println("setCASublocation Runs");
+    	sublocation.setCA(user);
     	userRepository.save(user);
     	
     }

@@ -49,5 +49,10 @@ public class UserService {
         
         userRepository.save(user);
     }
+    
+    public RoleRepository getRoleRepository() {
+    	
+    	return roleRepository;
+    }
 
 }

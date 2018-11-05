@@ -27,6 +27,15 @@ public class Address {
     )
     private Set<Grocery> groceries;
 	
+    //Address to user relationship
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "address_sublocation",
+    		   joinColumns = @JoinColumn(name= "address_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "sublocation_id")
+    )
+    private Sublocation sublocation;
+    
+    
 	public Address(String address) {
 		
 		this.address = address;
@@ -93,6 +102,16 @@ public class Address {
 		
 		groceries.remove(grocery);
 		System.out.println(groceries);
+	}
+	
+	public Sublocation getSublocation() {
+		
+		return sublocation;
+	}
+	
+	public void setSublocation(Sublocation sublocation) {
+		
+		this.sublocation = sublocation;
 	}
 	
 	@Override

@@ -141,11 +141,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
     }
 
     private void dumpGroceryAndUpdate(StompClient mStompClient) {
-        try {
-            //JSONObject jo = new JSONObject("{ \"netID\":\"mjboyd\" }");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         mStompClient.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
             try {
                 JSONArray ja =
@@ -161,6 +156,15 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void removeGroceryAndUpdate(StompClient mStompClient, String id) {
+        mStompClient.send("/deleteGroceryItem", "{\"netID\":\"mjboyd\" , " +
+                "\"grocery_id\" : \"" + id + "\" }").subscribe();
+
+        System.out.println("Just removed id: " + id);
+
+        dumpGroceryAndUpdate(mStompClient);
     }
 
 
@@ -179,6 +183,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
         public void onClick(View v) {
             if(itemInd >= 0) {
                 //listNetwork.removeListItem(mAdapter.getItem(itemInd));
+                removeGroceryAndUpdate(mStompClient,
+                        mAdapter.getItem(itemInd).getID());
             }
         }
     }

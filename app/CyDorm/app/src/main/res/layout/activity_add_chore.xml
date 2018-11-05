@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_gravity="bottom"
+        android:id="@+id/chore_submit_btn"
         android:text="Add Chore"/>
 
 </LinearLayout>

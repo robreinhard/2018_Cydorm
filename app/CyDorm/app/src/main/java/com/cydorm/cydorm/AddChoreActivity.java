@@ -33,6 +33,7 @@ public class AddChoreActivity extends AppCompatActivity {
 
         this.sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
 
+
         choreText = (EditText) findViewById(R.id.chore_name_input);
         dateText = (EditText) findViewById(R.id.chore_date_picker);
         dateText.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +49,10 @@ public class AddChoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String json = String.format( "{\"cItem\" : \"%s\", \"date\":\"%d\"," + " " +
-                                "\"month\":\"%d\", \"year\":\"%d\", " +
+                String json = String.format( "{ \"cItem\" : \"%s\", " +
+                                "\"date\":\"%d\", \"month\":\"%d\", \"year\":\"%d\", " +
                                 "\"studentID\":\"%s\" }", choreText.getText(),
-                        dateC, monthC, "mjboyd");
+                        dateC, monthC, yearC, "mjboyd");
 
                 sc.makeRequest("/addChore", json);
                 finish();

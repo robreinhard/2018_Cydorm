@@ -20,7 +20,7 @@
         <EditText
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                android:layout_weight=".70"
+                android:layout_weight=".80"
                 android:id="@+id/chore_name_input"
                 android:textSize="25sp"
                 android:hint="Chore Name"
@@ -30,7 +30,7 @@
         <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".70"
+                android:layout_weight=".80"
                 android:hint="Date here"
                 android:focusableInTouchMode="true"
                 android:focusable="false"

@@ -45,19 +45,27 @@ public class ChoreListActivity extends AppCompatActivity {
 
         this.sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
 
+
         //Subscribe to update the list
         subscribeToChores();
 
     }
 
     private void subscribeToChores() {
-        this.sc.sc.topic("/dumpChore").subscribe(topicMessage -> {
+        System.out.println("XXXXXXXXX Just got ");
+        this.sc.sc.send("/dumpChore", "{ \"netID\" : \"mjboyd\" }").subscribe(topicMessage -> {
 
+            System.out.println("XXXXXXXXX Just got " + topicMessage.toString());
             try {
-                JSONArray ja = new JSONArray(topicMessage.getPayload());
-                for(int i = 0; i < ja.length(); i++) {
-                    updateList(ja.getJSONObject(i));
-                }
+                //JSONArray ja = new JSONArray(topicMessage.getPayload());
+                mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+                System.out.println("Just got " + topicMessage.toString());
+                updateList(new JSONObject(topicMessage.toString()));
+                //for(int i = 0; i < ja.length(); i++) {
+                    //updateList(ja.getJSONObject(i));
+                //}
+                mChoreList.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,7 +73,6 @@ public class ChoreListActivity extends AppCompatActivity {
     }
 
     private void updateList(JSONObject jo) {
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -75,7 +82,6 @@ public class ChoreListActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                mChoreList.setAdapter(mAdapter);
             }
         });
     }

@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         //If you want to add a new activity to the home screen, create the
         // activity and add it to the below lines
         im.addMapping(GroceryManagerActivity.class, R.drawable.ic_launcher_foreground);
-        im.addMapping(LogItemActivity.class, R.drawable.ic_launcher_foreground);
+        //im.addMapping(LogItemActivity.class, R.drawable
+        // .ic_launcher_foreground);
         //im.addMapping(UserListing.class, R.drawable.ic_launcher_foreground);
 
         // the grid of icons

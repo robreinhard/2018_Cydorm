@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.*;
 import com.android.volley.Response;
 import android.os.SystemClock;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.techdew.stomplibrary.Stomp;
+import com.techdew.stomplibrary.StompClient;
+import org.java_websocket.WebSocket;
 
 import java.util.ArrayList;
 import java.util.List;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 
 public class GroceryManagerActivity extends AppCompatActivity {
 
@@ -20,12 +24,15 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private Button mAddButton;
     private Button mRefreshButton;
     private Button mRemoveButton;
-    private GroceryListNetwork listNetwork;
 
     private ArrayAdapter<GroceryItem> mAdapter;
 
     protected int itemInd;
     private static String LOG_TAG = "GroceryMan";
+    private StompClient mStompClient;
+
+    private String url = "http://proj309-vc-05.misc.iastate" +
+            ".edu:8080/gs-guide-websocket";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
-        this.listNetwork = new GroceryListNetwork(this);
+
+        initStomp();
 
 
         this.itemInd = -1;
@@ -57,43 +65,41 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
     }
 
+    private void initStomp() {
+
+        //Stomp & websocket setup
+        this.mStompClient = Stomp.over(WebSocket.class, url);
+        this.mStompClient.topic("/allGroceries")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(topicMessage -> {
+                    Log.i("RUN", "we are running now baby");
+                });
+
+        this.mStompClient.connect();
+
+        this.mStompClient.lifecycle()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(lifecycleEvent -> {
+                    switch (lifecycleEvent.getType()) {
+                        case OPENED:
+                            Log.d("STOMP","Stomp connection opened");
+                            break;
+                        case ERROR:
+                            Log.d("STOMP","Stomp connection error");
+                            break;
+                        case CLOSED:
+                            Log.d("STOMP","Stomp connection closed");
+                    }
+                });
+    }
+
     private List<GroceryItem> getGroceryList() {
 
         final ArrayList<GroceryItem> list = new ArrayList<>();
         this.mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         mGroceryList.setAdapter(mAdapter);
-
-        this.listNetwork.getGroceryList(new Response.Listener<JSONArray>() {
-
-            @Override
-            public void onResponse(JSONArray response) {
-                System.out.print(response.toString());
-                Log.d(LOG_TAG, "Now we are in the response");
-                JSONObject curObj;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        curObj = response.getJSONObject(i);
-                        list.add(new GroceryItem(curObj.getString(
-                                "groceryItem"),
-                                curObj.getString("id"),
-                                curObj.getString("firstName"),
-                                curObj.getString("lastName"),
-                                curObj.getString("groceryPrice")));
-                        Log.d(LOG_TAG,
-                                "Here is is " + curObj.getString(
-                                        "groceryItem"));
-                    } catch (Exception e) {
-                        //Not going to do anything
-                        Log.d(LOG_TAG, "You messed up parsing");
-                    }
-                }
-
-                for(GroceryItem i : list) {
-                    mAdapter.add(i);
-                }
-            }
-        });
-
         return list;
     }
 
@@ -102,7 +108,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if(itemInd >= 0) {
-                listNetwork.removeListItem(mAdapter.getItem(itemInd));
+                //listNetwork.removeListItem(mAdapter.getItem(itemInd));
             }
         }
     }
@@ -129,8 +135,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     newItem.setItem(item);
 
                     //HERE insert update code
-                    listNetwork.updateListItem(mAdapter.getItem(itemInd),
-                            newItem);
+                    //listNetwork.updateListItem(mAdapter.getItem(itemInd),
+                     //       newItem);
                     SystemClock.sleep(2000);
                     getGroceryList();
 
@@ -145,7 +151,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     mAdapter.add(gi);
 
                     // HERE INSERT UPDATE CODE
-                    listNetwork.addListItem(gi);
+                    //listNetwork.addListItem(gi);
                     SystemClock.sleep(2000);
                     getGroceryList();
 

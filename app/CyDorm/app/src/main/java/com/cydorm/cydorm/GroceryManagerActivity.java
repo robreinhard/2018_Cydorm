@@ -56,7 +56,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mGroceryList.setAdapter(mAdapter);
 
         this.sc = new StompConnection("03D4FBCBB169220A8B7380794A544621");
-        initStomp();
+        subscribeAdd();
 
 
         this.itemInd = -1;
@@ -72,7 +72,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
     }
 
-    private void initStomp() {
+    private void subscribeAdd() {
 
         //Subscribe to new things being added
         this.sc.sc.topic("/allGroceries")

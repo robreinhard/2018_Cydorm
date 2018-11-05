@@ -11,9 +11,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import android.support.v4.app.DialogFragment;
-import com.techdew.stomplibrary.Stomp;
-import com.techdew.stomplibrary.StompClient;
-import org.java_websocket.WebSocket;
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -27,17 +24,14 @@ public class AddChoreActivity extends AppCompatActivity {
     int yearC;
     int monthC;
     int dateC;
-    StompClient mStompClient;
-
-    private String url = "http://proj309-vc-05.misc.iastate" +
-            ".edu:8080/gs-guide-websocket/websocket";
+    StompConnection sc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_chore);
 
-        initStomp();
+        this.sc = new StompConnection("03D4FBCBB169220A8B7380794A544621");
 
         choreText = (EditText) findViewById(R.id.chore_name_input);
         dateText = (EditText) findViewById(R.id.chore_date_picker);
@@ -53,36 +47,16 @@ public class AddChoreActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStompClient.send("/addChore",
-                        String.format( "{\"cItem\" : \"%s\", \"date\":\"%d\"," + " " +
+
+                String json = String.format( "{\"cItem\" : \"%s\", \"date\":\"%d\"," + " " +
                                 "\"month\":\"%d\", \"year\":\"%d\", " +
                                 "\"studentID\":\"%s\" }", choreText.getText(),
-                        dateC, monthC, "mjboyd")).subscribe();
+                        dateC, monthC, "mjboyd");
+
+                sc.makeRequest("/addChore", json);
             }
         });
 
-    }
-
-    private void initStomp() {
-        Map<String, String> headers = Collections.singletonMap("Cookie",
-                "JSESSIONID=03D4FBCBB169220A8B7380794A544621");
-        this.mStompClient = Stomp.over(WebSocket.class, url, headers);
-
-        this.mStompClient.connect();
-
-        this.mStompClient.lifecycle()
-                .subscribe(lifecycleEvent -> {
-                    switch (lifecycleEvent.getType()) {
-                        case OPENED:
-                            Log.d("STOMP","Stomp connection opened");
-                            break;
-                        case ERROR:
-                            Log.d("STOMP","Stomp connection error");
-                            break;
-                        case CLOSED:
-                            Log.d("STOMP","Stomp connection closed");
-                    }
-                });
     }
 
     public static class DatePickerFragment extends DialogFragment

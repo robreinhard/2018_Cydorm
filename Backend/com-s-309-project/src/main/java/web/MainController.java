@@ -285,8 +285,8 @@ public class MainController {
    	 	*/
    	 	Chore chore = choreService.findChoreByID(choreID.asInt());
    	 	choreService.deleteChore(user.getAddress(), chore);
-   	 	user = userService.findUserByNetID(netID.asText());
-   	 	return user.getAddress().getChores();
+   	 	User userN = userService.findUserByNetID(netID.asText());
+   	 	return userN.getAddress().getChores();
     	
     }
 }

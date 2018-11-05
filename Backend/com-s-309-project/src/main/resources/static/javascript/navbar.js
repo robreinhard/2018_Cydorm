@@ -7,8 +7,7 @@ var btn;
 var span;
 
 // When the user clicks the button, open the modal 
-var groceries;
-var chores;
+
 var pendingGroceries = [];
 var purchaseGroceries = [];
 var toDoChores = [];
@@ -21,13 +20,16 @@ window.onload = function() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
+        stompClient.subscribe('/allChores', function(theChores) {
+        	
+    		updateChoresList(JSON.parse(theChores.body));
+     
+        	
+        });
         stompClient.subscribe('/allGroceries', function(theList) {
         	updateGroceryList(JSON.parse(theList.body));
         });
-        stompClient.subscribe('/allChores', function(theChores) {
-        	
-        	updateChoresList(JSON.parse(theChores.body));
-        });
+        
     	stompClient.send("/dumpGrocery",{},JSON.stringify({'netID': netID}));
     	stompClient.send("/dumpChore",{},JSON.stringify({'netID': netID}));
 
@@ -78,7 +80,7 @@ function updateChoresList(chores) {
 
 		  }
 		}
-
+	}
 		var allChores = pendingChores.concat(toDoChores);
 		console.log(allChores);
 		  var toBeRemoved = allChores.filter(function(g) {
@@ -91,10 +93,13 @@ function updateChoresList(chores) {
 			  }
 			  
 			}
-			console.log("runs");
+			
+			
 			return true;
 		  
 		  });
+		  
+
 		  console.log("hello");
 		  console.log(toBeRemoved);
 			
@@ -111,7 +116,7 @@ function updateChoresList(chores) {
 			
 		  }
 }
-}
+
 
 function updateGroceryList(groceries) {
 	

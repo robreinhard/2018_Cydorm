@@ -75,7 +75,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         //Stomp & websocket setup
         Map<String, String> headers = Collections.singletonMap("Cookie",
-                "JSESSIONID=AE3A98C16C25FF2B24D6932B37476617");
+                "JSESSIONID=03D4FBCBB169220A8B7380794A544621");
 
         //Authenticate via post request
 

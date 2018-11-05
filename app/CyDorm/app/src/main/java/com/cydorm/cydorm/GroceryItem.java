@@ -1,5 +1,7 @@
 package com.cydorm.cydorm;
 
+import org.json.JSONObject;
+
 public class GroceryItem {
     private String item;
     private String itemID;
@@ -22,6 +24,20 @@ public class GroceryItem {
         this.authorFirst = clone.authorFirst;
         this.authorLast = clone.authorLast;
         this.price = clone.price;
+    }
+
+    public GroceryItem(JSONObject json) {
+        try {
+            this.item = json.getString("groceryItem");
+            this.itemID = json.getString("id");
+            this.authorFirst = "";
+            this.authorLast = "";
+            this.price = json.getString("groceryPrice");
+
+        } catch (Exception e)  {
+            e.printStackTrace();
+        }
+
     }
 
     public String getItem() {

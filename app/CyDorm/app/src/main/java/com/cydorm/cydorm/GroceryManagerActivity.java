@@ -139,6 +139,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 "\"grocery_id\" : \"" + id + "\" }").subscribe();
 
         dumpGroceryAndUpdate(mStompClient);
+        this.mAdapter.notifyDataSetChanged();
     }
 
     private void addAndUpdate(StompClient mStompClient, GroceryItem i) {
@@ -151,6 +152,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 is).subscribe();
 
         System.out.print("Just added one");
+        this.mAdapter.notifyDataSetChanged();
     }
 
 
@@ -191,9 +193,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     //HERE insert update code
                     //listNetwork.updateListItem(mAdapter.getItem(itemInd),
                      //       newItem);
-
-                    SystemClock.sleep(2000);
-                    getGroceryList();
+                    removeGroceryAndUpdate(sc.sc, newItem.getID());
+                    addAndUpdate(sc.sc, newItem);
 
                     itemInd = -1;
                     mAdapter.notifyDataSetChanged();

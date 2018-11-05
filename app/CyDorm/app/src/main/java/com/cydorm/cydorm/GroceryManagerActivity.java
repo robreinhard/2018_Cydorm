@@ -91,25 +91,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                                 new JSONArray(Normalizer.normalize(topicMessage.getPayload(), Normalizer.Form.NFC));
                         for(int i = 0; i < ja.length(); i++) {
                             JSONObject jo = ja.getJSONObject(i);
-                            mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        mAdapter.add(new GroceryItem(jo.get(
-                                                "groceryItem").toString(),
-                                                jo.get("id").toString(),
-                                                "",
-                                                "",
-                                                jo.get("groceryPrice").toString()));
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    mGroceryList.setAdapter(mAdapter);
-                                }
-                            });
-
+                            updateList(jo);
                         }
 
 
@@ -119,6 +101,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 });
 
         this.mStompClient.connect();
+
+        this.dumpGroceryAndUpdate(mStompClient);
 
         this.mStompClient.lifecycle()
                 .subscribe(lifecycleEvent -> {
@@ -135,10 +119,51 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 });
     }
 
-    private void auth() {
-        System.out.println("About to do auth");
+    private void updateList(JSONObject jo) {
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mAdapter.add(new GroceryItem(jo.get(
+                            "groceryItem").toString(),
+                            jo.get("id").toString(),
+                            "",
+                            "",
+                            jo.get("groceryPrice").toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
+                mGroceryList.setAdapter(mAdapter);
+            }
+        });
     }
+
+    private void dumpGroceryAndUpdate(StompClient mStompClient) {
+        try {
+            //JSONObject jo = new JSONObject("{ \"netID\":\"mjboyd\" }");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mStompClient.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
+            try {
+                JSONArray ja =
+                        new JSONArray(Normalizer.normalize(topicMessage.toString(),
+                                Normalizer.Form.NFC));
+                for(int i = 0; i < ja.length(); i++) {
+                    JSONObject jo = ja.getJSONObject(i);
+                    updateList(jo);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
 
     private List<GroceryItem> getGroceryList() {
 

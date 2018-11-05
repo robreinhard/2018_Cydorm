@@ -486,7 +486,7 @@ function addChore() {
 	var dateItem = document.getElementById('dateItem').value.toString();
 	if (cItem.length != 0 && !isNaN(dateItem)) {
 	
-		stompClient.send("/addChore",{},JSON.stringify({'cItem': cItem,'nextSevenDays' : nextSevenDays[dateItem],'correspondingMonth':correspondingMonth[dateItem],'correspondingYear':correspondingYear[dateItem],'studentID': netID}));
+		stompClient.send("/addChore",{},JSON.stringify({'cItem': cItem,'date' : nextSevenDays[dateItem],'month':correspondingMonth[dateItem],'year':correspondingYear[dateItem],'studentID': netID}));
 	
 	}
 	closed();

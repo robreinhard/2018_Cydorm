@@ -84,9 +84,9 @@ public class WebSocketController {
    	 	 JsonNode rootNode = objectMapper.readTree(jsonData);
    	 	 JsonNode studentID = rootNode.path("studentID");
    	 	 JsonNode choreName = rootNode.path("cItem");
-   	 	 JsonNode correspondingMonth = rootNode.path("correspondingMonth");
-   	 	 JsonNode correspondingYear = rootNode.path("correspondingYear");
-   	 	 JsonNode nextSevenDays = rootNode.path("nextSevenDays");
+   	 	 JsonNode correspondingMonth = rootNode.path("year");
+   	 	 JsonNode correspondingYear = rootNode.path("month");
+   	 	 JsonNode nextSevenDays = rootNode.path("day");
    	 	 System.out.println("YEAR:" + correspondingYear.asInt());
    	 	 Calendar c = Calendar.getInstance();
    	 	 c.set(correspondingYear.asInt(), correspondingMonth.asInt()-1,nextSevenDays.asInt(),0,0);

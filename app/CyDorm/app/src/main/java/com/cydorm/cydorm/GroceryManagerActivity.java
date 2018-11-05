@@ -28,7 +28,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private ListView mGroceryList;
     private EditText mItemEdit;
     private Button mAddButton;
-    private Button mRefreshButton;
     private Button mRemoveButton;
 
     private ArrayAdapter<GroceryItem> mAdapter;
@@ -52,7 +51,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
         mItemEdit = (EditText) findViewById(R.id.item_editText);
         mAddButton = (Button) findViewById(R.id.add_button);
         mRemoveButton = (Button) findViewById(R.id.remove_button);
-        mRefreshButton= (Button) findViewById(R.id.refresh_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
@@ -67,7 +65,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         //Add button click
         mAddButton.setOnClickListener(new AddButtonClickedListener());
-        mRefreshButton.setOnClickListener(new RefreshButtonClickedListener());
         mRemoveButton.setOnClickListener(new RemoveButtonClickedListener());
 
         // Clicking Item
@@ -167,6 +164,18 @@ public class GroceryManagerActivity extends AppCompatActivity {
         dumpGroceryAndUpdate(mStompClient);
     }
 
+    private void addAndUpdate(StompClient mStompClient, GroceryItem i) {
+        String is = String.format("{ \"groceryItem\": \"%s\", " +
+                "\"groceryPrice\" : \"%s\"," +
+                "\"approved\":\"F\", \"studentID\":\"mjboyd\"}", i.getItem(),
+                i.getPrice());
+
+        mStompClient.send("/addGroceryItem",
+                is).subscribe();
+
+        System.out.print("Just added one");
+    }
+
 
 
     private List<GroceryItem> getGroceryList() {
@@ -189,14 +198,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
         }
     }
 
-    private class RefreshButtonClickedListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            getGroceryList();
-        }
-    }
-
     private class AddButtonClickedListener implements View.OnClickListener {
             @Override
             public void onClick(View v) {
@@ -213,6 +214,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     //HERE insert update code
                     //listNetwork.updateListItem(mAdapter.getItem(itemInd),
                      //       newItem);
+
                     SystemClock.sleep(2000);
                     getGroceryList();
 
@@ -228,7 +230,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                     // HERE INSERT UPDATE CODE
                     //listNetwork.addListItem(gi);
-                    getGroceryList();
+                    addAndUpdate(mStompClient, gi);
+
 
                     mAdapter.notifyDataSetChanged();
                     mItemEdit.setText("");

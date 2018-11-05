@@ -101,12 +101,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    mAdapter.add(new GroceryItem(jo.get(
-                            "groceryItem").toString(),
-                            jo.get("id").toString(),
-                            "",
-                            "",
-                            jo.get("groceryPrice").toString()));
+                    mAdapter.add(new GroceryItem(jo));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

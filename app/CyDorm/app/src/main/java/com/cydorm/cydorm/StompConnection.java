@@ -16,7 +16,7 @@ public class StompConnection {
             ".edu:8080/gs-guide-websocket/websocket";
 
     public StompConnection(String sessionID) {
-        this.sessionID = sessionID;
+        this.sessionID = "BF1C4BBBF144EC4EBDFD837CF5EC219D";
         initStomp();
     }
 

@@ -55,7 +55,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         mGroceryList.setAdapter(mAdapter);
 
-        this.sc = new StompConnection("03D4FBCBB169220A8B7380794A544621");
+        this.sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
         subscribeAdd();
 
 

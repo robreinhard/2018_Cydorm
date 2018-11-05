@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
+import com.techdew.stomplibrary.StompClient;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +22,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.Normalizer;
+import java.util.ArrayList;
 
 public class LoadImage extends AppCompatActivity {
+
+    StompConnection sc;
 
     Bitmap image;
     private TessBaseAPI mTess;
@@ -36,6 +44,9 @@ public class LoadImage extends AppCompatActivity {
         mTess = new TessBaseAPI();
         checkFile(new File(datapath + "tessdata/"));
         mTess.init(datapath, language);
+
+        this.sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
+
 
 
     }
@@ -103,6 +114,32 @@ public class LoadImage extends AppCompatActivity {
 
     private void removeGrocery(String item){
 
+    }
+
+    private void dumpGroceryAndUpdate(StompClient mStompClient) {
+
+        ArrayList<GroceryItem> groceryList = new ArrayList<GroceryItem>();
+        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
+            try {
+                JSONArray ja =
+                        new JSONArray(Normalizer.normalize(topicMessage.toString(),
+                                Normalizer.Form.NFC));
+                for(int i = 0; i < ja.length(); i++) {
+                    JSONObject jo = ja.getJSONObject(i);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void removeGroceryAndUpdate(StompClient mStompClient, String id) {
+        this.sc.sc.send("/deleteGroceryItem", "{\"netID\":\"jpotter\" , " +
+                "\"grocery_id\" : \"" + id + "\" }").subscribe();
+
+        dumpGroceryAndUpdate(mStompClient);
     }
 
 }

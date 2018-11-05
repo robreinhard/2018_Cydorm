@@ -22,6 +22,8 @@
         <activity android:name=".GroceryManagerActivity"/>
         <activity android:name=".LogItemActivity">
         </activity>
+        <activity android:name=".AddChoreActivity">
+        </activity>
     </application>
 
 </manifest>

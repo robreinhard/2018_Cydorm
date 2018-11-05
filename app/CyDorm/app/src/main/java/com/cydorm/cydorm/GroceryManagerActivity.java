@@ -11,8 +11,14 @@ import com.techdew.stomplibrary.Stomp;
 import com.techdew.stomplibrary.StompClient;
 import org.java_websocket.WebSocket;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -30,14 +36,17 @@ public class GroceryManagerActivity extends AppCompatActivity {
     protected int itemInd;
     private static String LOG_TAG = "GroceryMan";
     private StompClient mStompClient;
+    private GroceryListNetwork listNetwork;
 
     private String url = "http://proj309-vc-05.misc.iastate" +
-            ".edu:8080/gs-guide-websocket";
+            ".edu:8080/gs-guide-websocket/websocket";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_list);
+
+        this.listNetwork = new GroceryListNetwork(this);
 
         mGroceryList = (ListView) findViewById(R.id.grocery_listView);
         mItemEdit = (EditText) findViewById(R.id.item_editText);
@@ -68,19 +77,50 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private void initStomp() {
 
         //Stomp & websocket setup
-        this.mStompClient = Stomp.over(WebSocket.class, url);
+        Map<String, String> headers = Collections.singletonMap("Cookie",
+                "JSESSIONID=AE3A98C16C25FF2B24D6932B37476617");
+
+        //Authenticate via post request
+
+        this.mStompClient = Stomp.over(WebSocket.class, url, headers);
         this.mStompClient.topic("/allGroceries")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(topicMessage -> {
-                    Log.i("RUN", "we are running now baby");
+
+                    try {
+                        JSONArray ja =
+                                new JSONArray(Normalizer.normalize(topicMessage.getPayload(), Normalizer.Form.NFC));
+                        for(int i = 0; i < ja.length(); i++) {
+                            JSONObject jo = ja.getJSONObject(i);
+                            mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        mAdapter.add(new GroceryItem(jo.get(
+                                                "groceryItem").toString(),
+                                                jo.get("id").toString(),
+                                                "",
+                                                "",
+                                                jo.get("groceryPrice").toString()));
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    mGroceryList.setAdapter(mAdapter);
+                                }
+                            });
+
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
 
         this.mStompClient.connect();
 
         this.mStompClient.lifecycle()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(lifecycleEvent -> {
                     switch (lifecycleEvent.getType()) {
                         case OPENED:
@@ -93,6 +133,11 @@ public class GroceryManagerActivity extends AppCompatActivity {
                             Log.d("STOMP","Stomp connection closed");
                     }
                 });
+    }
+
+    private void auth() {
+        System.out.println("About to do auth");
+
     }
 
     private List<GroceryItem> getGroceryList() {
@@ -152,7 +197,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                     // HERE INSERT UPDATE CODE
                     //listNetwork.addListItem(gi);
-                    SystemClock.sleep(2000);
                     getGroceryList();
 
                     mAdapter.notifyDataSetChanged();

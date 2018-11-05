@@ -33,6 +33,10 @@ public class GroceryListNetwork {//implements GroceryListNetworkInteface {
         this.context = context;
     }
 
+    public void authenticate() {
+
+    }
+
     public void updateListItem(GroceryItem old, GroceryItem n) {
         //Remove the list item
         this.removeListItem(old);

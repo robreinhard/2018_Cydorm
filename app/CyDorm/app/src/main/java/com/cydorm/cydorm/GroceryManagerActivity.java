@@ -34,7 +34,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
     protected int itemInd;
     private static String LOG_TAG = "GroceryMan";
-    private StompClient mStompClient;
+    private StompConnection sc;
     private GroceryListNetwork listNetwork;
 
     private String url = "http://proj309-vc-05.misc.iastate" +
@@ -55,6 +55,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         mGroceryList.setAdapter(mAdapter);
 
+        this.sc = new StompConnection("03D4FBCBB169220A8B7380794A544621");
         initStomp();
 
 
@@ -73,14 +74,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
     private void initStomp() {
 
-        //Stomp & websocket setup
-        Map<String, String> headers = Collections.singletonMap("Cookie",
-                "JSESSIONID=03D4FBCBB169220A8B7380794A544621");
-
-        //Authenticate via post request
-
-        this.mStompClient = Stomp.over(WebSocket.class, url, headers);
-        this.mStompClient.topic("/allGroceries")
+        //Subscribe to new things being added
+        this.sc.sc.topic("/allGroceries")
                 .subscribe(topicMessage -> {
 
                     try {
@@ -97,23 +92,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     }
                 });
 
-        this.mStompClient.connect();
-
-        this.dumpGroceryAndUpdate(mStompClient);
-
-        this.mStompClient.lifecycle()
-                .subscribe(lifecycleEvent -> {
-                    switch (lifecycleEvent.getType()) {
-                        case OPENED:
-                            Log.d("STOMP","Stomp connection opened");
-                            break;
-                        case ERROR:
-                            Log.d("STOMP","Stomp connection error");
-                            break;
-                        case CLOSED:
-                            Log.d("STOMP","Stomp connection closed");
-                    }
-                });
+        this.dumpGroceryAndUpdate(this.sc.sc);
     }
 
     private void updateList(JSONObject jo) {
@@ -138,7 +117,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
     }
 
     private void dumpGroceryAndUpdate(StompClient mStompClient) {
-        mStompClient.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
+        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
             try {
                 JSONArray ja =
                         new JSONArray(Normalizer.normalize(topicMessage.toString(),
@@ -156,10 +135,8 @@ public class GroceryManagerActivity extends AppCompatActivity {
     }
 
     private void removeGroceryAndUpdate(StompClient mStompClient, String id) {
-        mStompClient.send("/deleteGroceryItem", "{\"netID\":\"mjboyd\" , " +
+        this.sc.sc.send("/deleteGroceryItem", "{\"netID\":\"mjboyd\" , " +
                 "\"grocery_id\" : \"" + id + "\" }").subscribe();
-
-        System.out.println("Just removed id: " + id);
 
         dumpGroceryAndUpdate(mStompClient);
     }
@@ -170,7 +147,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
                 "\"approved\":\"F\", \"studentID\":\"mjboyd\"}", i.getItem(),
                 i.getPrice());
 
-        mStompClient.send("/addGroceryItem",
+        this.sc.sc.send("/addGroceryItem",
                 is).subscribe();
 
         System.out.print("Just added one");
@@ -192,7 +169,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
         public void onClick(View v) {
             if(itemInd >= 0) {
                 //listNetwork.removeListItem(mAdapter.getItem(itemInd));
-                removeGroceryAndUpdate(mStompClient,
+                removeGroceryAndUpdate(sc.sc,
                         mAdapter.getItem(itemInd).getID());
             }
         }
@@ -230,7 +207,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
                     // HERE INSERT UPDATE CODE
                     //listNetwork.addListItem(gi);
-                    addAndUpdate(mStompClient, gi);
+                    addAndUpdate(sc.sc, gi);
 
 
                     mAdapter.notifyDataSetChanged();

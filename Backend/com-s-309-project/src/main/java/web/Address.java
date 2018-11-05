@@ -35,12 +35,21 @@ public class Address {
     )
     private Sublocation sublocation;
     
+    //Address to user relationship
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+    @JoinTable(name = "address_dispute",
+    		   joinColumns = @JoinColumn(name= "address_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "dispute_id")
+    )
+    private Set<Dispute> disputes;
     
 	public Address(String address) {
 		
 		this.address = address;
 		groceries = new HashSet<>();;
 		chores = new HashSet<>();
+		disputes = new HashSet<>();
+		
 	}
 	
 	public String getAddress() {
@@ -81,16 +90,9 @@ public class Address {
     	System.out.println(chores);
     }
     
-  //Address has many chores
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
-    @JoinTable(name = "address_disputes",
-    		   joinColumns = @JoinColumn(name= "address_id"),
-    		   inverseJoinColumns = @JoinColumn(name = "dispute_id")
-    )
-	public Set<Dispute> dispute; 
     
-    public Set<Dispute> getDispute(){
-		return dispute;
+    public Set<Dispute> getDisputes(){
+		return disputes;
 	}
 
     public void addGrocery(Grocery grocery) {
@@ -98,6 +100,17 @@ public class Address {
 		groceries.add(grocery);
 	}
 	
+    public void addDispute(Dispute dispute) {
+    	
+    	disputes.add(dispute);
+    }
+    
+    public void deleteDispute(Dispute dispute) {
+    	
+    	disputes.remove(dispute);
+    	
+    }
+    
 	public void deleteGrocery(Grocery grocery) {
 		
 		groceries.remove(grocery);

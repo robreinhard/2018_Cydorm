@@ -32,6 +32,9 @@ public class WebSocketController {
     @Autowired
     private ChoreService choreService;
     
+    @Autowired
+    private DisputeService disputeService;
+    
     @MessageMapping("/addGroceryItem")
     @SendTo("/allGroceries")
     public Set<Grocery> addGroceryItem(Grocery grocery) throws Exception {
@@ -131,6 +134,46 @@ public class WebSocketController {
    	 	choreService.deleteChore(user.getAddress(), chore);
    	 	user = userService.findUserByNetID(netID.asText());
    	 	return user.getAddress().getChores();
+    	
+    }
+    
+    @MessageMapping("/addDispute")
+    @SendTo("/allDisputes")
+    public Set<Dispute> addDispute(Dispute dispute) throws Exception {
+    	
+        User user = userService.findUserByNetID(dispute.getStudentID());
+        disputeService.saveDispute(dispute);
+        disputeService.saveAddressDispute(user.getAddress(), dispute);
+        
+        return user.getAddress().getDisputes();
+    }
+    
+    @MessageMapping("/dumpDispute")
+    @SendTo("/allDisputes")
+    public Set<Dispute> dumpDispute(String jsonData) throws Exception {
+
+    	 ObjectMapper objectMapper = new ObjectMapper();
+    	 JsonNode rootNode = objectMapper.readTree(jsonData);
+    	 JsonNode netID = rootNode.path("netID");
+         User user = userService.findUserByNetID(netID.asText());
+         
+         return user.getAddress().getDisputes();
+    	
+    }
+    
+    @MessageMapping("/deleteDispute")
+    @SendTo("/allDisputes")
+    public Set<Dispute> deleteDispute(String jsonData) throws Exception {
+    	
+    	ObjectMapper objectMapper = new ObjectMapper();
+   	 	JsonNode rootNode = objectMapper.readTree(jsonData);
+   	 	JsonNode netID = rootNode.path("netID");
+   	 	User user = userService.findUserByNetID(netID.asText());
+   	 	JsonNode disputeID = rootNode.path("dispute_id");
+   	 	Dispute dispute = disputeService.findDisputeByID(disputeID.asInt());
+   	 	disputeService.deleteDispute(user.getAddress(),dispute);
+   	 	user = userService.findUserByNetID(netID.asText());
+   	 	return user.getAddress().getDisputes();
     	
     }
 }

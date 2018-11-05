@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 @Service("disputeService")
 public class DisputeService {
 
-    private UserRepository userRepository;
+    private AddressRepository addressRepository;
     private DisputeRepository disputeRepository;
 
     @Autowired
-    public DisputeService(UserRepository userRepository, DisputeRepository disputeRepository) {
-        this.userRepository = userRepository;
+    public DisputeService(AddressRepository addressRepository, DisputeRepository disputeRepository) {
+        this.addressRepository = addressRepository;
         this.disputeRepository = disputeRepository;
      
     }
@@ -19,4 +19,22 @@ public class DisputeService {
     		disputeRepository.save(dispute);  	
     }
 
+    public Dispute findDisputeByID(int dispute_id) {
+    	
+    	return disputeRepository.findById(dispute_id);
+    }
+    
+    public void saveAddressDispute(Address address, Dispute dispute) {
+    	
+    	address.addDispute(dispute);
+    	addressRepository.save(address);
+    }
+    
+    public void deleteDispute(Address address, Dispute dispute) {
+    	
+    	address.deleteDispute(dispute);
+    	addressRepository.save(address);
+    	disputeRepository.delete(dispute);
+    }
+    
 }

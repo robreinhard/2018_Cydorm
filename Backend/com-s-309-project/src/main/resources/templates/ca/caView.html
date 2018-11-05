@@ -8,7 +8,14 @@
   	<title>CyDorm Log In</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script th:inline="javascript">
+	
+		var netID = /*[[${netID}]]*/ '';
+		
+	
+	</script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -27,21 +34,32 @@
 			<li><form th:action="@{logout}" method="get"><button type="Submit" class="logOutNavbar">Log Out</button></form></li>
 		</div>
 	</ul>
-	
+
 	<div class="container">
-	
-		<h1>Add Addresses:</h1>
-		<form autocomplete="off" action="#" th:action="@{/admin/addResidency}" th:object="${residency}" method="post" role="form"> 
-		
-				<input type="text" name="location" th:field="*{location}" placeholder="Location"/>
-				<input type="text" name="sublocation" th:field="*{sublocation}" placeholder="Sublocations"/>
-				<input type="text" name="address" th:field="*{address}" placeholder="Address"/>
-
-				<button class="loginButton" type="submit">Add Housing Location</button>
-
-		</form>
-		
+		<div class="content">
+			<div class="col33">
+				<div class="colHeader">
+					<a href="/disputes" class="colHeaderTxt">Disputes</a>
+					<button onclick="" class="add">+</button>
+				</div>
+				<div class="theLists">	
+				<div class="listContent"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Disputes</i></a>
+					</div>
+					<div class="disputeItemContainer"></div>
+				
+				</div>
+				
+				<div class="listContent">
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Past Disputes</i></a>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+		</div>
 	</div>
-	
 	
 </body>

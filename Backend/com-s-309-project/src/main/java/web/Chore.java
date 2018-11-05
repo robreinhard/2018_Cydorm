@@ -22,13 +22,13 @@ public class Chore {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int chore_id;
+	private int chore_id;
 	@Column(name="chore")
-	public String chore;
+	private String chore;
 	@Column(name="completed")
-	public char completed;
+	private char completed;
 	@Column(name="studentID")
-	public String studentID;
+	private String studentID;
 	@Temporal(TemporalType.DATE)
 	private java.util.Date dueDate;
 	

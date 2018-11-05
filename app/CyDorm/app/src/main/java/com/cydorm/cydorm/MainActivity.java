@@ -1,19 +1,13 @@
 package com.cydorm.cydorm;
 
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //private RecyclerView mRecyclerView;
@@ -31,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         //If you want to add a new activity to the home screen, create the
         // activity and add it to the below lines
-        im.addMapping(GroceryManagerActivity.class, R.drawable.ic_launcher_foreground);
+        im.addMapping(GroceryManagerActivity.class, R.drawable.receipt_icon);
         im.addMapping(ChoreListActivity.class,
-                R.drawable.ic_launcher_foreground);
-        im.addMapping(LoadImage.class, R.drawable.test_image);
+                R.drawable.chore_icon);
+        im.addMapping(LoadImage.class, R.drawable.scan_icon);
         //im.addMapping(UserListing.class, R.drawable.ic_launcher_foreground);
 
         // the grid of icons

@@ -26,11 +26,10 @@ public class ChoreListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 Intent i = new Intent(ChoreListActivity.this,
                         AddChoreActivity.class);
                 startActivity(i);

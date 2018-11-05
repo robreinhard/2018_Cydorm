@@ -54,6 +54,7 @@ public class AddChoreActivity extends AppCompatActivity {
                         dateC, monthC, "mjboyd");
 
                 sc.makeRequest("/addChore", json);
+                finish();
             }
         });
 

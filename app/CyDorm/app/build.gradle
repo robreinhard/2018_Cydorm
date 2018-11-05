@@ -37,5 +37,4 @@ dependencies {
     //implementation files('libs/java_websocket.jar')
     compile 'org.java-websocket:Java-WebSocket:1.3.0'
     compile 'com.github.MobileDews:Android-Stomp-Over-Websocket:1.0.1'
-
 }

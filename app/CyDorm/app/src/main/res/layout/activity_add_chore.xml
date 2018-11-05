@@ -5,17 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         tools:context=".AddChoreActivity">
-
-    <TextView
-        android:text="Add Chore:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="143dp"
-        tools:layout_editor_absoluteX="31dp"
-        android:textSize="30sp"
-        android:id="@+id/chore_label"/>
 
 
     <LinearLayout
@@ -25,22 +17,25 @@
             android:layout_gravity="center"
             >
 
-
         <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_weight=".70"
                 android:id="@+id/chore_name_input"
-                android:textSize="30sp"
-                android:paddingBottom="20dp"
+                android:textSize="25sp"
+                android:hint="Chore Name"
+                android:layout_marginBottom="60dp"
                 />
 
         <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Date here"
+                android:layout_weight=".70"
+                android:hint="Date here"
                 android:focusableInTouchMode="true"
                 android:focusable="false"
-                android:textSize="30sp"
+                android:textSize="25sp"
+                android:layout_marginBottom="60dp"
                 android:id="@+id/chore_date_picker"/>
 
     </LinearLayout>

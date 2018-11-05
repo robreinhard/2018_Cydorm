@@ -28,7 +28,7 @@ public class Address {
     private Set<Grocery> groceries;
 	
     //Address to user relationship
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "address_sublocation",
     		   joinColumns = @JoinColumn(name= "address_id"),
     		   inverseJoinColumns = @JoinColumn(name = "sublocation_id")

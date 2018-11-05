@@ -20,7 +20,7 @@ public class Sublocation {
 	private String sublocation;
 	
 	//Address to user relationship
-    @OneToMany(mappedBy="sublocation")
+    @OneToMany(mappedBy="sublocation", fetch=FetchType.EAGER)
     private Set<Address> addresses;
 	
     @OneToOne(cascade= CascadeType.ALL)
@@ -49,6 +49,11 @@ public class Sublocation {
 	public void setCA(User user) {
 		
 		ca = user;
+	}
+	
+	public Set<Address> getAddresses() {
+		
+		return addresses;
 	}
 	
 	@Override

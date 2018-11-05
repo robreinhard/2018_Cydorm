@@ -21,7 +21,7 @@ public class Dispute {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int disputes_id;
+	public int dispute_id;
 	
 	@Column(name="disputeName")
 	private String disputeName;

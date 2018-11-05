@@ -233,6 +233,14 @@ body {
 	 
 }
 
+.disputeItemContainer {
+	
+	min-height: 100px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+	overflow: auto;	
+}
+
 .choresItemContainer {
 	
 	height: 75px;
@@ -253,6 +261,20 @@ body {
 	line-height:0px;
  	vertical-align: middle;	   
  	min-width: 20%;
+}
+
+.disputeBodyComponent {
+	
+	display: inline-block;
+	font-family: Roboto;
+	font-size: 20px;
+	padding-left: 10px;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+	line-height:0px;
+ 	vertical-align: middle;	   
+ 	width: 90%;
 }
 
 .theLists {
@@ -320,7 +342,22 @@ body {
     
 }
 
-
+/* Modal Content */
+.modal-content-1 {
+    position: relative;
+    background-color: white;
+    margin-left: 1.5%;
+    margin-right: 98.5%;
+    padding: 0;
+    border: 2px solid #3066BE;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
 
 /* Modal Content */
 .modal-content {
@@ -429,6 +466,15 @@ body {
 	height: 40px;
 	float: left;
 	margin-left:2px;
+}
+
+.addDisputeContainer textarea {
+	
+	resize: none;
+	width: 90%;
+	height: 200px;
+	outline: none;
+	border: 2px solid #aaa;
 }
 
 .modal-body input[type=text]:focus {

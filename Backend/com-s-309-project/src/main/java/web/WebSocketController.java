@@ -1,7 +1,10 @@
 package web;
 
+import java.lang.annotation.Repeatable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -137,14 +140,17 @@ public class WebSocketController {
     	
     }
     
+    
     @MessageMapping("/addDispute")
     @SendTo("/allDisputes")
     public Set<Dispute> addDispute(Dispute dispute) throws Exception {
     	
         User user = userService.findUserByNetID(dispute.getStudentID());
+        System.out.println("DISPUTE: " + dispute.getDisputeBody());
+        dispute.setVisability('F');
+        dispute.setResolved('F');
         disputeService.saveDispute(dispute);
         disputeService.saveAddressDispute(user.getAddress(), dispute);
-        
         return user.getAddress().getDisputes();
     }
     
@@ -176,4 +182,26 @@ public class WebSocketController {
    	 	return user.getAddress().getDisputes();
     	
     }
+    
+    @MessageMapping("/dumpCADispute")
+    @SendTo("/caDispute")
+    public Set<Dispute> caDumpDispute(String jsonData) throws Exception {
+    	
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	JsonNode rootNode = objectMapper.readTree(jsonData);
+    	JsonNode netID = rootNode.path("netID");
+   	 	User user = userService.findUserByNetID(netID.asText());
+   	 	Sublocation sublocation = user.getAddress().getSublocation();
+   	 	Set<Dispute> toBeReturned = new HashSet<>();
+   	 	Set<Address> theAddresses = sublocation.getAddresses();
+        Iterator<Address> itr = theAddresses.iterator();
+        while (itr.hasNext()) {
+        	
+        	toBeReturned.addAll(itr.next().getDisputes());
+        	
+        }
+   	 	
+    	return toBeReturned;
+    }
+    
 }

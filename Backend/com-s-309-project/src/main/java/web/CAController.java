@@ -34,7 +34,7 @@ public class CAController {
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
         Residency residency = new Residency();
-        modelAndView.addObject("residency", residency);
+        modelAndView.addObject("netID", user.getNetID());
         modelAndView.setViewName("ca/caView");
         return modelAndView;
     }

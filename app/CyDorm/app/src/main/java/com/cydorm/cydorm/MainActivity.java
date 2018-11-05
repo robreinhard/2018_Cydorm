@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // activity and add it to the below lines
         im.addMapping(GroceryManagerActivity.class, R.drawable.ic_launcher_foreground);
         im.addMapping(LogItemActivity.class, R.drawable.ic_launcher_foreground);
+        im.addMapping(LoadImage.class, R.drawable.test_image);
         //im.addMapping(UserListing.class, R.drawable.ic_launcher_foreground);
 
         // the grid of icons

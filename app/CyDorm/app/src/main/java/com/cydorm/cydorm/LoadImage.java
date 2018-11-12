@@ -95,10 +95,12 @@ public class LoadImage extends AppCompatActivity {
         OCRresult = mTess.getUTF8Text();
         TextView tv_OCR_Result = (TextView) findViewById(R.id.tv_OCR_Result);
         OCRresult = OCRresult.toLowerCase();
+        System.out.println("OCR RESULT: " + OCRresult);
         ArrayList<GroceryItem> groceryList = getGroceryList(sc.sc);
         String output = "";
         for (int i = 0; i < groceryList.size(); i++) {
             if(OCRresult.contains(groceryList.get(i).getItem().toLowerCase())){
+                System.out.println("Found !!!!!!!!!!!!!" + groceryList.get(i).getItem());
                 removeGrocery(groceryList.get(i));
                 output = output.concat("Removed " + groceryList.get(i).getItem() + " From shopping list\n");
             }
@@ -120,11 +122,11 @@ public class LoadImage extends AppCompatActivity {
     private ArrayList<GroceryItem> getGroceryList(StompClient mStompClient) {
 
         ArrayList<GroceryItem> groceryList = new ArrayList<GroceryItem>();
-        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"jpotter\" }").subscribe(topicMessage -> {
+        this.sc.sc.send("/dumpGrocery", "{ \"netID\":\"mjboyd\" }").subscribe(topicMessage -> {
+            System.out.println("ja: " + topicMessage.toString());
             try {
                 JSONArray ja =
-                        new JSONArray(Normalizer.normalize(topicMessage.toString(),
-                                Normalizer.Form.NFC));
+                        new JSONArray(topicMessage.toString());
                 for(int i = 0; i < ja.length(); i++) {
                     JSONObject jo = ja.getJSONObject(i);
                     groceryList.add(new GroceryItem(jo));
@@ -136,13 +138,6 @@ public class LoadImage extends AppCompatActivity {
             }
         });
         return groceryList;
-    }
-
-    private void removeGroceryAndUpdate(StompClient mStompClient, String id) {
-        this.sc.sc.send("/deleteGroceryItem", "{\"netID\":\"jpotter\" , " +
-                "\"grocery_id\" : \"" + id + "\" }").subscribe();
-
-        dumpGroceryAndUpdate(mStompClient);
     }
 
 }

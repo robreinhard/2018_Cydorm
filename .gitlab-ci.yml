@@ -15,3 +15,4 @@ web-build:
         - ./gradlew assemble
         - ./gradlew bootjar
         - java -jar build/libs/*.jar
+        - echo "RUNNING"

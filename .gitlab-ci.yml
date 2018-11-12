@@ -6,7 +6,7 @@ before_script:
     - chmod +x ./gradlew
 
 web-build:
-    stage: build
+    stage: web-build
     script:
         - cd Backend/com-s-309-project
         - ./gradlew assemble

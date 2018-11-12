@@ -15,6 +15,8 @@ web-build:
     script:
         - ./gradlew assemble
         - ./gradlew bootjar
+    artifacts:
+        - build/libs/*.jar
 
 autodeploy:
     tags:

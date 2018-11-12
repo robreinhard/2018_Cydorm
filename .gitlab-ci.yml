@@ -9,7 +9,7 @@ before_script:
 
 web-build:
     tags:
-        - spring_backend
+        - working_backend
     stage: web-build
     script:
         - ./gradlew assemble

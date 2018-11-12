@@ -2,6 +2,7 @@ stages:
     - web-build
 
 before_script:
+    - cd Backend/com-s-309-project
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - chmod +x ./gradlew
 
@@ -10,6 +11,5 @@ web-build:
         - spring_backend
     stage: web-build
     script:
-        - cd Backend/com-s-309-project
         - ./gradlew assemble
         - ./gradlew bootRun

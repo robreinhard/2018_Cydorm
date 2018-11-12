@@ -1,4 +1,5 @@
 stages:
+    - cache
     - web-build
     - autodeploy
 
@@ -7,6 +8,11 @@ before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk/"
     - chmod +x ./gradlew
+
+cache:
+  paths:
+     - .gradle/wrapper
+     - .gradle/caches
 
 web-build:
     tags:

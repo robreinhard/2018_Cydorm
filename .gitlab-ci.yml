@@ -1,5 +1,6 @@
 stages:
     - web-build
+    - autodeploy
 
 before_script:
     - cd Backend/com-s-309-project
@@ -14,6 +15,12 @@ web-build:
     script:
         - ./gradlew assemble
         - ./gradlew bootjar
+
+autodeploy:
+    tags:
+        - working_backend
+    stage: autodeploy
+    script:
         - sudo mv build/libs/*.jar /target/web-run.jar
         - sudo systemctl stop systemWebRunner
         - sudo systemctl start systemWebRunner

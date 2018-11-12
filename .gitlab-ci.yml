@@ -14,4 +14,4 @@ web-build:
     script:
         - ./gradlew assemble
         - ./gradlew bootjar
-        - java -jar com-s-309-project/build/libs/*.jar
+        - java -jar build/libs/*.jar

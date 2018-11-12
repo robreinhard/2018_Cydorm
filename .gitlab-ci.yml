@@ -1,0 +1,13 @@
+stages:
+    - web-build
+
+before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./gradlew
+
+web-build:
+    stage: build
+    script:
+        - cd Backend/com-s-309-project
+        - ./gradlew assemble
+        - ./gradlew bootRun

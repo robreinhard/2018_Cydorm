@@ -15,6 +15,6 @@ web-build:
         - ./gradlew assemble
         - ./gradlew bootjar
         - sudo mv build/libs/*.jar /target/web-run.jar
-        - sudo systemctl stop systemd-web-runner
-        - sudo systemctl start systemd-web-runner
+        - sudo systemctl stop system-web-runner
+        - sudo systemctl start system-web-runner
         - echo IT WORKED

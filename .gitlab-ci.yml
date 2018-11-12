@@ -15,17 +15,12 @@ web-build:
     script:
         - ./gradlew assemble
         - ./gradlew bootjar
-    artifacts:
-        paths:
-            - build/libs/*.jar
+        - sudo mv build/libs/*.jar /target/web-run.jar
 
 autodeploy:
     tags:
         - working_backend
     stage: autodeploy
     script:
-        - pwd
-        - ls
-        - sudo mv build/libs/*.jar /target/web-run.jar
         - sudo systemctl stop systemWebRunner
         - sudo systemctl start systemWebRunner

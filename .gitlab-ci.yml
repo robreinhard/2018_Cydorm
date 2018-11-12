@@ -4,7 +4,7 @@ stages:
 before_script:
     - cd Backend/com-s-309-project
     - export GRADLE_USER_HOME=`pwd`/.gradle
-    - export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+    - export JAVA_HOME=/usr/lib/jvm/java-openjdk/bin/
     - chmod +x ./gradlew
 
 web-build:

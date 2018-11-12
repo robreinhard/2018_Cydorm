@@ -6,6 +6,8 @@ before_script:
     - chmod +x ./gradlew
 
 web-build:
+    tags:
+        - spring_backend
     stage: web-build
     script:
         - cd Backend/com-s-309-project

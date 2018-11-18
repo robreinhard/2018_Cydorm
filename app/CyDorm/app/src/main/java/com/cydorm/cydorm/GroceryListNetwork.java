@@ -8,10 +8,12 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GroceryListNetwork {//implements GroceryListNetworkInteface {
@@ -31,14 +33,63 @@ public class GroceryListNetwork {//implements GroceryListNetworkInteface {
         this.context = context;
     }
 
-    public int updateListItem(GroceryItem i) {
-        //Remove the list item
-        //Re-add the new item
-        return 0;
+    public void authenticate() {
+
     }
 
-    public int addListItem(GroceryItem i) {
-        return 0;
+    public void updateListItem(GroceryItem old, GroceryItem n) {
+        //Remove the list item
+        this.removeListItem(old);
+        this.addListItem(n);
+    }
+
+    public void removeListItem(GroceryItem i) {
+         String endpoint = "deleteGroceryItem?id=" + i.getID();
+        JsonObjectRequest req = new JsonObjectRequest(getRequestUrl(endpoint),
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+
+        VolleySingleton.getInstance(this.context).addToRequestQueue(req,
+                "GROCERY");
+    }
+
+    public void addListItem(GroceryItem i) {
+        String endpoint = "addGroceryItem?groceryItem=" + i.getItem() +
+                "&groceryPrice=" + i.getPrice() + "&approved=T&firstName=" + i.getAuthorFirst() + "&lastName=" + i.getAuthorLast();
+        JsonObjectRequest req = new JsonObjectRequest(getRequestUrl(endpoint),
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+
+        VolleySingleton.getInstance(this.context).addToRequestQueue(req,
+                "GROCERY");
     }
 
     public List<GroceryItem> getGroceryList(Response.Listener<JSONArray> listener) {

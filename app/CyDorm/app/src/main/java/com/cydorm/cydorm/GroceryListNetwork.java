@@ -16,33 +16,55 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * GroceryList networking utility class
+ *
+ * @author Malcolm Boyd
+ */
 public class GroceryListNetwork {//implements GroceryListNetworkInteface {
     /* Logging String */ private static final String LOG_TAG = "GLNET";
     private String url;
     private String port;
     private Context context;
 
+    /** @param String url The server url
+     * @param String port Server port
+     */
     public GroceryListNetwork(String url, String port) {
         this.url = url;
         this.port = port;
     }
 
+    /**
+     * The default grocery list network and its connections
+     * @param Context android context
+     **/
     public GroceryListNetwork(Context context) {
         this.url = "http://proj309-vc-05.misc.iastate.edu";
         this.port = "8080";
         this.context = context;
     }
 
+    /** Authenticate with the server
+     */
     public void authenticate() {
 
     }
 
+    /** Callback method calling remove and add on the old and n list items 
+     * @param GroceryItem The old version of the grocery item
+     * @param GroceryItem The new version of the grocery item
+     */
     public void updateListItem(GroceryItem old, GroceryItem n) {
         //Remove the list item
         this.removeListItem(old);
         this.addListItem(n);
     }
 
+    /**
+     * Removes the grocery list item from the server
+     * @param GroceryItem the item to remove
+     */
     public void removeListItem(GroceryItem i) {
          String endpoint = "deleteGroceryItem?id=" + i.getID();
         JsonObjectRequest req = new JsonObjectRequest(getRequestUrl(endpoint),
@@ -67,6 +89,9 @@ public class GroceryListNetwork {//implements GroceryListNetworkInteface {
                 "GROCERY");
     }
 
+    /** Adds grocery list item to the server's list
+     * @param GroceryItem The item to add
+     */
     public void addListItem(GroceryItem i) {
         String endpoint = "addGroceryItem?groceryItem=" + i.getItem() +
                 "&groceryPrice=" + i.getPrice() + "&approved=T&firstName=" + i.getAuthorFirst() + "&lastName=" + i.getAuthorLast();
@@ -111,6 +136,12 @@ public class GroceryListNetwork {//implements GroceryListNetworkInteface {
         return list;
     }
 
+    /**
+     * Helper method to create the url to request to out of the passed url and 
+     * port
+     *
+     * @param String The endpoint to connect to
+     */
     private String getRequestUrl(String endpoint) {
         String req = url;
 

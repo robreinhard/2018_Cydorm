@@ -1,5 +1,6 @@
 package com.cydorm.cydorm;
 
+/** Warning deprecated class*/
 public class ContactInfo {
     protected String name = "Malc";
     protected String surname="Talk";

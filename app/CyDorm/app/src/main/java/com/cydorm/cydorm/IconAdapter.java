@@ -7,15 +7,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+/**
+ * An icon adapter for the home screen
+ * @author Malcolm Boyd
+ */
 public class IconAdapter extends BaseAdapter {
     private Context mContext;
     private IconMapping mapper;
 
+    /** Init a new icon adapter
+     * @param Context c Android context
+     * @param IconMapping IconMapping to activity
+     */
     public IconAdapter(Context c, IconMapping mapper) {
         mContext = c;
         this.mapper = mapper;
     }
 
+    /**
+     * @return int Count of the icons
+     */
     public int getCount() {
         return this.mapper.size();
     }
@@ -28,7 +39,12 @@ public class IconAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+    /** Create a new ImageView for each item referenced by the Adapter.
+     *
+     * @param int position Position of the icon
+     * @param View convertView The view to set to the returned view
+     * @param ViewGroup The group of views
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {

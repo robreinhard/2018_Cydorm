@@ -8,6 +8,10 @@ import org.java_websocket.WebSocket;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Stomp connection class to manage conneting to a stomp instance
+ * @author Malcolm Boyd
+ */
 public class StompConnection {
 
     public StompClient sc;
@@ -15,6 +19,7 @@ public class StompConnection {
     private String url = "http://proj309-vc-05.misc.iastate" +
             ".edu:8080/gs-guide-websocket/websocket";
 
+    /** New stomp connection based on sessionID*/
     public StompConnection(String sessionID) {
         this.sessionID = "99639E3783D29364472B634B3C151051";
         initStomp();
@@ -43,6 +48,10 @@ public class StompConnection {
                 });
     }
 
+    /** Send a request to the endpoint 
+     * @param String endpoint the stomp endpoint to send the request to
+     * @param String json The json payload
+     */
     public void makeRequest(String endpoint, String json) {
         this.sc.send(endpoint, json).subscribe();
     }

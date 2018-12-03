@@ -1,0 +1,122 @@
+<style>
+
+	.header,.footer {
+
+		text-align: center;
+	}
+
+	.doc {
+
+		padding-left: 20px;
+	}
+
+</style>
+<body>
+<div class="header">
+<h1>Protocol Documentation</h1>
+<h4>VC_5_CyDorm</h4>
+</div>
+<hr>
+
+<div class="doc">
+<h1>Registration/Login</h1>
+<hr>
+<p>Registration and login are done through post requests to the backend. A UserRole json object is posted to /registration . The reason why its called UserRole is because Roles (“RESIDENT”, “CA”, “ADMIN”) are on their own table. This is done for authentication purposes for what pages can/can not be accessed.</p>
+<h3>/registration POST Requestion:</h3>
+<p>http://proj309-vc-05.misc.iastate.edu:8080/registration?firstName=Harry&lastName=Potter&netID=hPotter&password=voldemort&role=ADMIN</p>
+<p>In this example:<br><br>firstName:Harry<br>
+lastName:Potter<br>
+netID:hPotter<br>
+Password:voldemort<br>
+role:ADMIN<br>
+</p>
+<p>The registration system will then convert the first four parameters to a User and add it to the table. It will then take the String, compare with the roles table, and define the User’s role. 
+</p>
+<h3>/login POST Requestion:</h3>
+<p>http://proj309-vc-05.misc.iastate.edu:8080/login?netID=hPotter&password=voldemort
+/p>
+<p>In this example:<br><br>firstName:Harry<br>
+netID:hPotter<br>
+Password:voldemort<br>
+</p>
+<p>Once the post request is sent to the server, the server will encrypt the entered password to compare the hashed passwords stored in the database. It will then return a cookie if the login is successful.
+</p>
+<hr>
+
+<!--Admin-->
+
+<h1>Add Residency / Set User to Address / Assign CA </h1>
+<hr>
+<p>Add Residency / Set User to Address / Assign CA functions require the user role to be ADMIN. This is done through the same method as /registration and /login: POST Requests.</p>
+<h3>/admin/addResidency POST Requestion:</h3>
+<p>http://proj309-vc-05.misc.iastate.edu:8080/admin/addResidency?location=Helser&sublocation=Potter&address=3714
+<p>In this example:<br><br>location:Helser<br>
+sublocation:Livingston<br>
+address:3714<br>
+</p>
+<p>The server will then add the address to the databases in the appropriate tables, and link said addresses together. 
+</p>
+<h3>/admin/setUserToResidency POST Requestion:</h3>
+<p>http://proj309-vc-05.misc.iastate.edu:8080/admin/setUserToResidency?location=Helser&sublocation=Potter&address=3714&netID=hPotter
+<p>In this example:<br><br>location:Helser<br>
+sublocation:Livingston<br>
+address:3714<br>
+netID:hPotter
+</p>
+<p>The server will then make sure the residency is valid, and if it is, assign the user (based on their netID) to it.
+</p>
+<!--Groceries-->
+<hr>
+<h1>Groceries (Web Sockets)</h1>
+<hr>
+<p>Groceris is done through web sockets</p>
+<h3>/addGroceryItem</h3>
+<p>Add grocery item now takes in a studentID  instead of the first name. This is so the database can find user.</p>
+<p>JSON Object:<br>{<br>“groceryItem”:”Banana”,<br>
+  “groceryPrice”: 3 ,<br>
+  “approved” : “F”, <br>
+  “studentID” : “hPotter”<br>}
+</p>
+<h3>/dumpGrocery</h3>
+<p>Once establishment is made with server, /dumpGrocery is called from the client side to load in all existing groceries from address</p>
+<p>JSON Object:<br>{<br>
+  "netID" : “hPotter”<br>}
+</p>
+<h3>/deleteGroceryItem</h3>
+<p>This is a delete mapping that will delete from server and cause an update</p>
+<p>JSON Object:<br>{<br>"netID":"hPotter",<br>
+  "grocery_id" : 8<br>}
+</p>
+<!--Chores-->
+<hr>
+
+<h1>Chores (Web Sockets)</h1>
+<hr>
+<p>Groceris is done through web sockets</p>
+<h3>/addChore</h3>
+<p>Add chore item now takes in a studentID  instead of the first name. This is so the database can find user.</p>
+<p>JSON Object:<br>{<br>"cItem":"cleaning",<br>
+  "date": 27 ,<br>
+  "month": 11 ,<br>
+  "year": 2018 ,<br>
+  “studentID” : “hPotter”<br>}
+</p>
+<h3>/dumpChore</h3>
+<p>Once establishment is made with server, /dumpChore is called from the client side to load in all existing chores at the address</p>
+<p>JSON Object:<br>{<br>
+  "netID" : “hPotter”<br>}
+</p>
+<h3>/deleteChoreItem</h3>
+<p>This is a delete mapping that will delete from server and cause an update</p>
+<p>JSON Object:<br>{<br>"netID":"hPotter",<br>
+  "chore_id" : 3<br>}
+</p>
+<hr>
+
+<hr>
+</div>
+<hr> 
+<div class="footer">
+<p>VC_5_CyDorm: Malcolm Boyd, Andre Chickering, Jack Potter, Rob Reinhard
+</div>
+</body>

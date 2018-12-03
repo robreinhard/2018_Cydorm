@@ -16,15 +16,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
+/**
+ * The Class MainController.
+ */
 @Controller
 public class MainController {
 
+    /** The user service. */
     @Autowired
     private UserService userService;
     
     
 
+    /**
+     * Login view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -33,6 +41,11 @@ public class MainController {
     }
 
 
+    /**
+     * Registration view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
@@ -42,6 +55,13 @@ public class MainController {
         return modelAndView;
     }
 
+    /**
+     * Creates the new user.
+     *
+     * @param userRole the user role
+     * @param bindingResult the binding result
+     * @return the model and view
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid UserRole userRole, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -67,6 +87,11 @@ public class MainController {
         return modelAndView;
     }
 
+    /**
+     * Navbar.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/navbar", method = RequestMethod.GET)
     public ModelAndView navbar(){
         ModelAndView modelAndView = new ModelAndView();

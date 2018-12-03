@@ -3,12 +3,27 @@ package web;
 import java.util.Date;
 import java.util.Calendar;
 
+
+/**
+ * The Class NextWeek.
+ */
 public class NextWeek {
 
+	/** The next seven days. */
 	public String[] nextSevenDays = new String[7];
+	
+	/** The corresponding month. */
 	public String[] correspondingMonth = new String[7];
+	
+	/** The corresponding year. */
 	public String[] correspondingYear = new String[7];
+	
+	/** The together. */
 	public String[] together = new String[7];
+	
+	/**
+	 * Instantiates a new next week.
+	 */
 	public NextWeek() {
 		
 		Calendar c = Calendar.getInstance();

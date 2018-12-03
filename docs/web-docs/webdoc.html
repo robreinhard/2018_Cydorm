@@ -1,0 +1,44 @@
+<style>
+
+	.header,.footer {
+
+		text-align: center;
+	}
+
+	.doc {
+
+		padding-left: 20px;
+	}
+
+</style>
+<body>
+<div class="header">
+<h1>Web Documentation</h1>
+<h4>VC_5_CyDorm</h4>
+</div>
+<hr>
+
+<div class="doc">
+<h2>/registration</h2>
+<p>Used to create new users. New users enter name, net-id, and their user role. On submission, the user is sent to the server and added to MySQL table. The role in role-table is linked to user. </p>
+<h2>/login</h2>
+<p>User enters their username and password. If a login is successful, it will redirect to /navbar and load in the user's data. </p>
+<h2>/navbar</h2>
+<p>This is a restricted page; you must be successfully logged in to access it. This page is where all core functionality occurs. If you are a user, you will be able to add or modify groceries and send disputes to your TA. </p>
+<h2>/ca/caView</h2>
+<p>This is a restricted page; you must be successfully logged in as a CA to use it. This view will show you all disputes sent by students in your sublocation (which is like a hall). </p>
+<h2>/admin/addResidency</h2>
+<p>This is a restricted page; you must be successfully logged in as an admin to access it. This page allows you to add residential locations to the database. Admins will enter a location,sublocation, and address. On submission, its added to database. </p>
+<h2>/admin/assignCA</h2>
+<p>This is a restricted page; you must be successfully logged in as an admin to access it. This page allows administrators to assign CAs to certain sublocations. 
+</p>
+<h2>/admin/setUserToResidency</h2>
+<p>This is a restricted page; you must be successfully logged in as an admin to access it. This page allows administrators to assign users to certain addresses. 
+</p>
+
+</div>
+<hr> 
+<div class="footer">
+<p>VC_5_CyDorm: Malcolm Boyd, Andre Chickering, Jack Potter, Rob Reinhard
+</div>
+</body>

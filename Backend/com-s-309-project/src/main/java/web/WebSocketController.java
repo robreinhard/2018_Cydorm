@@ -20,24 +20,39 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+/**
+ * The Class WebSocketController.
+ */
 @Controller
 public class WebSocketController {
 
+    /** The user service. */
     @Autowired
     private UserService userService;
     
+    /** The residency service. */
     @Autowired
     private ResidencyService residencyService;
     
+    /** The grocery service. */
     @Autowired
     private GroceryService groceryService;
     
+    /** The chore service. */
     @Autowired
     private ChoreService choreService;
     
+    /** The dispute service. */
     @Autowired
     private DisputeService disputeService;
     
+    /**
+     * Adds the grocery item.
+     *
+     * @param grocery the grocery
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/addGroceryItem")
     @SendTo("/allGroceries")
     public Set<Grocery> addGroceryItem(Grocery grocery) throws Exception {
@@ -53,6 +68,13 @@ public class WebSocketController {
     	
     }
     
+	/**
+	 * Dump grocery.
+	 *
+	 * @param jsonData the json data
+	 * @return the sets the
+	 * @throws Exception the exception
+	 */
 	@MessageMapping("/dumpGrocery")
     @SendTo("/allGroceries")
     public Set<Grocery> dumpGrocery(String jsonData) throws Exception {
@@ -66,6 +88,13 @@ public class WebSocketController {
     	
     }
     
+    /**
+     * Delete grocery.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/deleteGroceryItem")
     @SendTo("/allGroceries")
     public Set<Grocery> deleteGrocery(String jsonData) throws Exception {
@@ -82,6 +111,13 @@ public class WebSocketController {
     	
     }
     
+    /**
+     * Adds the chore.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/addChore")
     @SendTo("/allChores")
     public Set<Chore> addChore(String jsonData) throws Exception {
@@ -107,6 +143,13 @@ public class WebSocketController {
          
     }
     
+    /**
+     * Dump chore.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/dumpChore")
     @SendTo("/allChores")
     public Set<Chore> dumpChore(String jsonData) throws Exception {
@@ -120,6 +163,13 @@ public class WebSocketController {
     	
     }
     
+    /**
+     * Delete chore.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/deleteChoreItem")
     @SendTo("/allChores")
     public Set<Chore> deleteChore(String jsonData) throws Exception {
@@ -141,6 +191,13 @@ public class WebSocketController {
     }
     
     
+    /**
+     * Adds the dispute.
+     *
+     * @param dispute the dispute
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/addDispute")
     @SendTo("/allDisputes")
     public Set<Dispute> addDispute(Dispute dispute) throws Exception {
@@ -154,6 +211,13 @@ public class WebSocketController {
         return user.getAddress().getDisputes();
     }
     
+    /**
+     * Dump dispute.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/dumpDispute")
     @SendTo("/allDisputes")
     public Set<Dispute> dumpDispute(String jsonData) throws Exception {
@@ -167,6 +231,13 @@ public class WebSocketController {
     	
     }
     
+    /**
+     * Delete dispute.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/deleteDispute")
     @SendTo("/allDisputes")
     public Set<Dispute> deleteDispute(String jsonData) throws Exception {
@@ -183,6 +254,13 @@ public class WebSocketController {
     	
     }
     
+    /**
+     * Ca dump dispute.
+     *
+     * @param jsonData the json data
+     * @return the sets the
+     * @throws Exception the exception
+     */
     @MessageMapping("/dumpCADispute")
     @SendTo("/caDispute")
     public Set<Dispute> caDumpDispute(String jsonData) throws Exception {

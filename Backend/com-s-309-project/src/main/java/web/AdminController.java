@@ -16,17 +16,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
+/**
+ * The Class AdminController.
+ */
 @Controller
 public class AdminController {
 
+    /** The user service. */
     @Autowired
     private UserService userService;
     
+    /** The residency service. */
     @Autowired
     private ResidencyService residencyService;
     
 
+    /**
+     * Admin.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/admin/addResidency", method = RequestMethod.GET)
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();
@@ -41,6 +50,13 @@ public class AdminController {
     
     
 
+    /**
+     * Creates the residency.
+     *
+     * @param residency the residency
+     * @param bindingResult the binding result
+     * @return the model and view
+     */
     @RequestMapping(value = "/admin/addResidency", method = RequestMethod.POST)
     public ModelAndView createResidency (@Valid Residency residency, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -82,6 +98,11 @@ public class AdminController {
        
     }
     
+    /**
+     * Admin 2.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/admin/setUserToResidency", method = RequestMethod.GET)
     public ModelAndView admin2(){
         ModelAndView modelAndView = new ModelAndView();
@@ -94,6 +115,13 @@ public class AdminController {
         return modelAndView;
     }
     
+    /**
+     * Sets the user.
+     *
+     * @param residency the residency
+     * @param bindingResult the binding result
+     * @return the model and view
+     */
     @RequestMapping(value = "/admin/setUserToResidency", method = RequestMethod.POST)
     public ModelAndView setUser (@Valid Residency residency, BindingResult bindingResult) {
     	
@@ -126,6 +154,11 @@ public class AdminController {
         
     }
     
+    /**
+     * Assign CA get.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value = "/admin/assignCA", method = RequestMethod.GET)
     public ModelAndView assignCAGet(){
     	ModelAndView modelAndView = new ModelAndView();
@@ -138,6 +171,13 @@ public class AdminController {
         return modelAndView;
     }
     
+    /**
+     * Assign CA post.
+     *
+     * @param residency the residency
+     * @param bindingResult the binding result
+     * @return the model and view
+     */
     @RequestMapping(value = "/admin/assignCA", method = RequestMethod.POST)
     public ModelAndView assignCAPost(@Valid Residency residency, BindingResult bindingResult) {
     	

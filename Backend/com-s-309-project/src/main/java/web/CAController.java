@@ -16,17 +16,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
+/**
+ * The Class CAController.
+ */
 @Controller
 public class CAController {
 
+    /** The user service. */
     @Autowired
     private UserService userService;
     
+    /** The residency service. */
     @Autowired
     private ResidencyService residencyService;
     
 
+    /**
+     * Admin.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/ca/", method = RequestMethod.GET)
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();

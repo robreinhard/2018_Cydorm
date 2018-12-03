@@ -21,6 +21,7 @@ public class ServerSession {
 
     //Login
 
+    /**
     public void login() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 new Response.Listener<JSONObject>() {
@@ -41,4 +42,5 @@ public class ServerSession {
             });
         VolleySingleton.getInstance().addToRequestQueue(SOMEREQUEST, "LOGIN");
     }
+     */
 }

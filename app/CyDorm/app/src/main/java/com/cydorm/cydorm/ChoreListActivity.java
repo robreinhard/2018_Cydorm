@@ -12,12 +12,24 @@ import android.widget.ListView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * Activity displaying the chore list
+ *
+ * @author Jack Potter
+ */
 public class ChoreListActivity extends AppCompatActivity {
 
     private StompConnection sc;
     ListView mChoreList;
     private ArrayAdapter<ChoreItem> mAdapter;
 
+    /** Android create the activity
+     *
+     * Creates the activity, adds the plus button at bottom right, subscribes
+     * to server, and updates the chore list.
+     *
+     * @param Bundle android context
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +63,8 @@ public class ChoreListActivity extends AppCompatActivity {
 
     }
 
+    /**Subscribes to the chores web socket adds list items to chore list
+     */
     private void subscribeToChores() {
         System.out.println("XXXXXXXXX Just got ");
         this.sc.sc.send("/dumpChore", "{ \"netID\" : \"mjboyd\" }").subscribe(topicMessage -> {
@@ -72,6 +86,9 @@ public class ChoreListActivity extends AppCompatActivity {
         });
     }
 
+    /** Update the chore list with new chore
+     * @param JSONObject Json to be parsed and added as a new chore
+     */
     private void updateList(JSONObject jo) {
         runOnUiThread(new Runnable() {
             @Override

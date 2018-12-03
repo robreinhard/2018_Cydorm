@@ -18,22 +18,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * The Class WebSecurityConfig.
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
+	/** The b crypt password encoder. */
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	/** The data source. */
 	@Autowired
     private DataSource dataSource;
 
+    /** The users query. */
     @Value("${spring.queries.users-query}")
     private String usersQuery;
 
+    /** The roles query. */
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -45,6 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(bCryptPasswordEncoder);
     }
     
+	/* (non-Javadoc)
+	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
+	 */
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -65,6 +78,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .accessDeniedPage("/access-denied");
     }
 
+    /* (non-Javadoc)
+     * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.WebSecurity)
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web

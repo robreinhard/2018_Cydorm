@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~THE java request is cat");
+        ServerSession session = new ServerSession("test", "test", this);
+
         //Setup the IconMappingScheme
         final IconMapping im = new IconMapping();
 

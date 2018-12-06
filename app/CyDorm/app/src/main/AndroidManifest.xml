@@ -27,9 +27,12 @@
         <activity android:name=".Login" />
         <activity android:name=".LoadImage" />
         <activity
-            android:name=".ChoreListActivity"
-            android:label="@string/title_activity_chore_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:name=".ChoreListActivity"
+                android:label="@string/title_activity_chore_list"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
         <activity android:name=".AddViaUPC"></activity>
     </application>
 

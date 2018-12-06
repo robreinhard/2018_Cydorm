@@ -3,10 +3,13 @@ package com.cydorm.cydorm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
+
+import java.net.HttpCookie;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,12 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~THE java request is cat");
-        ServerSession session = new ServerSession("test", "test", this);
+        ServerSessionSingleton session = ServerSessionSingleton.getInstance();
+        session.login("test", "test");
 
         //Setup the IconMappingScheme
         final IconMapping im = new IconMapping();
-
 
         //If you want to add a new activity to the home screen, create the
         // activity and add it to the below lines

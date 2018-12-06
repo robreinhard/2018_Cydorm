@@ -2,7 +2,7 @@ allUsers = [];
 var loadedTable = [];
 window.onload = function() {
 	
-	var requestURL = 'http://localhost:8080/allUsers';
+	var requestURL = 'http://proj309-vc-05.misc.iastate.edu:8080/allUsers';
 	var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';

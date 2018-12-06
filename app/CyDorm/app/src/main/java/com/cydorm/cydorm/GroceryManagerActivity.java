@@ -277,6 +277,19 @@ public class GroceryManagerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 itemInd = i;
                 mItemEdit.setText(adapterView.getItemAtPosition(i).toString());
+                GroceryItem gi = (GroceryItem) adapterView.getItemAtPosition(i);
+                selectedPrice = gi.getPrice();
+                selectedName = gi.getItem();
+                selectedID = gi.getID();
+                 Intent c = new Intent(GroceryManagerActivity.this,
+                         AddGroceryActivity.class);
+                c.putExtra("price", selectedPrice);
+                c.putExtra("name", selectedName);
+                c.putExtra("id", selectedID);
+                startActivity(c);
+                selectedPrice = null;
+                selectedName = null;
+                selectedID = null;
             }
     }
 

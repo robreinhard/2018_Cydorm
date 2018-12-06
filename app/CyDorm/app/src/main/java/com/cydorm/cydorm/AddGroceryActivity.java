@@ -18,11 +18,12 @@ public class AddGroceryActivity extends AppCompatActivity {
         EditText nameText = (EditText) findViewById(R.id.groceryEditText);
         EditText priceText = (EditText) findViewById(R.id.priceEditText);
         Button addBut = (Button) findViewById(R.id.addGroceryButton);
+        Button removeBut = (Button) findViewById(R.id.removeGroceryButton);
 
         String importString = getIntent().getStringExtra("name");
         String importPrice = getIntent().getStringExtra("price");
         String importID = getIntent().getStringExtra("id");
-        if(!importString.isEmpty() && !importPrice.isEmpty() && !importID.isEmpty()) {
+        if(importString != null && importPrice != null && importID != null) {
             nameText.setText(getIntent().getStringExtra("name"));
             priceText.setText(getIntent().getStringExtra("price"));
             this.isEditing = true;
@@ -46,5 +47,18 @@ public class AddGroceryActivity extends AppCompatActivity {
                 finish();
             }
         });
+        removeBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isEditing) {
+                    //Remove the item first
+                    sc.sc.send("/deleteGroceryItem", String.format("{\"netID\":\"%s\" , " +
+                            "\"grocery_id\" : \" %s \" }", ServerSessionSingleton.getInstance().getUser(), importID)).subscribe();
+                }
+                finish();
+            }
+        });
+
+
     }
 }

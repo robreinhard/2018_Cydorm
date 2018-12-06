@@ -29,6 +29,11 @@ public class AddGroceryActivity extends AppCompatActivity {
             this.isEditing = true;
         }
 
+        if(importString != null && importPrice != null && importID.equals("")) {
+            nameText.setText(getIntent().getStringExtra("name"));
+            priceText.setText(getIntent().getStringExtra("price"));
+        }
+
         StompConnection sc = new StompConnection("8B8CD50EF9319D75C54BB3489A8810D3");
 
         addBut.setOnClickListener(new View.OnClickListener() {

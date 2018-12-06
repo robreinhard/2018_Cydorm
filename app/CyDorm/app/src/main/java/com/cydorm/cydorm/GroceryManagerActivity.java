@@ -77,9 +77,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
         this.listNetwork = new GroceryListNetwork(this);
 
         mGroceryList = (ListView) findViewById(R.id.grocery_listView);
-        mItemEdit = (EditText) findViewById(R.id.item_editText);
-        mAddButton = (Button) findViewById(R.id.add_button);
-        mRemoveButton = (Button) findViewById(R.id.remove_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         mGroceryList.setAdapter(mAdapter);
@@ -92,10 +89,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
 
         //Get grocery list and add it
         this.getGroceryList();
-
-        //Add button click
-        mAddButton.setOnClickListener(new AddButtonClickedListener());
-        mRemoveButton.setOnClickListener(new RemoveButtonClickedListener());
 
         // Clicking Item
         mGroceryList.setOnItemClickListener(new GroceryItemClickedListener());
@@ -276,7 +269,19 @@ public class GroceryManagerActivity extends AppCompatActivity {
              @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 itemInd = i;
-                mItemEdit.setText(adapterView.getItemAtPosition(i).toString());
+                GroceryItem gi = (GroceryItem) adapterView.getItemAtPosition(i);
+                selectedPrice = gi.getPrice();
+                selectedName = gi.getItem();
+                selectedID = gi.getID();
+                 Intent c = new Intent(GroceryManagerActivity.this,
+                         AddGroceryActivity.class);
+                c.putExtra("price", selectedPrice);
+                c.putExtra("name", selectedName);
+                c.putExtra("id", selectedID);
+                startActivity(c);
+                selectedPrice = null;
+                selectedName = null;
+                selectedID = null;
             }
     }
 

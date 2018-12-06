@@ -1,5 +1,7 @@
 package com.cydorm.cydorm;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import android.support.v7.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,6 +55,17 @@ public class GroceryManagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_list);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GroceryManagerActivity.this,
+                        AddGroceryActivity.class);
+                startActivity(i);
+            }
+        });
 
         this.listNetwork = new GroceryListNetwork(this);
 

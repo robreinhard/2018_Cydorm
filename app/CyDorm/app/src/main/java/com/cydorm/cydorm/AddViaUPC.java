@@ -104,18 +104,21 @@ public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.Res
             item = Jarray.getJSONObject(0).get("product_name").toString();
             price = Jarray.getJSONObject(0).getJSONArray("stores").getJSONObject(0).get("store_price").toString();
 
-            //String[] itemArray = new String[]{item, price};
+            String[] itemArray = new String[]{item, price};
             //previousScans.put(barcode, itemArray);
+
+            process(itemArray);
+            return "Adding " + item + " for $" + price;
         }
         catch (Exception E){
             System.out.println(E);
             return(E.toString());
         }
-        return "Adding " + item + " for $" + price;
+
 
     }
 
-    private void process(String item){
+    private void process(String[] itemArray){
 
     }
 

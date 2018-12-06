@@ -130,7 +130,7 @@ function updateChoresList(chores) {
 			  
 		  var isNotPushed = true;
 		  for (var j=0; j < toDoChores.length;j++) {
-			alert(chores[i].chore_id);	//debug
+			//alert(chores[i].chore_id);	//debug
 			  if (chores[i].chore_id == toDoChores[j].chore_id) {
 				  
 				  isNotPushed = false;

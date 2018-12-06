@@ -29,7 +29,7 @@ public class Chore {
 	/** The chore id. */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int chore_id;
+	private Integer chore_id;
 	
 	/** The chore. */
 	@Column(name="chore")
@@ -61,6 +61,15 @@ public class Chore {
 	}
 	
 	/**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public Integer getId() {
+    		return chore_id;
+    }
+    
+	/**
 	 * Gets the due date.
 	 *
 	 * @return the due date
@@ -90,6 +99,15 @@ public class Chore {
 		return chore;
 	}
 	
+    /**
+     * Sets the id.
+     *
+     * @param id the new id
+     */
+    public void setId(Integer id) {
+    		id = this.chore_id;
+    }
+    
 	/**
 	 * Sets the chore.
 	 *

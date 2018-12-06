@@ -3,6 +3,7 @@ package com.cydorm.cydorm;
 import java.util.ArrayList;
 import java.util.List;
 
+/** No longer used mocking interface for grocery list functions*/
 public class GroceryListNetworkMock implements GroceryListNetworkInteface {
 
     public GroceryListNetworkMock() {

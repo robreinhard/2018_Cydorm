@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/** A no longer used class for the main activity*/
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
     private List<ContactInfo> contactList;

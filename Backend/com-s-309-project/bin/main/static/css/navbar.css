@@ -9,9 +9,26 @@ ul {
 	font-family: Roboto;
 }
 
+li form button {
+	
+	background-color: #3066BE;
+	height: 60px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	border: none;
+	font-family: Roboto;
+	outline: none;
+	color: white;
+	text-decoration: none;
+	line-height: 60px;
+	vertical-align: middle;
+	transition: .2s;
+	font-size: 16px;
+}
 
-
-li a {
+li a, li span {
 
 	color: white;
 	text-decoration: none;
@@ -23,7 +40,7 @@ li a {
 	transition: .2s;
 }
 
-li a:hover {
+li a:hover, li span:hover, li form button:hover {
 
 	background-color: #00338B;
 
@@ -42,6 +59,13 @@ body {
 	font-size: 28px;
 	width: 225px;
 
+}
+
+.accountNavbar{
+
+	float:right;
+	width: 150px;
+	
 }
 
 .logOutNavbar {
@@ -99,7 +123,7 @@ body {
 	border-radius: 5px;
 	margin-right: 1.5%;
 	margin-bottom: 1.5%;
-  
+	overflow: auto;
 }
 
 .noRightMarginColumn{
@@ -109,22 +133,72 @@ body {
 
 .colHeader {
 
-	width: 100%;
+	width: 32%;
 	height: 60px;
 	background-color: #3066BE;
+	position:fixed;
+	
+}
+
+.colDeclaration {
+
+	width: 100%;
+	height: 30px;
+	background-color: #174DA5;
 }
 
 .colHeaderTxt {
 
 	color: white;
 	text-decoration: none;
-	
-	display: block;
 	vertical-align: middle;
 	line-height: 60px;
 	font-family: Roboto;
 	font-size: 24px;
 	padding-left: 10px;
+	float: left;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+	display: block;
+
+}
+
+.colSubHeaderTxt {
+
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 30px;
+	font-family: Roboto;
+	font-size: 16px;
+	padding-left: 10px;
+	float: left;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+
+}
+
+.add {
+
+	color: white;
+	text-decoration: none;
+	display: block;
+	vertical-align: middle;
+	height: 60px;
+	font-family: Roboto;
+	padding-right: 10px;
+	font-size: 24px;
+	float: right;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+	
 }
 
 .col100 {
@@ -134,4 +208,310 @@ body {
 	border: 2px solid #3066BE;
 	border-radius: 5px;
 	
+}
+
+.listContent {
+	
+	overflow: hidden;
+	width: 100%;
+	
+}
+
+.disputeItemContainer {
+	
+	height: 120px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+}
+
+.groceryItemContainer {
+	
+	height: 50px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+ 	
+	 
+}
+
+.choresItemContainer {
+	
+	height: 75px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+ 	
+}
+/*This is for groceries. Needs to be refactored.*/
+.containerComponents {
+	
+	display: inline-block;
+	font-family: Roboto;
+	font-size: 20px;
+	padding-left: 10px;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+	line-height:0px;
+ 	vertical-align: middle;	   
+ 	min-width: 20%;
+}
+
+.theLists {
+	
+	margin-top: 60px;
+	
+}
+.floatRight {
+	
+	float: right;
+	padding-right: 20px;
+}
+
+
+.choresLeftText {
+	
+	padding-left: 10px;
+	font-family: Roboto;
+	width: 33%;
+	float: left;
+	verticle-align: middle;
+}
+
+.lastDone {
+	
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.choresHeader {
+	
+	font-size: 20px;
+	margin-bottom: 0px;
+	
+}
+
+.choresRightText {
+	
+	padding-right: 10px;
+	verticle-align: middle;
+	font-family: Roboto;
+	float: right;
+	
+}
+.dueDate {
+	
+	
+}
+
+/*Inspired from : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+   	font-familiy: Roboto;
+    
+}
+
+
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 0;
+    border: 2px solid #3066BE;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content-3 {
+    position: relative;
+    background-color: white;
+    margin-left: 66%;
+    margin-right: 33%;
+    padding: 0;
+    border: 2px solid #3066BE;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #3066BE;
+    color: white;
+    font-family: Roboto;
+	height: 60px;
+
+}
+
+.modal-body {
+	
+	padding: 2px 16px;
+    font-family: Roboto;
+	overflow: auto;
+  display: inline-block;
+	width: 100%;
+	}
+
+.modal-body input[type=text]  {
+	
+	width: 40%;
+	font-size: 24px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #aaa;
+	padding-left: 5px;
+	height: 40px;
+	float: left;
+	margin-left:2px;
+}
+
+.modifyGroceryItemContainer input[type=text], .addChoreContainer input[type=text], .addChoreContainer select  {
+	
+	width: 90%;
+	font-size: 24px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #aaa;
+	padding-left: 5px;
+	height: 40px;
+	float: left;
+	margin-left:2px;
+}
+
+.modal-body input[type=text]:focus {
+	
+	border: 2px solid black;
+	outline: none;
+	transition: .5s;
+}
+.button-footer {
+    padding: 2px 16px;
+    background-color: #174DA5;
+    color: white;
+    width: 100%;
+    height: 60px;
+	color: white;
+    font-family: Roboto;
+ 	font-size: 24px;  
+ 	border: 0; 
+ 	outline: none;
+ }
+
+.button-footer:active {
+	
+	background-color: #00348C;
+}
+
+.removeItem {
+    padding: 2px 16px;
+    background-color: #A91607;
+    color: white;
+    width: 100%;
+    height: 60px;
+	color: white;
+    font-family: Roboto;
+ 	font-size: 24px;  
+ 	border: 0; 
+ 	outline: none;
+ }
+
+.removeItem:active {
+	
+	background-color: #900000;
+}
+
+.floatLeft {
+	
+	float: left;
+}
+
+.addGroceryItemContainer, .addChoreContainer {
+	
+	width: 100%;
+}
+
+
+.addGroceryCheckbox {
+	
+	float: left;
+	line-height: 40px;
+	verticle-align: middle;
+}
+
+.cancel {
+	
+	float: right;
+	color: white;
+	text-decoration: none;
+	display: block;
+	vertical-align: middle;
+	height: 60px;
+	font-family: Roboto;
+	padding-right: 10px;
+	font-size: 24px;
+	float: right;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+    cursor: pointer;
+}
+
+.addHeader {
+	
+	display: block;
+	float: left;
+
 }

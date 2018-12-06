@@ -8,7 +8,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-//Singleton Code taken from https://www.androidtutorialpoint.com/networking/android-volley-tutorial/
+//
+/** Singleton for the entire volley instance
+ * Singleton Code taken from 
+ * https://www.androidtutorialpoint.com/networking/android-volley-tutorial/
+ */
 public class VolleySingleton {
     private static VolleySingleton mAppSingletonInstance;
     private RequestQueue mRequestQueue;

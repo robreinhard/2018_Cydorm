@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="/css/navbar.css">
 	
   	<title>CyDorm Log In</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="/javascript/navbar.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script th:inline="javascript">
+	
+		var netID = /*[[${netID}]]*/ '';
+		var nextSevenDays = /*[[${nextWeek.nextSevenDays}]]*/ '';
+		var correspondingMonth = /*[[${nextWeek.correspondingMonth}]]*/ '';
+		var correspondingYear = /*[[${nextWeek.correspondingYear}]]*/ '';
 
-
+		console.log(nextSevenDays);
+		console.log(correspondingMonth);
+		console.log(correspondingYear);
+	
+	</script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -21,8 +36,9 @@
 			<li><a href="/chores" class="logOutNavbar">Chores</a></li>
 		</div>
 		<div class="right">
+		    <li><span th:utext="${userName}" class="accountNavbar"></span></li>
 			<li><a href="/settings" class="settingsNavbar"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
-			<li><a href="#" class="logOutNavbar">Log Out</a></li>
+			<li><form th:action="@{logout}" method="get"><button type="Submit" class="logOutNavbar">Log Out</button></form></li>
 		</div>
 	</ul>
 
@@ -30,22 +46,209 @@
 		<div class="content">
 			<div class="col33">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Disputes</a>
+					<a href="/disputes" class="colHeaderTxt">Disputes</a>
+					<button onclick="disputeAdd()" class="add">+</button>
+				</div>
+				<div class="theLists">	
+				<div class="listContent" id="pendingDisputes"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Disputes</i></a>
+					</div>
+				
+				</div>
+				
+				<div class="listContent" id="pastDisputes">
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Past Disputes</i></a>
+					</div>
+				</div>
 				</div>
 			</div>
 			<div class="col33">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Grocery</a>
+					<a href="/grocery" class="colHeaderTxt">Grocery</a>
+					<button onclick="groceryAdd()" class="add">+</button>
 
+				</div>
+				<div class="theLists">	
+				<div class="listContent" id='toPurchase'> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>To Purchase</i></a>
+					</div>
+					
+				</div>
+				
+				<div class="listContent" id='pendingPurchase'>
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Purchases</i></a>
+					</div>
+					
+				</div>
 				</div>
 			</div>
 			<div class="col33 noRightMarginColumn">
 				<div class="colHeader">
-					<a href="#" class="colHeaderTxt">Chores</a>
+					<a href="/chores" class="colHeaderTxt">Chores</a>
+					<button onclick="choreAdd()" class="add">+</button>
 
+				</div>
+				<div class="theLists">
+				<div class="listContent" id='toDoChores'> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>To Do</i></a>
+					</div>
+					
+				
+				</div>
+				<!--<div class="listContent"> 
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Past Due</i></a>
+					</div>
+					
+				</div>-->
+				<div class="listContent" id='pendingChores'>
+					<div class="colDeclaration">
+						<a href="/disputes" class="colSubHeaderTxt"><i>Pending</i></a>
+					</div>
+					
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<div id="groceryAddModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Add Purchases:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem1" placeholder="Item 1">
+    		  <input type="text" id="pItem1" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck1" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem2" placeholder="Item 2">
+         	  <input type="text" id="pItem2" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck2" class=" addGroceryCheckbox">
+	      </div>
+	      <div class="addGroceryItemContainer">
+		      <input type="text" id="gItem3" placeholder="Item 3">
+         	  <input type="text" id="pItem3" placeholder="Price">
+		      
+			  <input type="checkbox" id="gCheck3" class=" addGroceryCheckbox">
+	      </div>
+	     
+	    </div>
+	    <button onclick="addGroceryItems()" class="button-footer">Add Items</button>
+	  </div>
+	
+	</div>
+	<div id="groceryEditModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Modify Purchase:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="modifyGroceryItemContainer">
+		      <input type="text" id="gItem" >
+    		  <input type="text" id="gPrice" >
+		      
+	      </div>
+	      
+	    </div>
+	    <button onclick="toDeleteGrocery()" class="removeItem">REMOVE ITEM</button>
+   	    <button onclick="modifyGrocery()" class="button-footer">Modify Item</button>
+	    
+	  </div>
+	
+	</div>
+	
+	<div id="choreAddModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content-3">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Add Chore:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addChoreContainer">
+	      	  <input type="text" id="cItem" placeholder="Chore">
+	      	  <select id="dateItem"> 
+   	  			<option value="" disabled selected>Due Date</option>
+	      	  	<option th:text="${nextWeek.together[0]}" value="0"></option>
+    	  	    <option th:text="${nextWeek.together[1]}" value="1"></option>
+	      	  	<option th:text="${nextWeek.together[2]}" value="2"></option>
+	      	  	<option th:text="${nextWeek.together[3]}" value="3"></option>
+	      	  	<option th:text="${nextWeek.together[4]}" value="4"></option>
+	      	  	<option th:text="${nextWeek.together[5]}" value="5"></option>
+	      	  	<option th:text="${nextWeek.together[6]}" value="6"></option>
+	      	  
+	      	  </select>
+	      </div>
+	    </div>
+	    <button onclick="addChore()" class="button-footer">Add Chore</button>
+	  </div>
+	
+	</div>
+	<div id="choreEditModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content-3">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Modify Purchase:</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addChoreContainer">
+	      	  <input type="text" id="cItemMod">
+	      	  <select id="dateItemMod"> 
+   	  			<option value="" disabled selected>Due Date</option>
+	      	  	<option th:text="${nextWeek.together[0]}" value="0"></option>
+    	  	    <option th:text="${nextWeek.together[1]}" value="1"></option>
+	      	  	<option th:text="${nextWeek.together[2]}" value="2"></option>
+	      	  	<option th:text="${nextWeek.together[3]}" value="3"></option>
+	      	  	<option th:text="${nextWeek.together[4]}" value="4"></option>
+	      	  	<option th:text="${nextWeek.together[5]}" value="5"></option>
+	      	  	<option th:text="${nextWeek.together[6]}" value="6"></option>
+	      	  
+	      	  </select>
+	      </div>
+	      
+	    </div>
+	    <button onclick="toDeleteChore()" class="removeItem">REMOVE ITEM</button>
+   	    <button onclick="modifyChore()" class="button-footer">Modify Item</button>
+	    
+	  </div>
+	
+	</div>
+	<div id="disputeAddModal" class="modal">
+	
+	  <!-- Modal content -->
+	  <div class="modal-content-1">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Send Dispute (to CA):</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addDisputeContainer">
+    	  	  <input type="text" id="dTitle" placeholder="title">
+	      	  <textarea id="dMessage"></textarea>
+	      	  
+	      	  
+	      </div>
+	    </div>
+	    <button onclick="addDispute()" class="button-footer">Send Dispute</button>
+	  </div>
+	
+	</div>
 </body>

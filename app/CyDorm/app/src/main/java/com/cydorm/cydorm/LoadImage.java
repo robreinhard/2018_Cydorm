@@ -24,7 +24,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.Normalizer;
 import java.util.ArrayList;
-
+/**
+ * Activity which allows the OCR scanning of grocery lists using Tesseract.
+ *
+ */
 public class LoadImage extends AppCompatActivity {
 
     StompConnection sc;
@@ -33,6 +36,11 @@ public class LoadImage extends AppCompatActivity {
     private TessBaseAPI mTess;
     String datapath = "";
 
+    /**
+     * @param Bundle savedInstanceState Saved state of activity instance
+     * Standard Android onCreate function
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,10 @@ public class LoadImage extends AppCompatActivity {
 
     }
 
+    /**
+     * @param File dir directory to check for useable training data files
+     * These training data files are necessary for tesseract OCR
+     */
     private void checkFile(File dir) {
         if (!dir.exists()&& dir.mkdirs()){
             copyFiles();
@@ -64,6 +76,9 @@ public class LoadImage extends AppCompatActivity {
         }
     }
 
+    /**
+     * Copies training data into clean file for tesseract to use
+     */
     private void copyFiles() {
         try {
             String filepath = datapath + "/tessdata/eng.traineddata";
@@ -89,6 +104,12 @@ public class LoadImage extends AppCompatActivity {
         }
     }
 
+    /**
+     * @param View view 
+     * @return String OCRresult
+     *
+     * This method scans the image with tessaract and generates a string of all detected characters
+     */
     public String runOCR(View view){
         String OCRresult = null;
         mTess.setImage(image);
@@ -109,16 +130,32 @@ public class LoadImage extends AppCompatActivity {
         return OCRresult;
     }
 
+    /**
+     * @return String[] groceries
+     * Currently returning test values, method used for testing
+     */
     private String[] getGroceries(){
         String[] testVals = new String[]{"Aquafina", "Sponge", "NOT REAL"};
         return testVals;
     }
 
+
+
+    /**
+     * @param GroceryItem item Item to remove
+     * Creates and sends authorized request to remove grocery item
+     */
     private void removeGrocery(GroceryItem item){
         this.sc.sc.send("/deleteGroceryItem", "{\"netID\":\"jpotter\" , " +
                 "\"grocery_id\" : \"" + item.getID() + "\" }").subscribe();
     }
 
+    /**
+     * @param StompClient mStompClient Stomp client used for connection
+     * @return ArrayList<GroceryItem> returns ArrayList of grocery items
+     *
+     * This function fetches the grocery list from the server
+     */
     private ArrayList<GroceryItem> getGroceryList(StompClient mStompClient) {
 
         ArrayList<GroceryItem> groceryList = new ArrayList<GroceryItem>();

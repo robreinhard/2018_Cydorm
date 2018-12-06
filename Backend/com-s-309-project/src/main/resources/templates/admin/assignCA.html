@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+	
+  	<title>CyDorm Log In</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+	<ul>
+		<div class="left">
+			<li><a href="/navbar" class="cyDormNavbar">CyDorm</a></li>
+			<li><a href="/disputes" class="logOutNavbar">Disputes</a></li>
+			<li><a href="/groceries" class="logOutNavbar">Groceries</a></li>
+			<li><a href="/chores" class="logOutNavbar">Chores</a></li>
+		</div>
+		<div class="right">
+		    <li><span th:utext="${userName}" class="accountNavbar"></span></li>
+			<li><a href="/settings" class="settingsNavbar"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+			<li><form th:action="@{logout}" method="get"><button type="Submit" class="logOutNavbar">Log Out</button></form></li>
+		</div>
+	</ul>
+	
+	<div class="container">
+	
+		<h1>Set CA to Sublocation:</h1>
+		<form autocomplete="off" action="#" th:action="@{/admin/assignCA}" th:object="${residency}" method="post" role="form"> 
+		
+				<input type="text" name="location" th:field="*{location}" placeholder="Location"/>
+				<input type="text" name="sublocation" th:field="*{sublocation}" placeholder="Sublocations"/>
+				<input type="text" name="address" th:field="*{address}" placeholder="Address (Their Room)"/>
+				<input type="text" name="netID" th:field="*{netID}" placeholder="NetID"/>
+				<button class="loginButton" type="submit">Set CA to Sublocation (and assign them address)</button>
+
+		</form>
+	</div>
+	
+	
+</body>

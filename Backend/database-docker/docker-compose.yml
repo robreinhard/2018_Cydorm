@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysql-db
+    ports:
+        - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "mypassword"
+      MYSQL_DATABASE: "CyDorm"
+      MYSQL_USER: "cyAdmin"
+      MYSQL_PASSWORD: "VC5_309Group#!"
+      ON_CREATE_DB: "CyDorm"
+    volumes:
+      - data:/var/lib/mysql
+      - init.sql:/docker-entrypoint-initdb.d/:ro
+
+volumes:
+  data:
+  init.sql:

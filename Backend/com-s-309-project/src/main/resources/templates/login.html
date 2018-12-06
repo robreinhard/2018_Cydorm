@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
@@ -14,16 +16,16 @@
 		<h1 class="logo">CyDorm</h1>
 
 		<div class="loginform">
-			<form> 
+			<form th:action="@{/login}" method="POST"> 
 				<div id="#loginTextContainer">
 
 					<h1 class="centerRoboto" id="loginText">Log In</h1>
 
 				</div>
-				<input type="text" name="netid" placeholder="Net-ID">
-				<input type="text" name="password" placeholder="Password">
+				<input type="text" id="netID" name="netID" placeholder="Net-ID">
+				<input type="password" id="password" name="password" placeholder="Password">
 
-				<button class="loginButton">Log In</button>
+				<button class="loginButton" type="Submit">Log In</button>
 
 				<a href="#" class="centerRoboto" id="forgotPasswordText">Forgot Password?</a>
 			</form>

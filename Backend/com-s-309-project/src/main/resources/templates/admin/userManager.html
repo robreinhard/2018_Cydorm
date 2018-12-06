@@ -30,23 +30,23 @@
 	</ul>
 	<div class="userManager">
 	<div class="searchFilter">
-	<input style="background-image:url('/images/searchicon.png');" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+	<input style="background-image:url('/images/searchicon.png');" type="text" id="myInput" onkeyup="searchFilter()" placeholder="Search" title="Type in a name">
 	<form enctype="multipart/form-data" th:action="@{/admin/userManager}" method="post" id="userTxtForm">
 	<div class="fileupload-btn-wrapper">
-  		<button class="filebtn">Upload a file</button>
+  		<button class="filebtn">File Upload</button>
   		<input type="file" name="file" onchange="form.submit()"/>
 	</div>	
+	
 	</form>
 	<select name="cars" id="searchBy">
 	    <option value="" disabled selected>Search By</option>
-  		<option value="firstName">First Name</option>
-  		<option value="firstName">First Name</option>
-  		<option value="lastName">LastName</option>
-  		<option value="netID">netID</option>
-  		<option value="role">Role</option>
-		<option value="location">Location</option>
-		<option value="sublocation">Sublocation</option>
-  		<option value="address">Address</option>
+  		<option value=0>First Name</option>
+  		<option value=1>LastName</option>
+  		<option value=2>netID</option>
+  		<option value=3>Role</option>
+		<option value=4>Location</option>
+		<option value=5>Sublocation</option>
+  		<option value=6>Address</option>
 	</select>
 	</div>
 	<table id="userTable">
@@ -65,6 +65,9 @@
     
     </tbody>
   </table>
+  
+  <button class="saveUserChangeButton" onclick="submitChanges()">Save</button>
+  
     </div>
 	
 	

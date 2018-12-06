@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent i  = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(i);
+
         ServerSessionSingleton session = ServerSessionSingleton.getInstance();
         session.login("test", "test");
 

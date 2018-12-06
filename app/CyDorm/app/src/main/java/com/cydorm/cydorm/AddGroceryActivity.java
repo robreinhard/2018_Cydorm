@@ -28,8 +28,7 @@ public class AddGroceryActivity extends AppCompatActivity {
             priceText.setText(getIntent().getStringExtra("price"));
             this.isEditing = true;
         }
-
-        if(importString != null && importPrice != null && importID.equals("")) {
+        if(importString != null && importPrice != null && importID != null && importID.equals("")) {
             nameText.setText(getIntent().getStringExtra("name"));
             priceText.setText(getIntent().getStringExtra("price"));
         }

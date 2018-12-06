@@ -28,7 +28,7 @@ public class Dispute {
 	/** The dispute id. */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int dispute_id;
+	public Integer dispute_id;
 	
 	/** The dispute name. */
 	@Column(name="disputeName")
@@ -77,6 +77,24 @@ public class Dispute {
 		return visability;
 	}
 	
+    /**
+     * Sets the id.
+     *
+     * @param id the new id
+     */
+    public void setId(Integer id) {
+    		id = this.dispute_id;
+    }
+    
+	/**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public Integer getId() {
+    		return dispute_id;
+    }
+    
 	/**
 	 * Sets the visability.
 	 *

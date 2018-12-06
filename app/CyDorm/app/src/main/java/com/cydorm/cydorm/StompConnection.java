@@ -3,6 +3,7 @@ package com.cydorm.cydorm;
 import android.util.Log;
 import com.techdew.stomplibrary.Stomp;
 import com.techdew.stomplibrary.StompClient;
+import java.net.HttpCookie;
 import org.java_websocket.WebSocket;
 
 import java.util.Collections;
@@ -20,8 +21,14 @@ public class StompConnection {
             ".edu:8080/gs-guide-websocket/websocket";
 
     /** New stomp connection based on sessionID*/
-    public StompConnection(String sessionID) {
-        this.sessionID = "99639E3783D29364472B634B3C151051";
+    public StompConnection(String s) {
+
+        for(HttpCookie c : ServerSessionSingleton.getInstance().getCookieManager().getCookieStore().getCookies()) {
+            if(c.getName().equals("JSESSIONID")) {
+                this.sessionID = c.getValue();
+                Log.d("STOMP", "Just set stomp connection session id to " + this.sessionID);
+            }
+        }
         initStomp();
     }
 

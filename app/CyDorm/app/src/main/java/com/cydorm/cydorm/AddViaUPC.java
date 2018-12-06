@@ -30,7 +30,7 @@ public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.Res
 
     private ZXingScannerView mScannerView;
 
-    HashMap<String, String> previousScans = new HashMap<String, String>();
+    HashMap<String, String[]> previousScans = new HashMap<String, String[]>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +73,13 @@ public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.Res
     }
 
     private String scanItem(String barcode){ //Don't want to waste API calls
-        if (previousScans.containsKey(barcode)){
-            return previousScans.get(barcode);
-        }
+        String item;
+        String price;
+        /**if (previousScans.containsKey(barcode)){
+
+            item = previousScans.get(barcode)[0];
+            price = previousScans.get(barcode)[1];
+        }*/
         String key = "&key=ply4u1uw4of4htn9gfnsgpnxe1k4hg";
         String url = "https://api.barcodelookup.com/v2/products?barcode=" + barcode + key;
 
@@ -97,13 +101,18 @@ public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.Res
             JSONObject Jobject = new JSONObject(jsonData);
             JSONArray Jarray = Jobject.getJSONArray("products");
 
-            String item = Jarray.getJSONObject(0).get("product_name").toString();
-            return item;
+            item = Jarray.getJSONObject(0).get("product_name").toString();
+            price = Jarray.getJSONObject(0).getJSONArray("stores").getJSONObject(0).get("store_price").toString();
+
+            //String[] itemArray = new String[]{item, price};
+            //previousScans.put(barcode, itemArray);
         }
         catch (Exception E){
             System.out.println(E);
             return(E.toString());
         }
+        return "Adding " + item + " for $" + price;
+
     }
 
     private void process(String item){

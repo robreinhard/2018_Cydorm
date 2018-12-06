@@ -32,6 +32,7 @@ public class Sublocation {
     @OneToMany(mappedBy="sublocation", fetch=FetchType.EAGER)
     private Set<Address> addresses;
 	
+    
     /** The ca. */
     @OneToOne(cascade= CascadeType.ALL)
     @JoinTable(name = "sublocation_user",
@@ -39,6 +40,15 @@ public class Sublocation {
     		   inverseJoinColumns = @JoinColumn(name="user_id")
     )
 	private User ca;
+    
+    /** The location. */
+    //Address to user relationship
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name = "sublocation_location",
+    		   joinColumns = @JoinColumn(name= "sublocation_id"),
+    		   inverseJoinColumns = @JoinColumn(name = "location_id")
+    )
+    private Location location;
     
 	/**
 	 * Instantiates a new sublocation.
@@ -99,5 +109,13 @@ public class Sublocation {
         return "Sublocation [sublocation_id=" + sublocation_id + ", sublocation=" + sublocation + "]";
     }
     
+	public Location getLocation() {
+		
+		return location;
+	}
 	
+	public void setLocation(Location location) {
+		
+		this.location = location;
+	}
 }

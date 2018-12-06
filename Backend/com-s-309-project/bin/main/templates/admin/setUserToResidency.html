@@ -7,7 +7,6 @@
 	
   	<title>CyDorm Log In</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<script src="/javascript/navbar.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,8 +36,8 @@
 				<input type="text" name="location" th:field="*{location}" placeholder="Location"/>
 				<input type="text" name="sublocation" th:field="*{sublocation}" placeholder="Sublocations"/>
 				<input type="text" name="address" th:field="*{address}" placeholder="Address"/>
-
-				<button class="loginButton" type="submit">Sign Up</button>
+				<input type="text" name="netID" th:field="*{netID}" placeholder="NetID"/>
+				<button class="loginButton" type="submit">Set User to Address</button>
 
 		</form>
 	</div>

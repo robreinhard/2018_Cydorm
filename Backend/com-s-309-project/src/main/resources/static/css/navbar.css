@@ -561,3 +561,99 @@ body {
 	float: left;
 
 }
+
+
+/*Everything under this line is admin table stuff*/
+
+.userManager {
+	
+	width: 90%;
+	margin: 0 auto;
+	font-family: Roboto;
+}
+
+table {
+	
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  
+}
+
+#myInput {
+	
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 70%; /* Full-width */
+    font-size: 14px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 2px solid #00338B; /* Add a grey border */
+    height: 45px;
+    box-sizing:border-box;
+    outline: none;
+	float: left;
+}
+
+#searchBy {
+	
+	font-size: 24px;
+	border-radius: 0;
+	
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #00338B; /* Add a grey border */
+    width: 10%;
+	height: 45px;    
+    font-size: 14px;
+    padding-left: 5px;
+    margin-left: 5px;
+    float:left;
+    outline: none;
+}
+
+.searchFilter {
+	
+	height: 45px;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom:5px;
+	
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #00338B;
+  color: white;
+}
+
+.fileupload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  float: right;
+}
+
+.filebtn {
+  border: 2px solid #00338B;
+  color: #00338B;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fileupload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

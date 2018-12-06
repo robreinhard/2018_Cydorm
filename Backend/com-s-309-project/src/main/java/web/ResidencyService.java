@@ -95,8 +95,8 @@ public class ResidencyService {
      */
     public void saveLocation(Location location, Sublocation sublocation) {
     	
-    	location.addSublocation(sublocation);
-        locationRepository.save(location);
+    	sublocation.setLocation(location);
+        sublocationRepository.save(sublocation);
     	
     }
     

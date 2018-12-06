@@ -47,18 +47,17 @@
 			<div class="col33">
 				<div class="colHeader">
 					<a href="/disputes" class="colHeaderTxt">Disputes</a>
-					<button onclick="" class="add">+</button>
+					<button onclick="disputeAdd()" class="add">+</button>
 				</div>
 				<div class="theLists">	
-				<div class="listContent"> 
+				<div class="listContent" id="pendingDisputes"> 
 					<div class="colDeclaration">
 						<a href="/disputes" class="colSubHeaderTxt"><i>Pending Disputes</i></a>
 					</div>
-					<div class="disputeItemContainer"></div>
 				
 				</div>
 				
-				<div class="listContent">
+				<div class="listContent" id="pastDisputes">
 					<div class="colDeclaration">
 						<a href="/disputes" class="colSubHeaderTxt"><i>Past Disputes</i></a>
 					</div>
@@ -232,5 +231,24 @@
 	  </div>
 	
 	</div>
+	<div id="disputeAddModal" class="modal">
 	
+	  <!-- Modal content -->
+	  <div class="modal-content-1">
+	    <div class="modal-header">
+	      <h2 class="addHeader">Send Dispute (to CA):</h2>
+		  <button onclick="closed()" class="cancel"><i class="fas fa-times"></i></button>
+	    </div>
+	    <div class="modal-body">
+	      <div class="addDisputeContainer">
+    	  	  <input type="text" id="dTitle" placeholder="title">
+	      	  <textarea id="dMessage"></textarea>
+	      	  
+	      	  
+	      </div>
+	    </div>
+	    <button onclick="addDispute()" class="button-footer">Send Dispute</button>
+	  </div>
+	
+	</div>
 </body>

@@ -1,17 +1,28 @@
 package web;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -48,7 +59,17 @@ public class AdminController {
         return modelAndView;
     }
     
-    
+    @RequestMapping(value="/admin/userManager", method = RequestMethod.GET)
+    public ModelAndView userManager(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByNetID(auth.getName());
+        modelAndView.addObject("userName", user.getFirstName());
+        Residency residency = new Residency();
+        modelAndView.addObject("residency", residency);
+        modelAndView.setViewName("admin/userManager");
+        return modelAndView;
+    }
 
     /**
      * Creates the residency.
@@ -213,5 +234,69 @@ public class AdminController {
         return modelAndView;
     }
     
+    @GetMapping("/allUsers")
+	public @ResponseBody String getAllItems() throws JSONException{
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByNetID(auth.getName()); 
+        System.out.println("THIS WORKS: "+user);
+		return userService.allUsers();
+	}
     
+    @RequestMapping(value = "/admin/userManager", method = RequestMethod.POST)
+    public ModelAndView ass(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws IOException {
+    	
+        ModelAndView modelAndView = new ModelAndView();
+        modelMap.addAttribute("file", file);
+
+        String extension = "";
+        File theFile = new File(file.getOriginalFilename());
+        theFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(theFile);
+        fos.write(file.getBytes());
+        fos.close();
+        
+        int i = theFile.getName().lastIndexOf('.');
+        if (i > 0) {
+            extension = theFile.getName().substring(i+1);
+        }        
+        System.out.println("FILE SUCCESSULLY UPLOADED: HERE IS EXTENSION: " + extension);
+        
+        Scanner scanner1 = new Scanner(theFile);
+        while (scanner1.hasNextLine()) {
+        	
+        	Scanner scanner2 = new Scanner(scanner1.nextLine());
+        	int j = 0; 
+        	String parameters[] = new String[5];
+    		boolean shouldAdd = true;
+
+        	while (scanner2.hasNext()) {
+        		
+        		parameters[j] = scanner2.next();
+            	if (parameters[j].length() == 0) {
+            		
+            		shouldAdd = false;
+            	}
+        		j++;
+
+        	}
+        	
+        	if (shouldAdd) {
+        		
+            	userService.saveUser(new User(parameters[0],parameters[1],parameters[2],parameters[3]), parameters[4]); 
+
+        	}
+        	
+            scanner2.close();
+
+        }
+        
+        scanner1.close();
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();      
+        User user = userService.findUserByNetID(auth.getName());
+        modelAndView.addObject("userName", user.getFirstName());
+        modelAndView.setViewName("admin/userManager");
+        return new ModelAndView("redirect:/admin/userManager");
+    }
 }

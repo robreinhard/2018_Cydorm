@@ -1,11 +1,19 @@
 package web;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 /**
@@ -86,6 +94,59 @@ public class UserService {
     public RoleRepository getRoleRepository() {
     	
     	return roleRepository;
+    }
+    
+    public String allUsers() throws JSONException {
+    	
+    
+        	
+    	JSONArray array = new JSONArray();
+    	Collection<User> theUsers = userRepository.findAll();
+    	Iterator<User> iterator = theUsers.iterator();
+    	
+    	while (iterator.hasNext() ) {
+    		JSONObject user = new JSONObject();
+    		
+    		User thisUser = iterator.next();
+        	user.put("user_id", thisUser.getId());
+        	user.put("firstName", thisUser.getFirstName());
+        	user.put("lastName", thisUser.getLastName());
+        	user.put("netID", thisUser.getNetID());
+        	user.put("role", thisUser.getRole().toString());
+        	try {
+        		System.out.println("LOCATION: " + thisUser.getAddress().getSublocation().getLocation().getLocation());
+        		user.put("location", thisUser.getAddress().getSublocation().getLocation().getLocation());
+        		
+        	}
+        	catch (NullPointerException e ) {
+        		
+            	user.put("location","");
+
+        	}
+        	try {
+        		
+            	user.put("sublocation", thisUser.getAddress().getSublocation().getSublocation());
+
+        	}
+        	catch (NullPointerException e) {
+        		
+            	user.put("sublocation","");
+
+        	}
+        	try {
+        	user.put("address", thisUser.getAddress().getAddress());
+        	}
+        	catch (NullPointerException e) {
+        		
+        		 user.put("address","");
+        	}
+
+        	array.put(user);
+    	}
+    	
+    	return array.toString();
+    	
+      
     }
 
 }

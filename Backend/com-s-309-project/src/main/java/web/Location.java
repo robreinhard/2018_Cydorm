@@ -30,11 +30,7 @@ public class Location {
 	
 	/** The sublocations. */
 	//Address to user relationship
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "location_sublocation",
-    		   joinColumns = @JoinColumn(name= "location_id"),
-    		   inverseJoinColumns = @JoinColumn(name = "sublocation_id")
-    )
+	@OneToMany(mappedBy="sublocation", fetch=FetchType.EAGER)
     private Set<Sublocation> sublocations;
 	
   

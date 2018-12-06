@@ -1,0 +1,9 @@
+Rob	Reinhard	robgr	password	ADMIN
+Malcolm	Boyd	mboyd	password	ADMIN
+Jack	Potter	jpotter	password	ADMIN
+Andre	Chickering	andrec	password	ADMIN
+Bennett	Torrance	bennettT	password	CA
+Harry	Potter	myScarHurts	password	RESIDENT
+Luke	Skywalker	ripAuntie	password	RESIDENT
+Bruce	Wayne	bigBruce	password	RESIDENT
+Peter	Parker	notASpider	password	RESIDENT

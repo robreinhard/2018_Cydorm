@@ -233,6 +233,14 @@ body {
 	 
 }
 
+.disputeItemContainer {
+	
+	min-height: 100px;
+	width: 100%;
+	border-bottom: 2px solid #3066BE;
+	overflow: auto;	
+}
+
 .choresItemContainer {
 	
 	height: 75px;
@@ -253,6 +261,20 @@ body {
 	line-height:0px;
  	vertical-align: middle;	   
  	min-width: 20%;
+}
+
+.disputeBodyComponent {
+	
+	display: inline-block;
+	font-family: Roboto;
+	font-size: 20px;
+	padding-left: 10px;
+	border: none;
+	outline: none;
+    background-color: Transparent;
+	line-height:0px;
+ 	vertical-align: middle;	   
+ 	width: 90%;
 }
 
 .theLists {
@@ -320,7 +342,22 @@ body {
     
 }
 
-
+/* Modal Content */
+.modal-content-1 {
+    position: relative;
+    background-color: white;
+    margin-left: 1.5%;
+    margin-right: 98.5%;
+    padding: 0;
+    border: 2px solid #3066BE;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
 
 /* Modal Content */
 .modal-content {
@@ -431,6 +468,15 @@ body {
 	margin-left:2px;
 }
 
+.addDisputeContainer textarea {
+	
+	resize: none;
+	width: 90%;
+	height: 200px;
+	outline: none;
+	border: 2px solid #aaa;
+}
+
 .modal-body input[type=text]:focus {
 	
 	border: 2px solid black;
@@ -514,4 +560,100 @@ body {
 	display: block;
 	float: left;
 
+}
+
+
+/*Everything under this line is admin table stuff*/
+
+.userManager {
+	
+	width: 90%;
+	margin: 0 auto;
+	font-family: Roboto;
+}
+
+table {
+	
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  
+}
+
+#myInput {
+	
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 70%; /* Full-width */
+    font-size: 14px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 2px solid #00338B; /* Add a grey border */
+    height: 45px;
+    box-sizing:border-box;
+    outline: none;
+	float: left;
+}
+
+#searchBy {
+	
+	font-size: 24px;
+	border-radius: 0;
+	
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #00338B; /* Add a grey border */
+    width: 10%;
+	height: 45px;    
+    font-size: 14px;
+    padding-left: 5px;
+    margin-left: 5px;
+    float:left;
+    outline: none;
+}
+
+.searchFilter {
+	
+	height: 45px;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom:5px;
+	
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #00338B;
+  color: white;
+}
+
+.fileupload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  float: right;
+}
+
+.filebtn {
+  border: 2px solid #00338B;
+  color: #00338B;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fileupload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

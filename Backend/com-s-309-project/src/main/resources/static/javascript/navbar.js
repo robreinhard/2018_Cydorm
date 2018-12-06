@@ -130,7 +130,7 @@ function updateChoresList(chores) {
 			  
 		  var isNotPushed = true;
 		  for (var j=0; j < toDoChores.length;j++) {
-
+			alert(chores[i].chore_id);	//debug
 			  if (chores[i].chore_id == toDoChores[j].chore_id) {
 				  
 				  isNotPushed = false;
@@ -142,7 +142,7 @@ function updateChoresList(chores) {
 			  toDoChores.push(chores[i]);
 			  var date = new Date(chores[i].dueDate);
 			  
-			  $( "#toDoChores" ).append('<div class="groceryItemContainer" id=c' + chores[i].chore_id + ' onclick="modifyRemovePromptChore('+ chores[i].chore_id + ')"><h4 class="containerComponents">' + chores[i].chore + '</h4><h4 class="containerComponents">'+ (date.getMonth()+1) + '/' + date.getDate()+'</h4><h4 class="containerComponents">'+chores[i].studentID+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
+			  $( "#toDoChores" ).append('<div class="choreItemContainer" id=c' + chores[i].chore_id + ' onclick="modifyRemovePromptChore('+ chores[i].chore_id + ')"><h4 class="containerComponents">' + chores[i].chore + '</h4><h4 class="containerComponents">'+ (date.getMonth()+1) + '/' + date.getDate()+'</h4><h4 class="containerComponents">'+chores[i].studentID+'</h4><input type="checkbox" class="containerComponents floatRight"></div>');
 
 		  }
 		}
@@ -162,19 +162,19 @@ function updateChoresList(chores) {
 			  	pendingChores.push(chores[i]);
 			  	var date = new Date(chores[i].dueDate);
 
-			  	$( "#pendingChores" ).append('<div class="groceryItemContainer" id=c' + chores[i].chores_id + ' onclick="modifyRemovePromptChore('+ chores[i].chore_id + ')"><h4 class="containerComponents">' + chores[i].chore + '</h4><h4 class="containerComponents">'+ (date.getMonth()+1) + '/' + date.getDate()+'</h4><h4 class="containerComponents">'+chores[i].studentID+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
+			  	$( "#pendingChores" ).append('<div class="choreItemContainer" id=c' + chores[i].chores_id + ' onclick="modifyRemovePromptChore('+ chores[i].chore_id + ')"><h4 class="containerComponents">' + chores[i].chore + '</h4><h4 class="containerComponents">'+ (date.getMonth()+1) + '/' + date.getDate()+'</h4><h4 class="containerComponents">'+chores[i].studentID+'</h4><input type="checkbox" checked="checked" class="containerComponents floatRight"></div>');
 
 		  }
 		}
 	}
 		var allChores = pendingChores.concat(toDoChores);
 		console.log(allChores);
-		  var toBeRemoved = allChores.filter(function(g) {
+		  var toBeRemoved = allChores.filter(function(c) {
 
 			for (var k=0; k < chores.length;k++) {
-
-			  if (chores[k].chore_id == g.chore_id) {
-				  console.log(chores[k].chore_id + ":" + g.chore_id);
+				//alert(c.chore_id);
+			  if (chores[k].chore_id == c.chore_id) {
+				  console.log(chores[k].chore_id + ":" + c.chore_id);
 				  return false;
 			  }
 			  

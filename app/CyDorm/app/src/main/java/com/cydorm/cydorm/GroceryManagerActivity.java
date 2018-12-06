@@ -97,6 +97,7 @@ public class GroceryManagerActivity extends AppCompatActivity {
     /** Subscribe to the addition of new grocery items */
     private void subscribeAdd() {
 
+        this.dumpGroceryAndUpdate(this.sc.sc);
         //Subscribe to new things being added
         this.sc.sc.topic("/allGroceries")
                 .subscribe(topicMessage -> {
@@ -115,7 +116,6 @@ public class GroceryManagerActivity extends AppCompatActivity {
                     }
                 });
 
-        this.dumpGroceryAndUpdate(this.sc.sc);
     }
 
     /** Upadate grocery list with new item

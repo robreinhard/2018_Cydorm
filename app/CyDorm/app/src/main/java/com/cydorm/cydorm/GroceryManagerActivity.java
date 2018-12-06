@@ -44,6 +44,10 @@ public class GroceryManagerActivity extends AppCompatActivity {
     private StompConnection sc;
     private GroceryListNetwork listNetwork;
 
+    private String selectedPrice;
+    private String selectedName;
+    private String selectedID;
+
     private String url = "http://proj309-vc-05.misc.iastate" +
             ".edu:8080/gs-guide-websocket/websocket";
 
@@ -63,6 +67,9 @@ public class GroceryManagerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(GroceryManagerActivity.this,
                         AddGroceryActivity.class);
+                i.putExtra("price", selectedPrice);
+                i.putExtra("name", selectedName);
+                i.putExtra("id", selectedID);
                 startActivity(i);
             }
         });

@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
 
->>>>>>> e649b40081c2a4e39de9cf37cc9ae10368b85dfc
 
 public class MainActivity extends AppCompatActivity {
     //private RecyclerView mRecyclerView;
@@ -38,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.chore_icon);
         im.addMapping(LoadImage.class, R.drawable.scan_icon);
         //im.addMapping(UserListing.class, R.drawable.ic_launcher_foreground);
+        im.addMapping(AddViaUPC.class, R.drawable.barcode);
 
         // the grid of icons
         GridView gridview = (GridView) findViewById(R.id.gridview); //The

@@ -31,7 +31,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         contactViewHolder.vEmail.setText(ci.email);
         contactViewHolder.vTitle.setText(ci.name + " " + ci.surname);
 
-
     }
 
     @Override
@@ -48,6 +47,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         protected TextView vSurname;
         protected TextView vEmail;
         protected TextView vTitle;
+
         public View view;
 
         public ContactViewHolder(View v) {

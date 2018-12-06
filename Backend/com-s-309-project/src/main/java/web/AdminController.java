@@ -244,24 +244,17 @@ public class AdminController {
 	}
     
     @RequestMapping(value = "/admin/userManager", method = RequestMethod.POST)
-    public ModelAndView ass(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws IOException {
+    public ModelAndView userFile(@RequestParam("file") MultipartFile file, ModelMap modelMap) throws IOException {
     	
         ModelAndView modelAndView = new ModelAndView();
-        modelMap.addAttribute("file", file);
+        modelMap.addAttribute("file",file);
 
         String extension = "";
         File theFile = new File(file.getOriginalFilename());
-        theFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(theFile);
-        fos.write(file.getBytes());
-        fos.close();
         
-        int i = theFile.getName().lastIndexOf('.');
-        if (i > 0) {
-            extension = theFile.getName().substring(i+1);
-        }        
-        System.out.println("FILE SUCCESSULLY UPLOADED: HERE IS EXTENSION: " + extension);
         
+        
+        if (theFile.getName().equals("users.txt")) {
         Scanner scanner1 = new Scanner(theFile);
         while (scanner1.hasNextLine()) {
         	
@@ -292,11 +285,78 @@ public class AdminController {
         }
         
         scanner1.close();
-        
+        }
+        else if (theFile.getName().equals("userRes.txt")) {
+        	
+        	System.out.println("RUNNING");
+            Scanner scanner1 = new Scanner(theFile);
+        	while (scanner1.hasNextLine()) {
+            	
+            	Scanner scanner2 = new Scanner(scanner1.nextLine());
+            	int j = 0; 
+            	String parameters[] = new String[4];
+        		boolean shouldAdd = true;
+
+            	while (scanner2.hasNext()) {
+            		
+            		parameters[j] = scanner2.next();
+                	if (parameters[j].length() == 0) {
+                		
+                		shouldAdd = false;
+                	}
+            		j++;
+
+            	}
+            	
+            	if (shouldAdd) {
+            		
+            		 Address address = residencyService.findAddress(parameters[3]);
+            	        if (address == null) {
+            	           
+            	        	address = new Address(parameters[3]);
+            	        	residencyService.saveAddress(address);
+            	        	
+            	        }
+            	        Sublocation sublocation = residencyService.findSublocation(parameters[2]);
+            	        System.out.println(parameters[2]);
+            	        if (sublocation == null) {
+            	        	
+            	        	sublocation = new Sublocation(parameters[2]);
+            	        	System.out.println(residencyService.findAddress(parameters[3]));
+            	        	System.out.println(address.toString());
+                	    	residencyService.saveSublocation(sublocation,residencyService.findAddress(parameters[3]));
+
+            	        }
+            	        Location location = residencyService.findLocation(parameters[1]);
+            	        if (location == null) {
+            	        	
+            	        	location = new Location(parameters[1]);
+                	    	residencyService.saveLocation(location,residencyService.findSublocation(parameters[2]));
+
+            	        }
+
+            	        User rUser = userService.findUserByNetID(parameters[0]);
+            	        System.out.println(rUser);
+                        Address isAddressValid = residencyService.findAddress(parameters[3]);
+            	        System.out.println(isAddressValid);
+
+                     	residencyService.setUserAddress(rUser, isAddressValid);
+
+            	}
+            	
+                scanner2.close();
+
+            }
+            
+            scanner1.close();
+        	
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();      
         User user = userService.findUserByNetID(auth.getName());
         modelAndView.addObject("userName", user.getFirstName());
         modelAndView.setViewName("admin/userManager");
         return new ModelAndView("redirect:/admin/userManager");
     }
+    
+    
 }

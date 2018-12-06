@@ -22,7 +22,7 @@ window.onload = function() {
     	      var address = "<td contenteditable>" + users[i].address + "</td></tr>";
     		  
     		  var toBuild = firstName + lastName + netID + role + location + sublocation + address;
-    		  loadedTable.push(new Array(users[i].firstName,users[i].lastName,users[i].netID,users[i].role,users[i].location,users[i].sublocation,users[i].address));
+    		  loadedTable.push(new Array(users[i].firstName,users[i].lastName,users[i].netID,users[i].role,users[i].location,users[i].sublocation,users[i].address,users[i].user_id));
     		  console.log(toBuild);
     		  $('#userTable tbody:last-child').append(toBuild);
     		  
@@ -86,6 +86,30 @@ $(document).on('keydown', 'td', function(evt) {
 	
 
 });
+
+function searchFilter() {
+	  // Declare variables 
+	  var input, filter, table, tr, td, i, txtValue, select,selected;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("userTable");
+	  tr = table.getElementsByTagName("tr");
+	  select = document.getElementById("searchBy");
+	  selected = select.options[select.selectedIndex].value;
+	  console.log(selected);
+	  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[selected];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    } 
+	  }
+	}
 
 
 

@@ -1,5 +1,6 @@
 package com.cydorm.cydorm;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import org.json.JSONObject;
 import okhttp3.*;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import com.cydorm.cydorm.GroceryManagerActivity;
 
 public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
@@ -119,7 +122,12 @@ public class AddViaUPC extends AppCompatActivity implements ZXingScannerView.Res
     }
 
     private void process(String[] itemArray){
-
+        Intent i = new Intent(AddViaUPC.this,
+                AddGroceryActivity.class);
+        i.putExtra("price", itemArray[1]);
+        i.putExtra("name", itemArray[0]);
+        i.putExtra("id", "");
+        startActivity(i);
     }
 
 }
